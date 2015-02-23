@@ -5,22 +5,25 @@ namespace Surveys
 {
 	public class Question
 	{
-		public Guid QuestionId { get; set; }
+		public Guid QuestionId { get; private set; }
 		public Boolean IsAnswered { get; set; }
 		public Boolean IsMandatory { get; set; }
 		public String QuestionText { get; set; }
 
 		private IList<Guid> dependencyList = new List<Guid>();
 
-		public Question (Guid guid, Boolean isMandatory, String questionText)
+		public Question ()
 		{
-			QuestionId = guid
+			QuestionId = Guid.NewGuid ();
 		}
 
-		public void addDependantQuestion(Question q)
+		public Question (Guid guid, Boolean isMandatory, String questionText)
 		{
-			throw new NotImplementedException ();
+			QuestionId = guid;
+			IsMandatory = isMandatory;
+			QuestionText = questionText;
 		}
+		
 
 		public void addDependantQuestion(Question q)
 		{

@@ -12,7 +12,9 @@ namespace Surveys
 		}
 
 		public Survey CreateDummySurvey() {
-			s.addQuestion (ContentType.EXCLUSIVE);
+			Question q1 = new Question();
+
+			return s;
 		}
 
 

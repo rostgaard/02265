@@ -5,7 +5,7 @@ namespace Surveys
 {
 	public class AnswerType
 	{
-		private IList<String> answerText = new List<String>();
+		private IList<String> answerTexts = new List<String>();
 		private ContentType ContentType { get; set;}
 
 
@@ -16,7 +16,7 @@ namespace Surveys
 
 		public void addAnswerText(String answerText)
 		{
-			answerText.Add (answerText);
+			answerTexts.Add (answerText);
 		}
 	}
 }
