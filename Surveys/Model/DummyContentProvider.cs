@@ -1,0 +1,21 @@
+﻿using System;
+
+namespace Surveys
+{
+	public class DummyContentProvider
+	{
+		private Survey s;
+		public DummyContentProvider ()
+
+		{
+			s = new Survey ();
+		}
+
+		public Survey CreateDummySurvey() {
+			s.addQuestion (ContentType.EXCLUSIVE);
+		}
+
+
+	}
+}
+
