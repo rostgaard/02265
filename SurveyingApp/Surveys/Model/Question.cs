@@ -6,11 +6,20 @@ namespace Surveys
 	public class Question
 	{
 		public Guid QuestionId { get; private set; }
+
 		public Boolean IsAnswered { get; set; }
+
 		public Boolean IsMandatory { get; set; }
+
 		public String QuestionText { get; set; }
 
-		private IList<Guid> dependencyList = new List<Guid>();
+		public IList<AnswerOption> PossibleAnswers { get; set; }
+
+		public QuestionType QuestionType { get; set; }
+
+		public DataType AnswerType { get; set; }
+
+		private IList<Guid> dependencyList = new List<Guid> ();
 
 		public Question ()
 		{
@@ -23,14 +32,14 @@ namespace Surveys
 			IsMandatory = isMandatory;
 			QuestionText = questionText;
 		}
-		
 
-		public void addDependantQuestion(Question q)
+
+		public void addDependantQuestion (Question q)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public void addDependantQuestion(Guid g)
+		public void addDependantQuestion (Guid g)
 		{
 			throw new NotImplementedException ();
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Surveys
 {
@@ -7,30 +8,31 @@ namespace Surveys
 	{
 		public Guid SurveyId { get; set; }
 
-		private IList<Question> questionList = new List<Question>();
+		public Scheduler Scheduler { get; set; }
 
-		public IList<Question> QuestionList
-		{
-			get 
-			{
-				return questionList;
+		private IList<SurveyPart> surveyParts = new List<SurveyPart> ();
+
+		public IList<SurveyPart> SurveyParts {
+			get {
+				return surveyParts;
 			} 
-			private set
-			{
-				questionList = value;
+			private set {
+				surveyParts = value;
 			}
 		}
+
+		public IList<SurveyAnswer> SurveyAnswers { get; set; }
 
 		public Survey ()
 		{
 		}
 
-		public void addQuestion (Question q)
+		public void addPart (SurveyPart q)
 		{
 			if (q != null)
-				questionList.Add (q);
+				surveyParts.Add (q);
 			else
-				throw new ArgumentNullException();
+				throw new ArgumentNullException ();
 		}
 	}
 }
