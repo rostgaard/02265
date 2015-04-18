@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Surveys
 {
 	public class SurveyAnswer
 	{
-		public IList<Answer> Answers { get; set; }
+		public List<Answer> Answers { get; set; }
 
 		public UserData UserData { get; set; }
 

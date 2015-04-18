@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Surveys
 {
 	public class SurveyPart
 	{
 
-		public IList<QuestionReference> Questions { get; set; }
+		public List<QuestionReference> Questions { get; set; }
 
 		public SurveyPart ()
 		{
