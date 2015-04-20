@@ -45,7 +45,8 @@ namespace Surveys
 
 
 			navigationContent = new StackLayout {
-				Orientation = StackOrientation.Horizontal
+				Orientation = StackOrientation.Horizontal,
+				HeightRequest = 50
 			};
 			navigationContent.Children.Add (goToPreviousButton);
 			navigationContent.Children.Add (goToNextButton);
@@ -118,7 +119,7 @@ namespace Surveys
 		public void updateQuestionNavigation() {
 			questionQueue[questionCounter].PropertyChanged+= (sender, e) => 
 			{
-				if (questionQueue[questionCounter].IsAnswered)
+				if (questionQueue[questionCounter].IsAnswered && (questionCounter < questionQueue.Count - 1))
 					goToNextButton.IsEnabled = true;
 				else goToNextButton.IsEnabled = false;
 			};
