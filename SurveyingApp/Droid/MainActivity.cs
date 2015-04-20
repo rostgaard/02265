@@ -7,7 +7,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+
 using XLabs.Forms;
+using XLabs.Ioc;
+using XLabs.Platform.Services.Geolocation;
+using XLabs.Platform.Services;
+using XLabs.Platform.Device;
+
 
 
 namespace Surveys.Droid
@@ -19,8 +25,12 @@ namespace Surveys.Droid
 		{
 			base.OnCreate (bundle);
 
-			global::Xamarin.Forms.Forms.Init (this, bundle);
+			var container = new SimpleContainer(); // Create a SimpleCOntainer
+			container.Register<IGeolocator, Geolocator>(); // Register the Geolocator
+			container.Register<IDevice> (t => AndroidDevice.CurrentDevice); // Register the Device
+			Resolver.SetResolver(container.GetResolver()); // Resolve it
 
+			global::Xamarin.Forms.Forms.Init (this, bundle);
 			LoadApplication (new App ());
 
 		}

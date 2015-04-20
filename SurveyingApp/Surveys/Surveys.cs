@@ -10,7 +10,7 @@ namespace Surveys
 		public App ()
 		{
 			// The root page of your application
-			MainPage = new SurveyViewPage ();
+			MainPage = new GeolocatorPage ();
 		}
 
 		protected override void OnStart ()
