@@ -1,29 +1,32 @@
 ﻿using System;
+
 using Xamarin.Forms;
-using System.ComponentModel;
 
 namespace Surveys
 {
-	public class EssayQuestionView : QuestionView
+	public class FreeValueView : QuestionView
 	{
 		Label QuestionLabel { get; set;}
 
 		Editor AnswerEditor {get; set;}
 
-		public EssayQuestionView ( string questionText) : this ()
+		public FreeValueView ( string questionText) : this ()
 		{
 			QuestionLabel.Text = questionText;
 		}
 
-		public EssayQuestionView () : base ()
+		public FreeValueView () : base ()
 		{
 			QuestionLabel = new Label{
-				Text = "Default descriptive question?"
+				Text = ""
 			};
+
+			// TODO Differentiate the keyboard type depending on the content
 			AnswerEditor = new Editor {
 				Keyboard = Keyboard.Create (KeyboardFlags.All),
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
+
 			this.Children.Add (QuestionLabel);
 			this.Children.Add (AnswerEditor);
 
@@ -33,10 +36,13 @@ namespace Surveys
 				else this.IsAnswered = false;
 			};
 		}
-			
+
 
 
 
 	}
+
+
 }
+
 
