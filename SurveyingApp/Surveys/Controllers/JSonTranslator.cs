@@ -1,10 +1,9 @@
 ﻿using System;
-using System.IO;
 using Newtonsoft.Json;
 
-namespace Surveys.Controllers
+namespace Surveys
 {
-    class JSonTranslator
+    static class JSonTranslator
     {
         public static String serialize(Object obj) 
         {

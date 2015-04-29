@@ -11,6 +11,12 @@ namespace Surveys
 		public Choice ()
 		{
 		}
+
+		public Choice (int min, int max)
+		{
+			minNumOfAnswers = min;
+			maxNumOfAnswers = max;
+		}
 	}
 }
 

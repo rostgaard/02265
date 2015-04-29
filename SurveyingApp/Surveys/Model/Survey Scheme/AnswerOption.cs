@@ -10,6 +10,11 @@ namespace Surveys
 		public AnswerOption ()
 		{
 		}
+
+		public AnswerOption (String text)
+		{
+			Content = text;
+		}
 	}
 }
 

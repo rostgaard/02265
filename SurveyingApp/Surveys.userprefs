@@ -1,20 +1,12 @@
-﻿<Properties StartupItem="Droid/Surveys.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.3b4497a1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Surveys/GeolocatorPage.cs">
+﻿<Properties StartupItem="Droid\Surveys.Droid.csproj" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.SelectDevice" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Surveys\Controllers\JSonTranslator.cs">
     <Files>
-      <File FileName="Surveys/View and ViewModel/TrueFalseQuestionView.cs" Line="1" Column="1" />
-      <File FileName="Surveys/View and ViewModel/QuestionView.cs" Line="1" Column="1" />
-      <File FileName="Surveys/View and ViewModel/PickerQuestionView.cs" Line="1" Column="1" />
-      <File FileName="Surveys/View and ViewModel/EssayQuestionView.cs" Line="1" Column="1" />
-      <File FileName="Surveys/SurveyViewPage.cs" Line="115" Column="38" />
-      <File FileName="Surveys/Model/Survey.cs" Line="1" Column="1" />
-      <File FileName="Surveys/Surveys.cs" Line="13" Column="33" />
-      <File FileName="Surveys/TestPage.cs" Line="3" Column="11" />
-      <File FileName="Surveys/GeolocatorPage.cs" Line="60" Column="32" />
-      <File FileName="Surveys/packages.config" Line="1" Column="1" />
-      <File FileName="iOS/AppDelegate.cs" Line="33" Column="4" />
-      <File FileName="Surveys/Surveys.csproj" Line="1" Column="1" />
-      <File FileName="Droid/MainActivity.cs" Line="29" Column="46" />
+      <File FileName="Surveys\Surveys.cs" Line="18" Column="4" />
+      <File FileName="Surveys\Model\Survey Scheme\SurveyPart.cs" Line="1" Column="1" />
+      <File FileName="Surveys\SurveyGenerator.cs" Line="1" Column="1" />
+      <File FileName="Surveys\Model\Survey Scheme\QuestionReference.cs" Line="1" Column="1" />
+      <File FileName="Surveys\Controllers\JSonTranslator.cs" Line="3" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
