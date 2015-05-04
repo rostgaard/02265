@@ -1,5 +1,7 @@
 ﻿using System;
+
 using Xamarin.Forms;
+using XLabs.Forms.Controls;
 
 namespace Surveys
 {
@@ -9,13 +11,6 @@ namespace Surveys
 		{
 			// The root page of your application
 			MainPage = new GeolocatorPage ();
-			SurveyGenerator sg = new SurveyGenerator ();
-			Survey survey = sg.generateSurvey1 ();
-			String json = JSonTranslator.serialize (survey);
-			Survey ns = (Survey) JSonTranslator.deserialize (json, typeof(Survey));
-
-
-
 		}
 
 		protected override void OnStart ()
