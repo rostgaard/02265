@@ -5,7 +5,7 @@ namespace Surveys
 {
     static class JSonTranslator 
     {
-        public static String serialize(Survey obj) 
+        public static String Serialize(Survey obj) 
         {
 			return JsonConvert.SerializeObject (obj, Formatting.Indented, new JsonSerializerSettings {
 				TypeNameHandling = TypeNameHandling.Objects,
@@ -13,7 +13,7 @@ namespace Surveys
 			});
         }
 
-        public static Survey deserialize(String json)
+        public static Survey Deserialize(String json)
         {
 			return JsonConvert.DeserializeObject<Survey> (json, new JsonSerializerSettings {
 				TypeNameHandling = TypeNameHandling.Objects
