@@ -14,7 +14,7 @@ namespace Surveys
 			SurveyGenerator sg = new SurveyGenerator ();
 			Survey survey = sg.generateSurvey1 ();
 			String json = JSonTranslator.serialize (survey);
-			Survey ns = (Survey) JSonTranslator.deserialize (json, typeof(Survey));
+			Survey ns = (Survey) JSonTranslator.deserialize (json);
 
 
 

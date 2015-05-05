@@ -1,4 +1,6 @@
 Debug/
 SurveyingApp/packages/
 
-#Autosave files*~# Build/test outputobjbintest-results# VS sometimes writes these for no apparent reason_UpgradeReport_FilesUpgradeLog.*# Per-user data*.DS_Store*.sln.cache*.suo*.userprefs*.usertasks*.user# ReSharper*_Resharper.**.Resharper# dotCover*.dotCover
+#Autosave files*~# Build/test outputobjbintest-results# VS sometimes writes these for no apparent reason_UpgradeReport_FilesUpgradeLog.*# Per-user data*.DS_Store*.sln.cache*.suo*.userprefs*.usertasks*.user
+*.userprefs 
+# ReSharper*_Resharper.**.Resharper# dotCover*.dotCover
