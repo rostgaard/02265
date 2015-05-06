@@ -33,7 +33,6 @@
     <Compile Include="Surveys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestPage.cs" />
-    <Compile Include="SurveyViewPage.cs" />
     <Compile Include="GeolocatorPage.cs" />
     <Compile Include="Model\Survey Instance\SurveyAnswer.cs" />
     <Compile Include="Model\Survey Instance\Answer.cs" />
@@ -56,13 +55,14 @@
     <Compile Include="Views\TrueFalseQuestionView.cs" />
     <Compile Include="Views\PickerQuestionView.cs" />
     <Compile Include="Views\SliderQuestionView.cs" />
-    <Compile Include="Question Views\MultipleChocieView.cs" />
-    <Compile Include="Question Views\SingleChoiceView.cs" />
-    <Compile Include="Question Views\FreeValueView.cs" />
     <Compile Include="Controllers\JSonTranslator.cs" />
-    <Compile Include="SurveyGenerator.cs" />
     <Compile Include="Controllers\SurveyReader.cs" />
     <Compile Include="Controllers\ViewGenerator.cs" />
+    <Compile Include="Helpers\SurveyGenerator.cs" />
+    <Compile Include="Views\SurveyViewPage.cs" />
+    <Compile Include="Views\Question Views\FreeValueView.cs" />
+    <Compile Include="Views\Question Views\MultipleChocieView.cs" />
+    <Compile Include="Views\Question Views\SingleChoiceView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -107,9 +107,9 @@
     <Folder Include="Model\Survey Instance\" />
     <Folder Include="Model\Survey Scheme\" />
     <Folder Include="Views\" />
-    <Folder Include="Question Views\" />
     <Folder Include="Controllers\" />
     <Folder Include="SerializedSurveys\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SerializedSurveys\MedicalSurvey.json" />

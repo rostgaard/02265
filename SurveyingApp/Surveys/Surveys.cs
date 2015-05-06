@@ -12,7 +12,8 @@ namespace Surveys
 		public App ()
 		{
 			Survey s = SurveyReader.ReadSurveyFromResource("Surveys.SerializedSurveys.MedicalSurvey.json");
-			MainPage = new GeolocatorPage ();
+			ViewGenerator vg = new ViewGenerator (s);
+			MainPage = new SurveyViewPage (vg);
 		}
 
 		protected override void OnStart ()

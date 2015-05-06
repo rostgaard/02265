@@ -1,4 +1,6 @@
 **/Debug/
+**/Release/
+
 **/packages/
 
 #Autosave files*~# Build/test output**/obj**/bin**/test-results# Per-user data*.DS_Store*.sln.cache*.suo*.userprefs*.usertasks*.user 
