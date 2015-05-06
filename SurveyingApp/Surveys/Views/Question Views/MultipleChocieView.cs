@@ -1,16 +1,52 @@
-﻿using System;
+﻿using Xamarin.Forms;
+using System.Collections.Generic;
+using System.ServiceModel;
+using XLabs.Forms.Controls;
 
-using Xamarin.Forms;
 
 namespace Surveys
 {
 	public class MultipleChocieView : QuestionView
 	{
-		public MultipleChocieView (string text)
+		Label QuestionLabel { get; set;}
+
+
+		StackLayout answerOptions;
+
+		public MultipleChocieView ( string questionText, List<string> options) : this ()
 		{
-			Children.Add (new Label { Text = text });
+			QuestionLabel.Text = questionText;
+			foreach (string answer in options) {
+
+				answerOptions.Children.Add (new StackLayout {
+					Orientation = StackOrientation.Horizontal,
+					HeightRequest = 40,
+					Children = {
+						new CheckBox(),
+						new Label {
+							Text = answer
+						}
+					}
+				});
+			}
 		}
+
+		public MultipleChocieView () : base()
+		{
+			QuestionLabel = new Label {
+				Text = ""
+			};
+
+			answerOptions = new StackLayout {
+			};
+				
+
+			this.Children.Add (QuestionLabel);
+			this.Children.Add (answerOptions);
+
+		}
+
+
+
 	}
 }
-
-

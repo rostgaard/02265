@@ -1,16 +1,46 @@
-﻿using System;
+﻿using Xamarin.Forms;
+using System.Collections.Generic;
+using System.ServiceModel;
 
-using Xamarin.Forms;
 
 namespace Surveys
 {
 	public class SingleChoiceView : QuestionView
 	{
-		public SingleChoiceView (string text)
+		Label QuestionLabel { get; set;}
+
+
+		Picker AnswerPicker { get; set;}
+
+
+
+		public SingleChoiceView ( string questionText, List<string> options) : this ()
 		{
-			Children.Add (new Label { Text = text });
+			QuestionLabel.Text = questionText;
+			foreach (string answer in options) {
+				AnswerPicker.Items.Add (answer);
+			}
 		}
+
+		public SingleChoiceView () : base()
+		{
+			QuestionLabel = new Label {
+				Text = ""
+			};
+
+			AnswerPicker = new Picker ();
+
+			AnswerPicker.SelectedIndexChanged += (sender, e) => {
+				this.IsAnswered = true;
+			};
+
+			this.Children.Add (QuestionLabel);
+
+			this.Children.Add (AnswerPicker);
+
+		}
+
+
+
 	}
 }
-
-
