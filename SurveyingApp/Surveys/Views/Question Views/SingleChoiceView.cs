@@ -25,7 +25,9 @@ namespace Surveys
 		public SingleChoiceView () : base()
 		{
 			QuestionLabel = new Label {
-				Text = ""
+				Text = "",
+				FontSize = 32
+					
 			};
 
 			AnswerPicker = new Picker ();

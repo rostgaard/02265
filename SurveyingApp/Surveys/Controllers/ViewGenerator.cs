@@ -11,9 +11,12 @@ namespace Surveys
 		IEnumerator<SurveyPart> partEnumerator = null;
 		IEnumerator<QuestionReference> QREnumerator = null;
 
+		private int viewCounter = 0;
+		private int questionCounter = 0;
 
+		QuestionView currentQuestionView = null;
 
-		private Stack<QuestionView> filledViews = null;
+		private LinkedList<QuestionView> filledViews = null;
 		private List<QuestionView> answeredQuestions = null;
 
 
@@ -36,12 +39,18 @@ namespace Surveys
 		public QuestionView NextQuestion() {
 
 			while (true) {
+
+				filledViews.AddLast (currentQuestionView);
+
+				// if we still have questions in the current part
 				if (QREnumerator != null && QREnumerator.MoveNext ()) {
-
+					viewCounter++;
+					questionCounter++;
 					currentQuestionReference = QREnumerator.Current;
+					currentQuestionView = GetQuestionView (currentQuestionReference);
+					return currentQuestionView;
 
-					QuestionView qv = GetQuestionView (currentQuestionReference);
-					return qv;
+		        // if we have finished the current part
 				} else {
 					partEnumerator.MoveNext ();
 					SurveyPart currentPart = partEnumerator.Current;
@@ -50,10 +59,13 @@ namespace Surveys
 					QREnumerator.Reset ();
 					QREnumerator.MoveNext ();
 
+					viewCounter++;
+					questionCounter++;
+
 					currentQuestionReference = QREnumerator.Current;
 
-					QuestionView qv = GetQuestionView (currentQuestionReference);
-					return qv;
+					currentQuestionView = GetQuestionView (currentQuestionReference);
+					return currentQuestionView;
 				}
 			}
 		}
@@ -61,13 +73,17 @@ namespace Surveys
 
 		public QuestionView PreviousQuestion()
 		{
-			return new FreeValueView ();
-		//	return filledViews.Pop();
+			if (filledViews.Find (currentQuestionView) == null)
+				filledViews.AddLast (currentQuestionView);
+			LinkedListNode<QuestionView> node = filledViews.Find (currentQuestionView);
+			currentQuestionView = node.Previous.Value;
+			return currentQuestionView;
 		}
-
-
+			
 		public QuestionView InitialQuestion()
 		{
+			filledViews = new LinkedList<QuestionView> ();
+
 			partEnumerator.Reset ();
 			partEnumerator.MoveNext ();
 			SurveyPart initialPart = partEnumerator.Current;
@@ -75,11 +91,13 @@ namespace Surveys
 			QREnumerator = initialPart.Questions.GetEnumerator ();
 			QREnumerator.Reset ();
 			QREnumerator.MoveNext ();
+			questionCounter++;
 
 			currentQuestionReference = QREnumerator.Current;
 
-			QuestionView qv = GetQuestionView (currentQuestionReference);
-			return qv;
+			currentQuestionView = GetQuestionView (currentQuestionReference);
+
+			return currentQuestionView;
 		}
 
 		private QuestionView GetQuestionView(QuestionReference qref) {

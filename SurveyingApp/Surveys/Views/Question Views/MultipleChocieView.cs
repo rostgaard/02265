@@ -34,7 +34,8 @@ namespace Surveys
 		public MultipleChocieView () : base()
 		{
 			QuestionLabel = new Label {
-				Text = ""
+				Text = "",
+				FontSize = 32
 			};
 
 			answerOptions = new StackLayout {

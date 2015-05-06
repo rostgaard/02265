@@ -18,7 +18,8 @@ namespace Surveys
 		public FreeValueView () : base ()
 		{
 			QuestionLabel = new Label{
-				Text = ""
+				Text = "",
+				FontSize = 32
 			};
 
 			// TODO Differentiate the keyboard type depending on the content
