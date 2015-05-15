@@ -5,13 +5,13 @@ namespace Surveys
 {
 	public class Prerequisite
 	{
-		List<AnswerOption> Prereq  { get; set; }
+		public List<AnswerOption> Answers  { get; set; }
 		public QuestionReference Question { get; set; }
-		PrOperator Op {get; set; }
+		public PrOperator Op {get; set; }
 
 		public Prerequisite (List<AnswerOption> answers, QuestionReference qr, PrOperator oper)
 		{
-			Prereq = answers;
+			Answers = answers;
 			Question = qr;
 			Op = oper;
 		}

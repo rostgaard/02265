@@ -32,8 +32,11 @@ namespace Surveys
 		private SurveyPart generatePart2() {
 			SurveyPart sp1 = new SurveyPart ();
 			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
-			list.AddLast (generateQuestion21());
-			list.AddLast (generateQuestionFreeM("What is the reason of your discomfort", DataType.STRING, true));
+			QuestionReference qr21 = generateQuestion21 (); 
+			list.AddLast (qr21);
+			QuestionReference qr22 = generateQuestionFreeM ("What is the reason of your discomfort", DataType.STRING, true);
+			qr22.Prerequisites.Add(generatePrerequisite22(qr21));
+			list.AddLast (qr22);
 			list.AddLast (generateQuestion23());
 			list.AddLast (generateQuestionFreeM("What is the ambient temperature?", DataType.FLOAT, false));
 			sp1.Questions = list;
@@ -44,9 +47,14 @@ namespace Surveys
 		private SurveyPart generatePart3() {
 			SurveyPart sp1 = new SurveyPart ();
 			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
-			list.AddLast (generateQuestion31());
-			list.AddLast (generateQuestion32());
-			list.AddLast (generateQuestionFreeM("Please enter the other food(s) which caused an allergic reaction for you", DataType.STRING, false));
+			QuestionReference qr31 = generateQuestion31 ();
+			list.AddLast (qr31);
+			QuestionReference qr32 = generateQuestion32 ();
+			qr32.Prerequisites.Add(generatePrerequisite32 (qr31));
+			list.AddLast (qr32);
+			QuestionReference qr33 = generateQuestionFreeM ("Please enter the other food(s) which caused an allergic reaction for you", DataType.STRING, false);
+			qr33.Prerequisites.Add(generatePrerequisite33 (qr32));
+			list.AddLast (qr33);
 			sp1.Questions = list;
 			return sp1;
 		}
@@ -82,6 +90,29 @@ namespace Surveys
 			q1.QuestionType = new FreeValue ();
 			qr1.Question = q1;
 			return qr1;
+		}
+
+		private Prerequisite generatePrerequisite22(QuestionReference qr) {
+			List<AnswerOption> preq = new List<AnswerOption> ();
+			for (int i = 1; i < 4; i++) {
+				AnswerOption a = new AnswerOption (i.ToString());
+				preq.Add (a);
+			}
+			return new Prerequisite (preq, qr, Prerequisite.PrOperator.OR);
+		}
+
+		private Prerequisite generatePrerequisite32(QuestionReference qr) {
+			List<AnswerOption> preq = new List<AnswerOption> ();
+			AnswerOption a = new AnswerOption ("Tak");
+			preq.Add (a);
+			return new Prerequisite (preq, qr, Prerequisite.PrOperator.AND);
+		}
+
+		private Prerequisite generatePrerequisite33(QuestionReference qr) {
+			List<AnswerOption> preq = new List<AnswerOption> ();
+			AnswerOption a = new AnswerOption ("Other");
+			preq.Add (a);
+			return new Prerequisite (preq, qr, Prerequisite.PrOperator.OR);
 		}
 
 		private QuestionReference generateQuestion21() 

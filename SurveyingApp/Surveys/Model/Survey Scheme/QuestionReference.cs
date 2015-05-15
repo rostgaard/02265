@@ -11,10 +11,12 @@ namespace Surveys
 
 		public QuestionReference ()
 		{
+			Prerequisites = new List<Prerequisite> ();
 		}
 
 		public QuestionReference (Question q)
 		{
+			Prerequisites = new List<Prerequisite> ();
 			Question = q;
 		}
 	}
