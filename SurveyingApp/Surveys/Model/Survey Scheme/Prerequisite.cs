@@ -11,8 +11,8 @@ namespace Surveys
 
 		public Prerequisite (List<AnswerOption> answers, QuestionReference qr, PrOperator oper)
 		{
-			Prereq = answers;
-			question = QuestionReference;
+			this.answers = answers;
+			question = qr;
 			op = oper;
 		}
 			
