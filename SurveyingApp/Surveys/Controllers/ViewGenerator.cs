@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using XLabs.Forms.Validation;
 using System.Reflection;
+using Xamarin.Forms;
 
 namespace Surveys
 {
@@ -11,8 +12,6 @@ namespace Surveys
 
 		private LinkedListNode<SurveyPart> currentSurveyPart = null;
 		private LinkedListNode<QuestionReference> currentQuestion = null;
-
-		private QuestionView currentQuestionView = null;
 
 		private LinkedList<QuestionView> currentViews = null;
 		private Dictionary<QuestionReference, QuestionView> generatedViews = null;
@@ -28,52 +27,59 @@ namespace Surveys
 		//			generatedViews = aq;
 		//		}
 
+
 		public QuestionView NextQuestion ()
 		{
-			if (!currentViews.Contains (generatedViews[currentQuestion.Value]))
-				currentViews.AddLast (currentQuestionView);
+			QuestionView oldView = generatedViews [currentQuestion.Value];
+
 			while (true) {
-				if (currentQuestion.Next != null) {
-					LinkedList<QuestionReference> preqList = new LinkedList<QuestionReference> ();
-					foreach (Prerequisite p in currentQuestion.Next.Value.Prerequisites) {
-						preqList.AddLast (p.Question);
+				if (ProgressQuestion ()) {
+					QuestionView newView = null;
+					if (generatedViews.ContainsKey (currentQuestion.Value))
+						newView = generatedViews [currentQuestion.Value];
+					else {
+						newView = GetQuestionView (currentQuestion.Value);
+						generatedViews.Add (currentQuestion.Value, newView);
 					}
 
-					bool isValid = PrerequisiteController.calculatePrerequisite (currentQuestion.Next.Value, preqList);
-
-					if (isValid) {
-						currentQuestion = currentQuestion.Next;
-						currentQuestionView = GetQuestionView (currentQuestion.Value);
-						generatedViews.Add (currentQuestion.Value, currentQuestionView);
-						return;
+					LinkedList<QuestionView> preqViewList = new LinkedList<QuestionView> ();
+					foreach (Prerequisite p in currentQuestion.Value.Prerequisites) {
+						preqViewList.AddLast (generatedViews [p.Question]);
+					}
+					if (PrerequisiteController.calculatePrerequisite (currentQuestion.Value, preqViewList)) {
+						if (currentViews.Find (newView) == null) {
+							currentViews.AddAfter (currentViews.Find (oldView), newView);
+						}
+						return newView;
+							
 					} else {
-						currentQuestion = currentQuestion.Next;
-						currentQuestionView = GetQuestionView (currentQuestion.Value);
-						generatedViews.Add (currentQuestion.Value, currentQuestionView);
-						return currentQuestionView;
+						if (currentViews.Find (newView) != null)
+							currentViews.Remove (currentViews.Find (generatedViews [currentQuestion.Value]));
+					    oldView = generatedViews [currentQuestion.Value];
+
+					
 					}
+					return null;
 				}
-				else {
-					if (currentSurveyPart.Next == null)
-						return null;
-					currentSurveyPart = currentSurveyPart.Next;
-					currentQuestion = currentSurveyPart.Value.Questions.First;
-					currentQuestionView = GetQuestionView (currentQuestion.Value);
-					generatedViews.Add (currentQuestion.Value, currentQuestionView);
-					return currentQuestionView;
-				}
+
+
 			}
-
-				
-
-			// if we have finished the current part and need to move to the next else 
-
 		}
 
 		public QuestionView PreviousQuestion ()
 		{
-			currentQuestion = currentQuestion.Previous;
-			return currentQuestionView;
+			QuestionView currentView = generatedViews [currentQuestion.Value];
+			LinkedListNode<QuestionView> currentViewNode = currentViews.Find (currentView);
+			if (currentViewNode.Previous == null)
+				return null;
+			QuestionView previousView = currentViewNode.Previous.Value;
+			QuestionReference previousReference = previousView.question;
+
+			while (currentQuestion.Value != previousReference) {
+				if (!RegressQuestion ())
+					throw new ArgumentOutOfRangeException ("Could not find the predecessor for the question");
+			}
+			return previousView;
 		}
 
 		public QuestionView InitialQuestion ()
@@ -85,14 +91,13 @@ namespace Surveys
 			currentSurveyPart = surveyScheme.SurveyParts.First;
 
 			currentQuestion = currentSurveyPart.Value.Questions.First;
-			currentQuestionView = GetQuestionView (currentQuestion.Value);
+			QuestionView currentQuestionView = GetQuestionView (currentQuestion.Value);
 
 			generatedViews.Add (currentQuestion.Value, currentQuestionView);
+			currentViews.AddLast (currentQuestionView);
 
 			return currentQuestionView;
 		}
-
-
 
 		private QuestionView GetQuestionView (QuestionReference qref)
 		{
@@ -122,6 +127,40 @@ namespace Surveys
 			} else
 				throw new ArgumentException ("Question Type not supported");
 
+		}
+
+		/// <summary>
+		/// Progresses the question.
+		/// </summary>
+		/// <returns><c>true</c>, if question was progressed, <c>false</c> otherwise.</returns>
+		private bool ProgressQuestion ()
+		{
+			if (currentQuestion.Next != null) {
+				currentQuestion = currentQuestion.Next;
+				return true;
+			} else if (currentSurveyPart.Next != null) {
+				currentSurveyPart = currentSurveyPart.Next;
+				currentQuestion = currentSurveyPart.Value.Questions.First;
+				return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Regresses the question.
+		/// </summary>
+		/// <returns><c>true</c>, if question was regressed, <c>false</c> otherwise.</returns>
+		private bool RegressQuestion ()
+		{
+			if (currentQuestion.Previous != null) {
+				currentQuestion = currentQuestion.Previous;
+				return true;
+			} else if (currentSurveyPart.Previous != null) {
+				currentSurveyPart = currentSurveyPart.Previous;
+				currentQuestion = currentSurveyPart.Value.Questions.Last;
+				return true;
+			}
+			return false;
 		}
 
 
