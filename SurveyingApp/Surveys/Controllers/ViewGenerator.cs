@@ -30,35 +30,44 @@ namespace Surveys
 
 		public QuestionView NextQuestion ()
 		{
-			if (!currentViews.Contains (currentQuestion))
+			if (!currentViews.Contains (generatedViews[currentQuestion.Value]))
 				currentViews.AddLast (currentQuestionView);
-			// if we still have questions in the current part
-			if (currentQuestion.Next != null) {
+			while (true) {
+				if (currentQuestion.Next != null) {
+					LinkedList<QuestionReference> preqList = new LinkedList<QuestionReference> ();
+					foreach (Prerequisite p in currentQuestion.Next.Value.Prerequisites) {
+						preqList.AddLast (p.Question);
+					}
 
-				List<QuestionReference> preqList = new List<QuestionReference> ();
-				foreach (Prerequisite p in currentQuestion.Next.Value.Prerequisites)
-				{
-					preqList.Add (p.Question);
+					bool isValid = PrerequisiteController.calculatePrerequisite (currentQuestion.Next.Value, preqList);
+
+					if (isValid) {
+						currentQuestion = currentQuestion.Next;
+						currentQuestionView = GetQuestionView (currentQuestion.Value);
+						generatedViews.Add (currentQuestion.Value, currentQuestionView);
+						return;
+					} else {
+						currentQuestion = currentQuestion.Next;
+						currentQuestionView = GetQuestionView (currentQuestion.Value);
+						generatedViews.Add (currentQuestion.Value, currentQuestionView);
+						return currentQuestionView;
+					}
 				}
-
-				PrerequisiteController.calculatePrerequisite (currentQuestion.Next.Value,);
-
-				currentQuestion = currentQuestion.Next;
-				currentQuestionView = GetQuestionView (currentQuestion.Value);
-				generatedViews.Add (currentQuestion.Value, currentQuestionView);
-				return currentQuestionView;
+				else {
+					if (currentSurveyPart.Next == null)
+						return null;
+					currentSurveyPart = currentSurveyPart.Next;
+					currentQuestion = currentSurveyPart.Value.Questions.First;
+					currentQuestionView = GetQuestionView (currentQuestion.Value);
+					generatedViews.Add (currentQuestion.Value, currentQuestionView);
+					return currentQuestionView;
+				}
 			}
 
-			// if we have finished the current part and need to move to the nextelse 
-			else {
-				if (currentSurveyPart.Next == null)
-					return null;
-				currentSurveyPart = currentSurveyPart.Next;
-				currentQuestion = currentSurveyPart.Value.Questions.First;
-				currentQuestionView = GetQuestionView (currentQuestion.Value);
-				generatedViews.Add (currentQuestion.Value, currentQuestionView);
-				return currentQuestionView;
-			}
+				
+
+			// if we have finished the current part and need to move to the next else 
+
 		}
 
 		public QuestionView PreviousQuestion ()
@@ -82,6 +91,8 @@ namespace Surveys
 
 			return currentQuestionView;
 		}
+
+
 
 		private QuestionView GetQuestionView (QuestionReference qref)
 		{

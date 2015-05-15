@@ -7,7 +7,7 @@ namespace Surveys
 	public abstract class QuestionView : StackLayout
 	{
 		public bool IsMandatory { get; set;}
-		public QuestionReference question { get; }
+		public QuestionReference question { get; set; }
 		public HashSet<AnswerOption> answers {get; set;}
 		bool isAnswered = false;
 		public bool IsAnswered {
@@ -23,7 +23,7 @@ namespace Surveys
 			}
 		}
 
-		private QuestionView()
+		public QuestionView()
 		{
 			this.VerticalOptions = LayoutOptions.FillAndExpand;
 		}
