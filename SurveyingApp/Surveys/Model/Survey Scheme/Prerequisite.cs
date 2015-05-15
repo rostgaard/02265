@@ -5,9 +5,9 @@ namespace Surveys
 {
 	public class Prerequisite
 	{
-		List<AnswerOption> Prereq  { get; set; }
-		QuestionReference question { get; set; }
-		PrOperator op {get; set; }
+		public List<AnswerOption> answers  { get; set; }
+		public QuestionReference question { get; set; }
+		public PrOperator op {get; set; }
 
 		public Prerequisite (List<AnswerOption> answers, QuestionReference qr, PrOperator oper)
 		{
