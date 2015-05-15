@@ -30,44 +30,38 @@ namespace Surveys
 
 		public QuestionView NextQuestion ()
 		{
-			if (!currentViews.Contains (generatedViews[currentQuestion.Value]))
+			// TODO 
+			// źle, a co, jeśli z 5 cofnąłeś się do 3 i właśnie renderujesz 4, którego wcześniej nie było? Ono nie powinno być na końcu.
+			// TODO
+			if (!currentViews.Contains (currentQuestion))
 				currentViews.AddLast (currentQuestionView);
-			while (true) {
-				if (currentQuestion.Next != null) {
-					LinkedList<QuestionReference> preqList = new LinkedList<QuestionReference> ();
-					foreach (Prerequisite p in currentQuestion.Next.Value.Prerequisites) {
-						preqList.AddLast (p.Question);
-					}
+			// if we still have questions in the current part
+			if (currentQuestion.Next != null) {
 
-					bool isValid = PrerequisiteController.calculatePrerequisite (currentQuestion.Next.Value, preqList);
+				List<QuestionReference> preqList = new List<QuestionReference> ();
+				foreach (Prerequisite p in currentQuestion.Next.Value.Prerequisites)
+				{
+					preqList.Add (p.Question);
+				}
 
-					if (isValid) {
-						currentQuestion = currentQuestion.Next;
-						currentQuestionView = GetQuestionView (currentQuestion.Value);
-						generatedViews.Add (currentQuestion.Value, currentQuestionView);
-						return;
-					} else {
-						currentQuestion = currentQuestion.Next;
-						currentQuestionView = GetQuestionView (currentQuestion.Value);
-						generatedViews.Add (currentQuestion.Value, currentQuestionView);
-						return currentQuestionView;
-					}
-				}
-				else {
-					if (currentSurveyPart.Next == null)
-						return null;
-					currentSurveyPart = currentSurveyPart.Next;
-					currentQuestion = currentSurveyPart.Value.Questions.First;
-					currentQuestionView = GetQuestionView (currentQuestion.Value);
-					generatedViews.Add (currentQuestion.Value, currentQuestionView);
-					return currentQuestionView;
-				}
+				PrerequisiteController.calculatePrerequisite (currentQuestion.Next.Value, null);
+
+				currentQuestion = currentQuestion.Next;
+				currentQuestionView = GetQuestionView (currentQuestion.Value);
+				generatedViews.Add (currentQuestion.Value, currentQuestionView);
+				return currentQuestionView;
 			}
 
-				
-
-			// if we have finished the current part and need to move to the next else 
-
+			// if we have finished the current part and need to move to the nextelse 
+			else {
+				if (currentSurveyPart.Next == null)
+					return null;
+				currentSurveyPart = currentSurveyPart.Next;
+				currentQuestion = currentSurveyPart.Value.Questions.First;
+				currentQuestionView = GetQuestionView (currentQuestion.Value);
+				generatedViews.Add (currentQuestion.Value, currentQuestionView);
+				return currentQuestionView;
+			}
 		}
 
 		public QuestionView PreviousQuestion ()
@@ -91,8 +85,6 @@ namespace Surveys
 
 			return currentQuestionView;
 		}
-
-
 
 		private QuestionView GetQuestionView (QuestionReference qref)
 		{

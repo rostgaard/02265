@@ -17,15 +17,15 @@ namespace Surveys
 			{
 				foreach (QuestionView qv in views) 
 				{
-					if (p.question.Equals(qv.question)) {
-						foreach (AnswerOption a in p.answers) 
+					if (p.Question.Equals(qv.question)) {
+						foreach (AnswerOption a in p.Answers) 
 						{
 							if (qv.answers.Contains (a)) {
 								value = true;
-								if (p.op == PrOperator.OR)
+								if (p.Op == Prerequisite.PrOperator.OR)
 									break;
 							} else {
-								if (p.op == PrOperator.AND) return false;
+								if (p.Op == Prerequisite.PrOperator.AND) return false;
 							}
 						}
 						found = true;
