@@ -76,7 +76,8 @@ namespace Surveys
 			if (filledViews.Find (currentQuestionView) == null)
 				filledViews.AddLast (currentQuestionView);
 			LinkedListNode<QuestionView> node = filledViews.Find (currentQuestionView);
-			currentQuestionView = node.Previous.Value;
+			if (node.Previous.Value != null)
+				currentQuestionView = node.Previous.Value;
 			return currentQuestionView;
 		}
 			
