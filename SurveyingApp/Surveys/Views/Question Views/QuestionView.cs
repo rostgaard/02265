@@ -5,7 +5,7 @@ namespace Surveys
 {
 	public abstract class QuestionView : StackLayout
 {
-	
+
 		public bool IsMandatory { get; set;}
 
 		bool isAnswered = false;

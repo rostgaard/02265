@@ -10,9 +10,9 @@ namespace Surveys
 
 		public Scheduler Scheduler { get; set; }
 
-		private IList<SurveyPart> surveyParts = new List<SurveyPart> ();
+		private LinkedList<SurveyPart> surveyParts = new LinkedList<SurveyPart> ();
 
-		public IList<SurveyPart> SurveyParts {
+		public LinkedList<SurveyPart> SurveyParts {
 			get {
 				return surveyParts;
 			} 
@@ -21,7 +21,7 @@ namespace Surveys
 			}
 		}
 
-		public IList<SurveyAnswer> SurveyAnswers { get; set; }
+		public LinkedList<SurveyAnswer> SurveyAnswers { get; set; }
 
 		public Survey ()
 		{
@@ -30,7 +30,7 @@ namespace Surveys
 		public void addPart (SurveyPart q)
 		{
 			if (q != null)
-				surveyParts.Add (q);
+				surveyParts.AddLast (q);
 			else
 				throw new ArgumentNullException ();
 		}
