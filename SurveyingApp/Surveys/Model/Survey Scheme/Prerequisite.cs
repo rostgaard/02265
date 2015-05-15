@@ -12,12 +12,10 @@ namespace Surveys
 		public Prerequisite (List<AnswerOption> answers, QuestionReference qr, PrOperator oper)
 		{
 			Prereq = answers;
-			Question = QuestionReference;
+			Question = qr;
 			Op = oper;
 		}
-			
-	}
 
 	public enum PrOperator {AND, OR}
+	}
 }
-
