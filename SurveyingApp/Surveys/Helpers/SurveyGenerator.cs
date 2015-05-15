@@ -21,21 +21,21 @@ namespace Surveys
 
 		private SurveyPart generatePart1() {
 			SurveyPart sp1 = new SurveyPart ();
-			List<QuestionReference> list = new List<QuestionReference> ();
-			list.Add (generateQuestion11());
-			list.Add (generateQuestionFreeM("What year were you born in?", DataType.DATE, true));
-			list.Add (generateQuestionFreeM("What country do you come from", DataType.STRING, true));
+			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
+			list.AddLast (generateQuestion11());
+			list.AddLast (generateQuestionFreeM("What year were you born in?", DataType.DATE, true));
+			list.AddLast (generateQuestionFreeM("What country do you come from", DataType.STRING, true));
 			sp1.Questions = list;
 			return sp1;
 		}
 
 		private SurveyPart generatePart2() {
 			SurveyPart sp1 = new SurveyPart ();
-			List<QuestionReference> list = new List<QuestionReference> ();
-			list.Add (generateQuestion21());
-			list.Add (generateQuestionFreeM("What is the reason of your discomfort", DataType.STRING, true));
-			list.Add (generateQuestion23());
-			list.Add (generateQuestionFreeM("What is the ambient temperature?", DataType.FLOAT, false));
+			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
+			list.AddLast (generateQuestion21());
+			list.AddLast (generateQuestionFreeM("What is the reason of your discomfort", DataType.STRING, true));
+			list.AddLast (generateQuestion23());
+			list.AddLast (generateQuestionFreeM("What is the ambient temperature?", DataType.FLOAT, false));
 			sp1.Questions = list;
 			return sp1;
 		}
@@ -43,10 +43,10 @@ namespace Surveys
 
 		private SurveyPart generatePart3() {
 			SurveyPart sp1 = new SurveyPart ();
-			List<QuestionReference> list = new List<QuestionReference> ();
-			list.Add (generateQuestion31());
-			list.Add (generateQuestion32());
-			list.Add (generateQuestionFreeM("Please enter the other food(s) which caused an allergic reaction for you", DataType.STRING, false));
+			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
+			list.AddLast (generateQuestion31());
+			list.AddLast (generateQuestion32());
+			list.AddLast (generateQuestionFreeM("Please enter the other food(s) which caused an allergic reaction for you", DataType.STRING, false));
 			sp1.Questions = list;
 			return sp1;
 		}

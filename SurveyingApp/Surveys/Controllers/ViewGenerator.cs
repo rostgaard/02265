@@ -8,11 +8,11 @@ namespace Surveys
 	public class ViewGenerator
 	{
 		private Survey surveyScheme = null;
-		IEnumerator<SurveyPart> partEnumerator = null;
-		IEnumerator<QuestionReference> QREnumerator = null;
 
-		public QuestionView currentQuestionView = null;
-		public QuestionReference currentQuestionReference = null;
+		private LinkedListNode<SurveyPart> currentSurveyPart = null;
+		private LinkedListNode<QuestionReference> currentQuestion = null;
+
+		private QuestionView currentQuestionView = null;
 
 		private LinkedList<QuestionView> currentViews = null;
 		private Dictionary<QuestionReference, QuestionView> generatedViews = null;
@@ -30,31 +30,26 @@ namespace Surveys
 
 		public QuestionView NextQuestion ()
 		{
-
 			currentViews.AddLast (currentQuestionView);
 
 			// if we still have questions in the current part
-			if (QREnumerator != null && QREnumerator.MoveNext ()) {
-				currentQuestionReference = QREnumerator.Current;
-				currentQuestionView = GetQuestionView (currentQuestionReference);
-				generatedViews.Add (currentQuestionReference, currentQuestionView);
-				return currentQuestionView;
-
-				// if we have finished the current part and need to move to the next
-			} else if (QREnumerator != null && !QREnumerator.MoveNext ()) {
-				partEnumerator.MoveNext ();
-				SurveyPart currentPart = partEnumerator.Current;
-
-				QREnumerator = currentPart.Questions.GetEnumerator ();
-				QREnumerator.Reset ();
-				QREnumerator.MoveNext ();
-
-				currentQuestionReference = QREnumerator.Current;
-				currentQuestionView = GetQuestionView (currentQuestionReference);
+			if (currentQuestion.Next != null) {
+				currentQuestion = currentQuestion.Next;
+				currentQuestionView = GetQuestionView (currentQuestion.Value);
+				generatedViews.Add (currentQuestion.Value, currentQuestionView);
 				return currentQuestionView;
 			}
-			// if survey is finished, display something meaningful
-			return null;
+
+			// if we have finished the current part and need to move to the nextelse 
+			else {
+				if (currentSurveyPart.Next == null)
+					return null;
+				currentSurveyPart = currentSurveyPart.Next;
+				currentQuestion = currentSurveyPart.Value.Questions.First;
+				currentQuestionView = GetQuestionView (currentQuestion.Value);
+				generatedViews.Add (currentQuestion.Value, currentQuestionView);
+				return currentQuestionView;
+			}
 		}
 		
 
@@ -70,23 +65,16 @@ namespace Surveys
 			
 		public QuestionView InitialQuestion ()
 		{
-			partEnumerator = surveyScheme.SurveyParts.GetEnumerator ();
+			// empty initialization
 			currentViews = new LinkedList<QuestionView> ();
 			generatedViews = new Dictionary<QuestionReference, QuestionView> ();
 
-			partEnumerator.Reset ();
-			partEnumerator.MoveNext ();
-			SurveyPart initialPart = partEnumerator.Current;
+			currentSurveyPart = surveyScheme.SurveyParts.First;
 
-			QREnumerator = initialPart.Questions.GetEnumerator ();
-			QREnumerator.Reset ();
-			QREnumerator.MoveNext ();
-			// questionCounter++;
+			currentQuestion = currentSurveyPart.Value.Questions.First;
+			currentQuestionView = GetQuestionView (currentQuestion.Value);
 
-			currentQuestionReference = QREnumerator.Current;
-			currentQuestionView = GetQuestionView (currentQuestionReference);
-
-			generatedViews.Add (currentQuestionReference, currentQuestionView);
+			generatedViews.Add (currentQuestion.Value, currentQuestionView);
 
 			return currentQuestionView;
 		}
