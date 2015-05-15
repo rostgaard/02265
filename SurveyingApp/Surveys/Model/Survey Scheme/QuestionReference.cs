@@ -6,10 +6,15 @@ namespace Surveys
 	{
 		public Question Question { get; set; }
 
-		public Prerequisite Prerequisite { get; set; }
+		public List<Prerequisite> Prerequisites { get; set; }
 
 		public QuestionReference ()
 		{
+		}
+
+		public QuestionReference (Question q)
+		{
+			Question = q;
 		}
 	}
 }

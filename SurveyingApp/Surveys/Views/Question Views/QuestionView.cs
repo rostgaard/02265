@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Surveys
 {
 	public abstract class QuestionView : StackLayout
 {
-	
+		
 		public bool IsMandatory { get; set;}
-
+		public HashSet<AnswerOption> answers {get; set;}
 		bool isAnswered = false;
 		public bool IsAnswered {
 			get {
