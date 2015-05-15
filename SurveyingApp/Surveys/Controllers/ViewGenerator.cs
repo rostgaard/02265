@@ -30,10 +30,19 @@ namespace Surveys
 
 		public QuestionView NextQuestion ()
 		{
-			currentViews.AddLast (currentQuestionView);
-
+			if (!currentViews.Contains (currentQuestion))
+				currentViews.AddLast (currentQuestionView);
 			// if we still have questions in the current part
 			if (currentQuestion.Next != null) {
+
+				List<QuestionReference> preqList = new List<QuestionReference> ();
+				foreach (Prerequisite p in currentQuestion.Next.Value.Prerequisites)
+				{
+					preqList.Add (p.Question);
+				}
+
+				PrerequisiteController.calculatePrerequisite (currentQuestion.Next.Value,);
+
 				currentQuestion = currentQuestion.Next;
 				currentQuestionView = GetQuestionView (currentQuestion.Value);
 				generatedViews.Add (currentQuestion.Value, currentQuestionView);
@@ -51,18 +60,13 @@ namespace Surveys
 				return currentQuestionView;
 			}
 		}
-		
 
-		//		public QuestionView PreviousQuestion()
-		//		{
-		//			if (generatedViews[currentQuestionReference] == null)
-		//				filledViews.AddLast (currentQuestionView);
-		//			LinkedListNode<QuestionView> node = filledViews.Find (currentQuestionView);
-		//			if (node.Previous.Value != null)
-		//				currentQuestionView = node.Previous.Value;
-		//			return currentQuestionView;
-		//		}
-			
+		public QuestionView PreviousQuestion ()
+		{
+			currentQuestion = currentQuestion.Previous;
+			return currentQuestionView;
+		}
+
 		public QuestionView InitialQuestion ()
 		{
 			// empty initialization
