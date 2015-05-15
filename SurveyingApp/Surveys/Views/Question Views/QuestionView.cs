@@ -7,7 +7,8 @@ namespace Surveys
 	public abstract class QuestionView : StackLayout
 	{
 		public bool IsMandatory { get; set;}
-		public HashSet<Answer> answers {get; set;}
+		public QuestionReference question { get; }
+		public HashSet<AnswerOption> answers {get; set;}
 		bool isAnswered = false;
 		public bool IsAnswered {
 			get {
@@ -22,9 +23,16 @@ namespace Surveys
 			}
 		}
 
-		public QuestionView()
+		private QuestionView()
 		{
 			this.VerticalOptions = LayoutOptions.FillAndExpand;
+		}
+
+
+		public QuestionView(QuestionReference qr)
+		{
+			this.VerticalOptions = LayoutOptions.FillAndExpand;
+			question = qr;
 		}
 	}
 
