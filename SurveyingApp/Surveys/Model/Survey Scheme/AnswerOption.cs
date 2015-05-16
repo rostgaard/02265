@@ -2,7 +2,7 @@
 
 namespace Surveys
 {
-	public class AnswerOption : IEquatable<AnswerOption>
+	public class AnswerOption
 	{
 		public String Content { get; set; }
 
@@ -15,11 +15,15 @@ namespace Surveys
 			Content = text;
 		}
 			
-		public bool Equals (AnswerOption obj)
+		public override bool Equals (object obj)
 		{
 			return String.Equals(this.Content, ((AnswerOption)obj).Content);
 		}
 
+		public override int GetHashCode ()
+		{
+			return this.Content.GetHashCode ();
+		}
 	}
 }
 

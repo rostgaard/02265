@@ -98,7 +98,7 @@ namespace Surveys
 
 		private static Prerequisite generatePrerequisite32(QuestionReference qr) {
 			List<AnswerOption> preq = new List<AnswerOption> ();
-			AnswerOption a = new AnswerOption ("Tak");
+			AnswerOption a = new AnswerOption ("Yes");
 			preq.Add (a);
 			return new Prerequisite (preq, qr, Prerequisite.PrOperator.AND);
 		}
