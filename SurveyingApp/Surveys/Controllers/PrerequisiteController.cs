@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Surveys
@@ -13,6 +13,7 @@ namespace Surveys
 		{
 			bool value = false;
 			bool found = false;
+			if (question.Prerequisites.Count == 0) return true;
 			foreach (Prerequisite p in question.Prerequisites) 
 			{
 				foreach (QuestionView qv in views) 
