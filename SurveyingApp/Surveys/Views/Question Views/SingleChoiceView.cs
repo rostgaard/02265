@@ -7,14 +7,11 @@ namespace Surveys
 {
 	public class SingleChoiceView : QuestionView
 	{
-		Label QuestionLabel { get; set;}
+		Label QuestionLabel { get; set; }
 
+		Picker AnswerPicker { get; set; }
 
-		Picker AnswerPicker { get; set;}
-
-
-
-		public SingleChoiceView ( string questionText, List<string> options) : this ()
+		public SingleChoiceView (string questionText, List<string> options) : this ()
 		{
 			QuestionLabel.Text = questionText;
 			foreach (string answer in options) {
@@ -22,7 +19,7 @@ namespace Surveys
 			}
 		}
 
-		public SingleChoiceView () : base()
+		public SingleChoiceView () : base ()
 		{
 			QuestionLabel = new Label {
 				Text = "",
@@ -33,15 +30,18 @@ namespace Surveys
 			AnswerPicker = new Picker ();
 
 			AnswerPicker.SelectedIndexChanged += (sender, e) => {
-				this.IsAnswered = true;
+				if (AnswerPicker.SelectedIndex != -1) {
+					this.IsAnswered = true;
+					this.answers = new HashSet<AnswerOption> {
+						new AnswerOption (AnswerPicker.Items [AnswerPicker.SelectedIndex])
+					};
+				};
 			};
 
 			this.Children.Add (QuestionLabel);
 
 			this.Children.Add (AnswerPicker);
-
 		}
-
 
 
 	}

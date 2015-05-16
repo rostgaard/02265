@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace Surveys
 {
@@ -33,7 +34,12 @@ namespace Surveys
 
 			AnswerEditor.TextChanged += (sender, e) => {
 				if (AnswerEditor.Text != null && AnswerEditor.Text != "")
+				{
 					this.IsAnswered = true;
+					this.answers = new HashSet<AnswerOption> {
+						new AnswerOption(AnswerEditor.Text)
+					};
+				}
 				else this.IsAnswered = false;
 			};
 		}

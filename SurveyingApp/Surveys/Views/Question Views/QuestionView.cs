@@ -19,7 +19,6 @@ namespace Surveys
 					isAnswered = value;
 					OnPropertyChanged("IsAnswered");
 					}
-
 			}
 		}
 

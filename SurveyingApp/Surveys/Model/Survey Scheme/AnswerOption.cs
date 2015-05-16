@@ -2,9 +2,8 @@
 
 namespace Surveys
 {
-	public class AnswerOption
+	public class AnswerOption : IComparable
 	{
-
 		public String Content { get; set; }
 
 		public AnswerOption ()
@@ -14,6 +13,12 @@ namespace Surveys
 		public AnswerOption (String text)
 		{
 			Content = text;
+		}
+
+		int IComparable.CompareTo(object obj)
+		{
+			AnswerOption ao=(AnswerOption)obj;
+			return String.Compare(this.Content, ao.Content);
 		}
 	}
 }
