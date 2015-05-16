@@ -34,29 +34,29 @@ namespace Surveys
 
 			// loop as long as we have a next question in the survey definition
 			while (ProgressQuestion ()) {
-					QuestionView newView = null;
-					if (generatedViews.ContainsKey (currentQuestion.Value))
-						newView = generatedViews [currentQuestion.Value];
-					else {
-						newView = GetQuestionView (currentQuestion.Value);
-						generatedViews.Add (currentQuestion.Value, newView);
-					}
+				QuestionView newView = null;
+				if (generatedViews.ContainsKey (currentQuestion.Value))
+					newView = generatedViews [currentQuestion.Value];
+				else {
+					newView = GetQuestionView (currentQuestion.Value);
+					generatedViews.Add (currentQuestion.Value, newView);
+				}
 
-					LinkedList<QuestionView> preqViewList = new LinkedList<QuestionView> ();
-					foreach (Prerequisite p in currentQuestion.Value.Prerequisites) {
+				LinkedList<QuestionView> preqViewList = new LinkedList<QuestionView> ();
+				foreach (Prerequisite p in currentQuestion.Value.Prerequisites) {
+					if (currentViews.Find (generatedViews [p.Question])!= null)
 						preqViewList.AddLast (generatedViews [p.Question]);
+				}
+				if (PrerequisiteController.calculatePrerequisite (currentQuestion.Value, preqViewList)) {
+					if (currentViews.Find (newView) == null) {
+						currentViews.AddAfter (currentViews.Find (oldView), newView);
 					}
-					if (PrerequisiteController.calculatePrerequisite (currentQuestion.Value, preqViewList)) {
-						if (currentViews.Find (newView) == null) {
-							currentViews.AddAfter (currentViews.Find (oldView), newView);
-						}
-						return newView;
+					return newView;
 							
-					} else {
-						if (currentViews.Find (newView) != null)
-							currentViews.Remove (currentViews.Find (generatedViews [currentQuestion.Value]));
-					    oldView = generatedViews [currentQuestion.Value];
-					}
+				} else {
+					if (currentViews.Find (newView) != null)
+						currentViews.Remove (currentViews.Find (generatedViews [currentQuestion.Value]));
+				}
 			}
 			return null;
 		}
@@ -100,7 +100,7 @@ namespace Surveys
 
 			if (qtype is FreeValue) {
 				string questionText = qref.Question.QuestionText;
-				return new FreeValueView (qref, questionText);
+				return new FreeValueView (qref, questionText, qref.Question.IsMandatory);
 			} else if (qtype is Choice) {
 				string questionText = qref.Question.QuestionText;
 				if (((Choice)qtype).minNumOfAnswers == 1 && ((Choice)qtype).maxNumOfAnswers == 1) {
@@ -110,14 +110,14 @@ namespace Surveys
 						answerStrings.Add (ao.Content);
 					}
 						
-					return new SingleChoiceView (qref, questionText, answerStrings);
+					return new SingleChoiceView (qref, questionText, answerStrings, qref.Question.IsMandatory);
 				} else {
 					List<string> answerStrings = new List<string> ();
 					foreach (AnswerOption ao in qref.Question.PossibleAnswers) {
 						answerStrings.Add (ao.Content);
 					}
 
-					return new MultipleChocieView (qref, questionText, answerStrings);
+					return new MultipleChocieView (qref, questionText, answerStrings, qref.Question.IsMandatory);
 				}
 			} else
 				throw new ArgumentException ("Question Type not supported");

@@ -13,8 +13,9 @@ namespace Surveys
 
 		StackLayout answerOptions;
 
-		public MultipleChocieView (QuestionReference qr, string questionText, List<string> options) : this (qr)
+		public MultipleChocieView (QuestionReference qr, string questionText, List<string> options, bool isMandatory) : this (qr, isMandatory)
 		{
+			this.IsMandatory = isMandatory;
 			QuestionLabel.Text = questionText;
 			foreach (string answer in options) {
 
@@ -31,7 +32,7 @@ namespace Surveys
 					Orientation = StackOrientation.Horizontal,
 					HeightRequest = 40,
 					Children = {
-						new CheckBox() {},
+						answerCheckbox,
 						new Label {
 							Text = answer
 						}
@@ -40,7 +41,7 @@ namespace Surveys
 			}
 		}
 
-		public MultipleChocieView (QuestionReference qr) : base(qr)
+		public MultipleChocieView (QuestionReference qr, bool isMandatory) : base(qr, isMandatory)
 		{
 			QuestionLabel = new Label {
 				Text = "",

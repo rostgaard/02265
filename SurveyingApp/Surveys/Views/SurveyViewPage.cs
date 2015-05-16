@@ -60,8 +60,12 @@ namespace Surveys
 
 		public void OnNextClicked (object sender, EventArgs args) {
 			QuestionView v = vg.NextQuestion ();
-			surveyContent.Children.RemoveAt (0);
-			surveyContent.Children.Insert (0,v);
+			if (v == null)
+				this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
+			else {
+				surveyContent.Children.RemoveAt (0);
+				surveyContent.Children.Insert (0, v);
+			}
 		}
 
 

@@ -8,7 +8,7 @@ namespace Surveys
 	{
 		public bool IsMandatory { get; set;}
 		public QuestionReference question { get; set; }
-		public HashSet<AnswerOption> answers {get; set;}
+		public HashSet<AnswerOption> answers;
 		bool isAnswered = false;
 		public bool IsAnswered {
 			get {
@@ -24,13 +24,15 @@ namespace Surveys
 
 		public QuestionView()
 		{
-			this.VerticalOptions = LayoutOptions.FillAndExpand;
+			
 		}
 
-
-		public QuestionView (QuestionReference qr) : this ()
+		public QuestionView (QuestionReference qr, bool isMandatory)
 		{
+			this.VerticalOptions = LayoutOptions.FillAndExpand;
+			isMandatory = isMandatory;
 			question = qr;
+			answers = new HashSet<AnswerOption> ();
 		}
 	}
 

@@ -11,7 +11,7 @@ namespace Surveys
 
 		Picker AnswerPicker { get; set; }
 
-		public SingleChoiceView (QuestionReference qr, string questionText, List<string> options) : this (qr)
+		public SingleChoiceView (QuestionReference qr, string questionText, List<string> options, bool isMandatory) : this (qr, isMandatory)
 		{
 			QuestionLabel.Text = questionText;
 			foreach (string answer in options) {
@@ -19,7 +19,7 @@ namespace Surveys
 			}
 		}
 
-		public SingleChoiceView (QuestionReference qr) : base (qr)
+		public SingleChoiceView (QuestionReference qr, bool isMandatory) : base (qr, isMandatory)
 		{
 			QuestionLabel = new Label {
 				Text = "",
