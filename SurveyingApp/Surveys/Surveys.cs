@@ -11,7 +11,8 @@ namespace Surveys
 	{
 		public App ()
 		{
-			Survey s = SurveyReader.ReadSurveyFromResource("Surveys.SerializedSurveys.MedicalSurvey.json");
+			// Survey s = SurveyReader.ReadSurveyFromResource("Surveys.SerializedSurveys.MedicalSurvey.json");
+			Survey s = SurveyGenerator.generateSurvey1 ();
 			ViewGenerator vg = new ViewGenerator (s);
 			MainPage = new SurveyViewPage (vg);
 		}

@@ -3,23 +3,18 @@ using System.Collections.Generic;
 
 namespace Surveys
 {
-	public class SurveyGenerator
+	public static class SurveyGenerator
 	{
-		public SurveyGenerator ()
-		{
-		}
-
-		public Survey generateSurvey1()
+		public static Survey generateSurvey1()
 		{
 			Survey survey = new Survey ();
 			survey.addPart (generatePart1());
 			survey.addPart (generatePart2());
 			survey.addPart (generatePart3());
 			return survey;
-
 		}
 
-		private SurveyPart generatePart1() {
+		private static SurveyPart generatePart1() {
 			SurveyPart sp1 = new SurveyPart ();
 			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
 			list.AddLast (generateQuestion11());
@@ -29,7 +24,7 @@ namespace Surveys
 			return sp1;
 		}
 
-		private SurveyPart generatePart2() {
+		private static SurveyPart generatePart2() {
 			SurveyPart sp1 = new SurveyPart ();
 			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
 			QuestionReference qr21 = generateQuestion21 (); 
@@ -44,7 +39,7 @@ namespace Surveys
 		}
 
 
-		private SurveyPart generatePart3() {
+		private static SurveyPart generatePart3() {
 			SurveyPart sp1 = new SurveyPart ();
 			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
 			QuestionReference qr31 = generateQuestion31 ();
@@ -60,7 +55,7 @@ namespace Surveys
 		}
 
 
-		private QuestionReference generateQuestion11() 
+		private static QuestionReference generateQuestion11() 
 		{
 			QuestionReference qr1 = new QuestionReference ();
 			Question q1 = new Question ();
@@ -80,7 +75,7 @@ namespace Surveys
 			return qr1;			
 		}
 
-		private QuestionReference generateQuestionFreeM(String question, DataType answerType, Boolean mandatory) 
+		private static QuestionReference generateQuestionFreeM(String question, DataType answerType, Boolean mandatory) 
 		{
 			QuestionReference qr1 = new QuestionReference ();
 			Question q1 = new Question ();
@@ -92,7 +87,7 @@ namespace Surveys
 			return qr1;
 		}
 
-		private Prerequisite generatePrerequisite22(QuestionReference qr) {
+		private static Prerequisite generatePrerequisite22(QuestionReference qr) {
 			List<AnswerOption> preq = new List<AnswerOption> ();
 			for (int i = 1; i < 4; i++) {
 				AnswerOption a = new AnswerOption (i.ToString());
@@ -101,21 +96,21 @@ namespace Surveys
 			return new Prerequisite (preq, qr, Prerequisite.PrOperator.OR);
 		}
 
-		private Prerequisite generatePrerequisite32(QuestionReference qr) {
+		private static Prerequisite generatePrerequisite32(QuestionReference qr) {
 			List<AnswerOption> preq = new List<AnswerOption> ();
 			AnswerOption a = new AnswerOption ("Tak");
 			preq.Add (a);
 			return new Prerequisite (preq, qr, Prerequisite.PrOperator.AND);
 		}
 
-		private Prerequisite generatePrerequisite33(QuestionReference qr) {
+		private static Prerequisite generatePrerequisite33(QuestionReference qr) {
 			List<AnswerOption> preq = new List<AnswerOption> ();
 			AnswerOption a = new AnswerOption ("Other");
 			preq.Add (a);
 			return new Prerequisite (preq, qr, Prerequisite.PrOperator.OR);
 		}
 
-		private QuestionReference generateQuestion21() 
+		private static QuestionReference generateQuestion21() 
 		{
 			QuestionReference qr1 = new QuestionReference ();
 			Question q1 = new Question ();
@@ -133,7 +128,7 @@ namespace Surveys
 			return qr1;			
 		}
 
-		private QuestionReference generateQuestion23() 
+		private static QuestionReference generateQuestion23() 
 		{
 			QuestionReference qr1 = new QuestionReference ();
 			Question q1 = new Question ();
@@ -157,7 +152,7 @@ namespace Surveys
 			return qr1;			
 		}
 
-		private QuestionReference generateQuestion31() 
+		private static QuestionReference generateQuestion31() 
 		{
 			QuestionReference qr1 = new QuestionReference ();
 			Question q1 = new Question ();
@@ -175,7 +170,7 @@ namespace Surveys
 			return qr1;			
 		}
 
-		private QuestionReference generateQuestion32() 
+		private static QuestionReference generateQuestion32() 
 		{
 			QuestionReference qr1 = new QuestionReference ();
 			Question q1 = new Question ();

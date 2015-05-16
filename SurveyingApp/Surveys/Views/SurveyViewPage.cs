@@ -67,9 +67,9 @@ namespace Surveys
 
 
 		public void OnPreviousClicked(object sender, EventArgs args) {
-//			QuestionView v = vg.PreviousQuestion ();
-//			surveyContent.Children.RemoveAt (0);
-//			surveyContent.Children.Insert (0,v);
+			QuestionView v = vg.PreviousQuestion ();
+			surveyContent.Children.RemoveAt (0);
+			surveyContent.Children.Insert (0,v);
 		}
 
 		private void LoadSurvey()

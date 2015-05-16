@@ -32,8 +32,8 @@ namespace Surveys
 		{
 			QuestionView oldView = generatedViews [currentQuestion.Value];
 
-			while (true) {
-				if (ProgressQuestion ()) {
+			// loop as long as we have a next question in the survey definition
+			while (ProgressQuestion ()) {
 					QuestionView newView = null;
 					if (generatedViews.ContainsKey (currentQuestion.Value))
 						newView = generatedViews [currentQuestion.Value];
@@ -56,13 +56,9 @@ namespace Surveys
 						if (currentViews.Find (newView) != null)
 							currentViews.Remove (currentViews.Find (generatedViews [currentQuestion.Value]));
 					    oldView = generatedViews [currentQuestion.Value];
-
-					
 					}
-					return null;
-				}
-					
 			}
+			return null;
 		}
 
 		public QuestionView PreviousQuestion ()
