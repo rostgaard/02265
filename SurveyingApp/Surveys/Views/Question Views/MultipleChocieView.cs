@@ -13,7 +13,7 @@ namespace Surveys
 
 		StackLayout answerOptions;
 
-		public MultipleChocieView ( string questionText, List<string> options) : this ()
+		public MultipleChocieView (QuestionReference qr, string questionText, List<string> options) : this (qr)
 		{
 			QuestionLabel.Text = questionText;
 			foreach (string answer in options) {
@@ -40,7 +40,7 @@ namespace Surveys
 			}
 		}
 
-		public MultipleChocieView () : base()
+		public MultipleChocieView (QuestionReference qr) : base(qr)
 		{
 			QuestionLabel = new Label {
 				Text = "",

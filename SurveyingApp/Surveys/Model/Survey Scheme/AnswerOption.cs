@@ -2,7 +2,7 @@
 
 namespace Surveys
 {
-	public class AnswerOption : IComparable
+	public class AnswerOption : IEquatable<AnswerOption>
 	{
 		public String Content { get; set; }
 
@@ -14,12 +14,12 @@ namespace Surveys
 		{
 			Content = text;
 		}
-
-		int IComparable.CompareTo(object obj)
+			
+		public bool Equals (AnswerOption obj)
 		{
-			AnswerOption ao=(AnswerOption)obj;
-			return String.Compare(this.Content, ao.Content);
+			return String.Equals(this.Content, ((AnswerOption)obj).Content);
 		}
+
 	}
 }
 

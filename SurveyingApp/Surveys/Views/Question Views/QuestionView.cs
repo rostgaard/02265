@@ -28,9 +28,8 @@ namespace Surveys
 		}
 
 
-		public QuestionView(QuestionReference qr)
+		public QuestionView (QuestionReference qr) : this ()
 		{
-			this.VerticalOptions = LayoutOptions.FillAndExpand;
 			question = qr;
 		}
 	}

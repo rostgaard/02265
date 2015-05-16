@@ -100,7 +100,7 @@ namespace Surveys
 
 			if (qtype is FreeValue) {
 				string questionText = qref.Question.QuestionText;
-				return new FreeValueView (questionText);
+				return new FreeValueView (qref, questionText);
 			} else if (qtype is Choice) {
 				string questionText = qref.Question.QuestionText;
 				if (((Choice)qtype).minNumOfAnswers == 1 && ((Choice)qtype).maxNumOfAnswers == 1) {
@@ -110,14 +110,14 @@ namespace Surveys
 						answerStrings.Add (ao.Content);
 					}
 						
-					return new SingleChoiceView (questionText, answerStrings);
+					return new SingleChoiceView (qref, questionText, answerStrings);
 				} else {
 					List<string> answerStrings = new List<string> ();
 					foreach (AnswerOption ao in qref.Question.PossibleAnswers) {
 						answerStrings.Add (ao.Content);
 					}
 
-					return new MultipleChocieView (questionText, answerStrings);
+					return new MultipleChocieView (qref, questionText, answerStrings);
 				}
 			} else
 				throw new ArgumentException ("Question Type not supported");

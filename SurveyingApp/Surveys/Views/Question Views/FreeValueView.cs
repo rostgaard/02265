@@ -11,12 +11,12 @@ namespace Surveys
 
 		Editor AnswerEditor {get; set;}
 
-		public FreeValueView ( string questionText) : this ()
+		public FreeValueView (QuestionReference qr, string questionText) : this (qr)
 		{
 			QuestionLabel.Text = questionText;
 		}
 
-		public FreeValueView () : base ()
+		public FreeValueView (QuestionReference qr) : base (qr)
 		{
 			QuestionLabel = new Label{
 				Text = "",
