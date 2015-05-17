@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace Surveys
 {
 	public abstract class QuestionView : StackLayout
 	{
+		public event PropertyChangedEventHandler PropertyChanged;
 		public bool IsMandatory { get; set;}
 		public QuestionReference question { get; set; }
 		public HashSet<AnswerOption> answers;
-		bool isAnswered = false;
+		private bool _isAnswered = false;
 		public bool IsAnswered {
 			get {
-				return isAnswered;
+				return _isAnswered;
 			}
 			set {
-				if (isAnswered != value) {
-					isAnswered = value;
-					OnPropertyChanged("IsAnswered");
+				if (_isAnswered != value) {
+					_isAnswered = value;
+					RaisePropertyChanged();
 					}
 			}
 		}
@@ -30,9 +33,19 @@ namespace Surveys
 		public QuestionView (QuestionReference qr, bool isMandatory)
 		{
 			this.VerticalOptions = LayoutOptions.FillAndExpand;
-			isMandatory = isMandatory;
+			this.IsMandatory = isMandatory;
 			question = qr;
 			answers = new HashSet<AnswerOption> ();
+		}
+
+		protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+		{
+
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null)
+			{
+				handler (this, new PropertyChangedEventArgs (propertyName));
+			}
 		}
 	}
 

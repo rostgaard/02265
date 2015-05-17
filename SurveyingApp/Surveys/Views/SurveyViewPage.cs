@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Collections.Generic;
 using System.Threading;
 using System.Linq.Expressions;
+using System.ComponentModel;
 
 namespace Surveys
 {
@@ -34,7 +35,7 @@ namespace Surveys
 
 			goToNextButton = new Button {
 				Text = "Next",
-				IsEnabled = true,
+				IsEnabled = false,
 				HorizontalOptions = LayoutOptions.EndAndExpand
 
 			};
@@ -56,15 +57,17 @@ namespace Surveys
 			this.Content = surveyContent;
 
 			LoadSurvey ();
-		}
+}
 
 		public void OnNextClicked (object sender, EventArgs args) {
 			QuestionView v = vg.NextQuestion ();
 			if (v == null)
 				this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
 			else {
+				InitializePropertyCallback (v);
 				surveyContent.Children.RemoveAt (0);
 				surveyContent.Children.Insert (0, v);
+				this.goToNextButton.IsEnabled = v.IsAnswered;
 			}
 		}
 
@@ -72,6 +75,8 @@ namespace Surveys
 
 		public void OnPreviousClicked(object sender, EventArgs args) {
 			QuestionView v = vg.PreviousQuestion ();
+			InitializePropertyCallback (v);
+			this.goToNextButton.IsEnabled = v.IsAnswered;
 			surveyContent.Children.RemoveAt (0);
 			surveyContent.Children.Insert (0,v);
 		}
@@ -79,8 +84,26 @@ namespace Surveys
 		private void LoadSurvey()
 		{
 			QuestionView v = vg.InitialQuestion ();
+			InitializePropertyCallback (v);
 			surveyContent.Children.Insert (0, v);
 		}
+
+		private void InitializePropertyCallback(QuestionView v)
+		{
+
+			v.PropertyChanged += (object sender, PropertyChangedEventArgs e) => {
+				switch (e.PropertyName)
+				{
+				case "IsAnswered":
+					if (((QuestionView) sender).IsAnswered == true)
+						this.goToNextButton.IsEnabled = true;
+					else
+						this.goToNextButton.IsEnabled = false;
+					break;
+				}
+			};
+		}
+
 }
 
 }

@@ -22,10 +22,22 @@ namespace Surveys
 				CheckBox answerCheckbox = new CheckBox ();
 				answerCheckbox.CheckedChanged += (sender, e) => {
 					{
-						if (answerCheckbox.Checked == true)
+						if (answerCheckbox.Checked == true) {
 							this.answers.Add(new AnswerOption (answer));
+							this.IsAnswered = true;
+						}
 						else
+						{
 							this.answers.Remove (new AnswerOption (answer));
+							bool foundChecked = false;
+							foreach (StackLayout sl in this.answerOptions.Children)
+							{
+								CheckBox c = (CheckBox)sl.Children[0];
+								if (c.Checked == true)
+									foundChecked = true;
+							}
+							this.IsAnswered = foundChecked;
+						}
 					};
 				};
 				answerOptions.Children.Add (new StackLayout {

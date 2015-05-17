@@ -35,6 +35,9 @@ namespace Surveys
 					this.answers = new HashSet<AnswerOption> {
 						new AnswerOption (AnswerPicker.Items [AnswerPicker.SelectedIndex])
 					};
+				}
+				else {
+					this.IsAnswered = false;
 				};
 			};
 
