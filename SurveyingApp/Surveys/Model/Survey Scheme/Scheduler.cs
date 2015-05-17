@@ -4,10 +4,15 @@ namespace Surveys
 {
 	public class Scheduler
 	{
-		public Scheduler ()
+		public Schedule Frequency { get; set; }
+		public DateTime	Available { get; set; }
+		public Scheduler (Schedule frequency)
 		{
-			throw new NotImplementedException ();
+			Frequency = frequency;
+			Available = DateTime.Today;
 		}
 	}
+
+	public enum Schedule {ONCE, DAILY, WEEKLY, MONTHLY}
 }
 
