@@ -27,7 +27,7 @@ namespace Surveys
 			#region creating navigationContent with two buttons
 			goToPreviousButton = new Button {
 				Text = "Previous",
-				IsEnabled = true,
+				IsEnabled = false,
 				HorizontalOptions = LayoutOptions.StartAndExpand
 			};
 			goToPreviousButton.Clicked += OnPreviousClicked;
@@ -61,13 +61,16 @@ namespace Surveys
 
 		public void OnNextClicked (object sender, EventArgs args) {
 			QuestionView v = vg.NextQuestion ();
-			if (v == null)
+			if (v == null) {
 				this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
+				// TODO actually handle the alert
+			}
 			else {
 				InitializePropertyCallback (v);
 				surveyContent.Children.RemoveAt (0);
 				surveyContent.Children.Insert (0, v);
 				this.goToNextButton.IsEnabled = v.IsAnswered;
+				this.goToPreviousButton.IsEnabled = true;
 			}
 		}
 
@@ -75,10 +78,17 @@ namespace Surveys
 
 		public void OnPreviousClicked(object sender, EventArgs args) {
 			QuestionView v = vg.PreviousQuestion ();
-			InitializePropertyCallback (v);
-			this.goToNextButton.IsEnabled = v.IsAnswered;
-			surveyContent.Children.RemoveAt (0);
-			surveyContent.Children.Insert (0,v);
+			if (v != null) {
+				InitializePropertyCallback (v);
+				this.goToNextButton.IsEnabled = v.IsAnswered;
+				this.goToPreviousButton.IsEnabled = true;
+				surveyContent.Children.RemoveAt (0);
+				surveyContent.Children.Insert (0, v);
+			}
+			else{
+				this.goToPreviousButton.IsEnabled = false;
+				// TODO go to the main menu
+			}
 		}
 
 		private void LoadSurvey()

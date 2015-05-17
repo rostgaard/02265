@@ -8,6 +8,10 @@ namespace Surveys
 {
 	public class ViewGenerator
 	{
+
+		bool isFinished = false;
+		bool isBeginning = true;
+
 		private Survey surveyScheme = null;
 
 		private LinkedListNode<SurveyPart> currentSurveyPart = null;
@@ -138,6 +142,7 @@ namespace Surveys
 				currentQuestion = currentSurveyPart.Value.Questions.First;
 				return true;
 			}
+			isFinished = true;
 			return false;
 		}
 
@@ -147,6 +152,11 @@ namespace Surveys
 		/// <returns><c>true</c>, if question was regressed, <c>false</c> otherwise.</returns>
 		private bool RegressQuestion ()
 		{
+			if (isFinished)
+			{
+				isFinished = false;
+				return true;
+			}
 			if (currentQuestion.Previous != null) {
 				currentQuestion = currentQuestion.Previous;
 				return true;
