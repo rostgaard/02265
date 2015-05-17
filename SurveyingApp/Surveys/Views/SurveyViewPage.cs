@@ -64,8 +64,7 @@ namespace Surveys
 			if (v == null) {
 				this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
 				// TODO actually handle the alert
-			}
-			else {
+			} else {
 				InitializePropertyCallback (v);
 				surveyContent.Children.RemoveAt (0);
 				surveyContent.Children.Insert (0, v);
@@ -73,8 +72,6 @@ namespace Surveys
 				this.goToPreviousButton.IsEnabled = true;
 			}
 		}
-
-
 
 		public void OnPreviousClicked(object sender, EventArgs args) {
 			QuestionView v = vg.PreviousQuestion ();
