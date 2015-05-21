@@ -70,6 +70,8 @@ namespace Surveys.Droid
 			global::XLabs.Forms.Resource.Style.CalendarCell_CalendarDate = global::Surveys.Droid.Resource.Style.CalendarCell_CalendarDate;
 			global::XLabs.Forms.Resource.Style.CalendarCell_DayHeader = global::Surveys.Droid.Resource.Style.CalendarCell_DayHeader;
 			global::XLabs.Forms.Resource.Style.CalendarTitle = global::Surveys.Droid.Resource.Style.CalendarTitle;
+			global::PCLStorage.Resource.String.ApplicationName = global::Surveys.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::Surveys.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -88,41 +90,41 @@ namespace Surveys.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int calendar_active_month_bg = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int calendar_active_month_bg = 2131034112;
 			
-			// aapt resource value: 0x7f040001
-			public const int calendar_bg = 2130968577;
+			// aapt resource value: 0x7f050001
+			public const int calendar_bg = 2131034113;
 			
-			// aapt resource value: 0x7f040002
-			public const int calendar_divider = 2130968578;
+			// aapt resource value: 0x7f050002
+			public const int calendar_divider = 2131034114;
 			
-			// aapt resource value: 0x7f040005
-			public const int calendar_highlighted_day_bg = 2130968581;
+			// aapt resource value: 0x7f050005
+			public const int calendar_highlighted_day_bg = 2131034117;
 			
-			// aapt resource value: 0x7f040003
-			public const int calendar_inactive_month_bg = 2130968579;
+			// aapt resource value: 0x7f050003
+			public const int calendar_inactive_month_bg = 2131034115;
 			
-			// aapt resource value: 0x7f040004
-			public const int calendar_selected_day_bg = 2130968580;
+			// aapt resource value: 0x7f050004
+			public const int calendar_selected_day_bg = 2131034116;
 			
-			// aapt resource value: 0x7f040006
-			public const int calendar_selected_range_bg = 2130968582;
+			// aapt resource value: 0x7f050006
+			public const int calendar_selected_range_bg = 2131034118;
 			
-			// aapt resource value: 0x7f040008
-			public const int calendar_text_active = 2130968584;
+			// aapt resource value: 0x7f050008
+			public const int calendar_text_active = 2131034120;
 			
-			// aapt resource value: 0x7f040007
-			public const int calendar_text_inactive = 2130968583;
+			// aapt resource value: 0x7f050007
+			public const int calendar_text_inactive = 2131034119;
 			
-			// aapt resource value: 0x7f040009
-			public const int calendar_text_selected = 2130968585;
+			// aapt resource value: 0x7f050009
+			public const int calendar_text_selected = 2131034121;
 			
-			// aapt resource value: 0x7f04000b
-			public const int calendar_text_selector = 2130968587;
+			// aapt resource value: 0x7f05000b
+			public const int calendar_text_selector = 2131034123;
 			
-			// aapt resource value: 0x7f04000a
-			public const int calendar_text_unselectable = 2130968586;
+			// aapt resource value: 0x7f05000a
+			public const int calendar_text_unselectable = 2131034122;
 			
 			static Color()
 			{
@@ -137,20 +139,20 @@ namespace Surveys.Droid
 		public partial class Dimension
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int calendar_day_headers_paddingbottom = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int calendar_day_headers_paddingbottom = 2131099648;
 			
-			// aapt resource value: 0x7f050002
-			public const int calendar_month_title_bottommargin = 2131034114;
+			// aapt resource value: 0x7f060002
+			public const int calendar_month_title_bottommargin = 2131099650;
 			
-			// aapt resource value: 0x7f050001
-			public const int calendar_month_topmargin = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int calendar_month_topmargin = 2131099649;
 			
-			// aapt resource value: 0x7f050003
-			public const int calendar_text_medium = 2131034115;
+			// aapt resource value: 0x7f060003
+			public const int calendar_text_medium = 2131099651;
 			
-			// aapt resource value: 0x7f050004
-			public const int calendar_text_small = 2131034116;
+			// aapt resource value: 0x7f060004
+			public const int calendar_text_small = 2131099652;
 			
 			static Dimension()
 			{
@@ -243,26 +245,26 @@ namespace Surveys.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060006
-			public const int ApplicationName = 2131099654;
+			// aapt resource value: 0x7f040001
+			public const int ApplicationName = 2130968577;
 			
-			// aapt resource value: 0x7f060005
-			public const int Hello = 2131099653;
+			// aapt resource value: 0x7f040000
+			public const int Hello = 2130968576;
 			
-			// aapt resource value: 0x7f060001
-			public const int day_name_format = 2131099649;
+			// aapt resource value: 0x7f040003
+			public const int day_name_format = 2130968579;
 			
-			// aapt resource value: 0x7f060004
-			public const int full_date_format = 2131099652;
+			// aapt resource value: 0x7f040006
+			public const int full_date_format = 2130968582;
 			
-			// aapt resource value: 0x7f060002
-			public const int invalid_date = 2131099650;
+			// aapt resource value: 0x7f040004
+			public const int invalid_date = 2130968580;
 			
-			// aapt resource value: 0x7f060000
-			public const int library_name = 2131099648;
+			// aapt resource value: 0x7f040002
+			public const int library_name = 2130968578;
 			
-			// aapt resource value: 0x7f060003
-			public const int month_name_format = 2131099651;
+			// aapt resource value: 0x7f040005
+			public const int month_name_format = 2130968581;
 			
 			static String()
 			{

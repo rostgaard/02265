@@ -62,7 +62,11 @@ namespace Surveys
 		public void OnNextClicked (object sender, EventArgs args) {
 			QuestionView v = vg.NextQuestion ();
 			if (v == null) {
-				this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
+				var answer = this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
+				if (answer == true)
+				{
+					
+				}
 				// TODO actually handle the alert
 			} else {
 				InitializePropertyCallback (v);
