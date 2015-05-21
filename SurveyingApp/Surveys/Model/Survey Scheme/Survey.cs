@@ -8,6 +8,8 @@ namespace Surveys
 	{
 		public Guid SurveyId { get; set; }
 
+		public Boolean isActive { get; set; }
+
 		public Scheduler Scheduler { get; set; }
 
 		private LinkedList<SurveyPart> surveyParts = new LinkedList<SurveyPart> ();
@@ -25,6 +27,7 @@ namespace Surveys
 
 		public Survey ()
 		{
+			isActive = false;
 		}
 
 		public void addPart (SurveyPart q)
