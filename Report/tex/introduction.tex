@@ -1,5 +1,4 @@
 \chapter{Introduction}
-%TODO Add comparison table and stuff from the presentation.
 \section{Problem statement}
 Surveys are commonly used in scientific studies as useful tool for collecting data to substantiate or reject theories. These surveys are historically done on paper, but along with the adoption of digital technologies, electronic surveys are becoming the standard.
 Electronic surveys are, however, usually implemented ad-hoc with limited or no notion of neither the data they convey nor their relation to other surveys. This data-linking is to be done manually, and is tedious and time consuming. Another issue is that creating and re-deploying these surveys are usually a time-consuming process.
@@ -14,26 +13,27 @@ So, in summary, the proposed solution will be to focus on using smart-phone tech
   \item the surveys should be presented to users with an intuitive and user friendly interface for smart phones.
 \end{enumerate}
 Based on a provided definition which adheres to the DSL, it should be possible to generate a survey with questions. It should be possible for the questions to depend on previous answers and to be prompted periodically (e.g. every week). The prompt should be integrated with the built-in notification system of concurrent smartphones.
-\subsection{Requirements and scope}
+\subsection{Scope}
 The full working solution for data collection would include many components. On top of the DSL and data gathering app there is a need for a whole stack of components allowing survey creation, management and analysis - persistent storage, graphical survey creator and other tools related to the chosen workflow. In regards to this, a minimal working solution has to include:
 \begin{itemize}
 \item Domain-specific language for defining surveys. Language should be able to describe basic types of questionnaire questions and support dynamic answering flow, depending on the conditions specific to a single question, survey, time etc. The way of describing survey instances (filled in surveys) needs to be defined as well.
 \item Persistent data storage for storing the surveys defined by DSL together with necessary metadata and results of the surveys.
 \item Conceptual implementation of a smartphone application. It must be able to fetch, display and fill in surveys. The application does not need to be able to understand all the advanced features of DSL (timed execution etc) but has to process the files accordingly to the standard.
 \item Management of surveys should be done via the DSL in a dedicated application.
-\item The survey part of the app should be accessible and be able to run on an as wide array of smart phones as possible.
 %TODO The additional stuff that was implemented/required; visualizing the answer. Recurrence. 
 \end{itemize}
 
 \section{Existing Solutions}
 \label{sec:existingsolutions}
+Many free and commercial solutions exist; some of these are listed below.
+\begin{itemize}
+\item GoogleForms
+\item QuestionPro
+\item SurveyGizmo
+\item SurveyMonkey
+\item SurveyXact
+\item Enalyzer
+\end{itemize}
+  
+These are either free and very limited (e.g. GoogleForms) or provide a narrow set of features in the free version. The full, paid versions do, however, tend to provide the desired (and many, many more) features.
 
-\begin{tabular}{l | c | c | c | c | c}
-  Solution & Recurrence & Reusable survey parts & Mobile app & Cross-platform & Open source\\
-  GoogleForms & 5 & 6 & g & g & g\\
-  QuestionPro & 5 & 6 & g & g & g\\
-  SurveyGizmo & 5 & 6 & g & g & g\\
-  SurveyMonkey & 5 & 6 & g & g & g\\
-  SurveyXact & 5 & 6 & g & g & g\\
-  Enalyzer & 5 & 6 & g & g & g\\
-\end{tabular}
