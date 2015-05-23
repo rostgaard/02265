@@ -6,6 +6,12 @@ using Foundation;
 using UIKit;
 using XLabs.Forms;
 
+using XLabs.Ioc;
+using XLabs.Platform.Services.Geolocation;
+using XLabs.Platform.Services;
+using XLabs.Platform.Device;
+using System.ComponentModel;
+
 
 
 namespace Surveys.iOS
@@ -16,6 +22,11 @@ namespace Surveys.iOS
 	{
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+
+			var container = new XLabs.Ioc.SimpleContainer ();
+			container.Register<IDevice> (t => AppleDevice.CurrentDevice);
+			container.Register<IGeolocator,Geolocator>();
+			Resolver.SetResolver (container.GetResolver());
 			global::Xamarin.Forms.Forms.Init ();
 
 			LoadApplication (new App ());

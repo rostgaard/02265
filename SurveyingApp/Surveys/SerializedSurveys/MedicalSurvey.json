@@ -1,0 +1,306 @@
+﻿{
+	"$type": "Surveys.Survey, Surveys",
+	"SurveyId": "00000000-0000-0000-0000-000000000000",
+	"Scheduler": null,
+	"SurveyParts": [
+		{
+			"$type": "Surveys.SurveyPart, Surveys",
+			"Questions": [
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "e1194bca-84fa-421f-9002-c6d426f57a7f",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "What is your gender?",
+						"PossibleAnswers": [
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Male"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Female"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Other"
+							}
+						],
+						"QuestionType": {
+							"$type": "Surveys.Choice, Surveys",
+							"maxNumOfAnswers": 1,
+							"minNumOfAnswers": 1
+						},
+						"AnswerType": 3
+					},
+					"Prerequisite": null
+				},
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "13ef3b55-58df-4279-9240-c3ae87d6a642",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "What year were you born in?",
+						"PossibleAnswers": null,
+						"QuestionType": {
+							"$type": "Surveys.FreeValue, Surveys"
+						},
+						"AnswerType": 4
+					},
+					"Prerequisite": null
+				},
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "1eb01eba-9ece-4089-b8c4-68853f0096cb",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "What country do you come from",
+						"PossibleAnswers": null,
+						"QuestionType": {
+							"$type": "Surveys.FreeValue, Surveys"
+						},
+						"AnswerType": 3
+					},
+					"Prerequisite": null
+				}
+			]
+		},
+		{
+			"$type": "Surveys.SurveyPart, Surveys",
+			"Questions": [
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "f600f975-4c6a-46b6-a7de-e47d2cfb76c5",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "How are you feeling today?",
+						"PossibleAnswers": [
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "1"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "2"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "3"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "4"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "5"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "6"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "7"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "8"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "9"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "10"
+							}
+						],
+						"QuestionType": {
+							"$type": "Surveys.Choice, Surveys",
+							"maxNumOfAnswers": 1,
+							"minNumOfAnswers": 1
+						},
+						"AnswerType": 0
+					},
+					"Prerequisite": null
+				},
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "94f3459d-5078-47df-abea-332ca3d55310",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "What is the reason of your discomfort",
+						"PossibleAnswers": null,
+						"QuestionType": {
+							"$type": "Surveys.FreeValue, Surveys"
+						},
+						"AnswerType": 3
+					},
+					"Prerequisite": null
+				},
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "d60a73a5-59bf-4017-9a28-3ea4384fbd27",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "How would you describe your heat comfort?",
+						"PossibleAnswers": [
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Freezing"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Cold"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Acceptable"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Warm"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Hot"
+							}
+						],
+						"QuestionType": {
+							"$type": "Surveys.Choice, Surveys",
+							"maxNumOfAnswers": 1,
+							"minNumOfAnswers": 1
+						},
+						"AnswerType": 3
+					},
+					"Prerequisite": null
+				},
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "571bbe3e-e4c4-45a1-9e5e-88ca7f34395d",
+						"IsAnswered": false,
+						"IsMandatory": false,
+						"QuestionText": "What is the ambient temperature?",
+						"PossibleAnswers": null,
+						"QuestionType": {
+							"$type": "Surveys.FreeValue, Surveys"
+						},
+						"AnswerType": 1
+					},
+					"Prerequisite": null
+				}
+			]
+		},
+		{
+			"$type": "Surveys.SurveyPart, Surveys",
+			"Questions": [
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "a3b74df1-6190-4f60-bcb9-847c3c04c654",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "Did you experience any allergic reactions recently?",
+						"PossibleAnswers": [
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Yes"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "No"
+							}
+						],
+						"QuestionType": {
+							"$type": "Surveys.Choice, Surveys",
+							"maxNumOfAnswers": 1,
+							"minNumOfAnswers": 1
+						},
+						"AnswerType": 2
+					},
+					"Prerequisite": null
+				},
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "22fe523f-c5aa-41f2-817f-986a5710cfb0",
+						"IsAnswered": false,
+						"IsMandatory": true,
+						"QuestionText": "Which of the following did cause an allergic reaction for you?",
+						"PossibleAnswers": [
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Nuts"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Milk"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Egg"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Egg"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Soy"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Fish"
+							},
+							{
+								"$type": "Surveys.AnswerOption, Surveys",
+								"Content": "Other"
+							}
+						],
+						"QuestionType": {
+							"$type": "Surveys.Choice, Surveys",
+							"maxNumOfAnswers": 7,
+							"minNumOfAnswers": 1
+						},
+						"AnswerType": 2
+					},
+					"Prerequisite": null
+				},
+				{
+					"$type": "Surveys.QuestionReference, Surveys",
+					"Question": {
+						"$type": "Surveys.Question, Surveys",
+						"QuestionId": "55a5f9cf-005f-4a92-8bf8-3401627263a3",
+						"IsAnswered": false,
+						"IsMandatory": false,
+						"QuestionText": "Please enter the other food(s) which caused an allergic reaction for you",
+						"PossibleAnswers": null,
+						"QuestionType": {
+							"$type": "Surveys.FreeValue, Surveys"
+						},
+						"AnswerType": 3
+					},
+					"Prerequisite": null
+				}
+			]
+		}
+	],
+	"SurveyAnswers": null
+}

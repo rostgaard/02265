@@ -33,64 +33,93 @@
     <Compile Include="Surveys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestPage.cs" />
-    <Compile Include="SurveyViewPage.cs" />
-    <Compile Include="View and ViewModel\EssayQuestionView.cs" />
-    <Compile Include="View and ViewModel\QuestionView.cs" />
-    <Compile Include="View and ViewModel\TrueFalseQuestionView.cs" />
-    <Compile Include="View and ViewModel\PickerQuestionView.cs" />
-    <Compile Include="View and ViewModel\SliderQuestionView.cs" />
-    <Compile Include="Model\Question.cs" />
-    <Compile Include="Model\DummyContentProvider.cs" />
-    <Compile Include="Model\ContentType.cs" />
-    <Compile Include="Model\Survey.cs" />
-    <Compile Include="Model\Answer.cs" />
-    <Compile Include="Model\AnswerOption.cs" />
-    <Compile Include="Model\QuestionReference.cs" />
-    <Compile Include="Model\DataType.cs" />
-    <Compile Include="Model\Prerequisite.cs" />
-    <Compile Include="Model\QuestionType.cs" />
-    <Compile Include="Model\FreeValue.cs" />
-    <Compile Include="Model\Choice.cs" />
-    <Compile Include="Model\Scheduler.cs" />
-    <Compile Include="Model\SurveyPart.cs" />
-    <Compile Include="Model\SurveyAnswer.cs" />
-    <Compile Include="Model\UserData.cs" />
+    <Compile Include="GeolocatorPage.cs" />
+    <Compile Include="Model\Survey Instance\SurveyAnswer.cs" />
+    <Compile Include="Model\Survey Instance\Answer.cs" />
+    <Compile Include="Model\Survey Instance\UserData.cs" />
+    <Compile Include="Model\Survey Scheme\AnswerOption.cs" />
+    <Compile Include="Model\Survey Scheme\Choice.cs" />
+    <Compile Include="Model\Survey Scheme\ContentType.cs" />
+    <Compile Include="Model\Survey Scheme\DataType.cs" />
+    <Compile Include="Model\Survey Scheme\DummyContentProvider.cs" />
+    <Compile Include="Model\Survey Scheme\FreeValue.cs" />
+    <Compile Include="Model\Survey Scheme\Prerequisite.cs" />
+    <Compile Include="Model\Survey Scheme\Question.cs" />
+    <Compile Include="Model\Survey Scheme\QuestionReference.cs" />
+    <Compile Include="Model\Survey Scheme\QuestionType.cs" />
+    <Compile Include="Model\Survey Scheme\Scheduler.cs" />
+    <Compile Include="Model\Survey Scheme\Survey.cs" />
+    <Compile Include="Model\Survey Scheme\SurveyPart.cs" />
+    <Compile Include="Views\EssayQuestionView.cs" />
+    <Compile Include="Views\TrueFalseQuestionView.cs" />
+    <Compile Include="Views\PickerQuestionView.cs" />
+    <Compile Include="Views\SliderQuestionView.cs" />
+    <Compile Include="Controllers\JSonTranslator.cs" />
+    <Compile Include="Controllers\SurveyReader.cs" />
+    <Compile Include="Controllers\ViewGenerator.cs" />
+    <Compile Include="Helpers\SurveyGenerator.cs" />
+    <Compile Include="Views\SurveyViewPage.cs" />
+    <Compile Include="Views\Question Views\FreeValueView.cs" />
+    <Compile Include="Views\Question Views\MultipleChocieView.cs" />
+    <Compile Include="Views\Question Views\SingleChoiceView.cs" />
+    <Compile Include="Views\Question Views\QuestionView.cs" />
+    <Compile Include="Controllers\PrerequisiteController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.1.3.4.6332\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.4.6332\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
-    <Reference Include="ExifLib">
-      <HintPath>..\packages\ExifLib.PCL.1.0.0\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
-    </Reference>
-    <Reference Include="XLabs.Core">
-      <HintPath>..\packages\XLabs.Core.2.0.5530\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.1.3.4.6332\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.1.4.2.6359\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.1.3.4.6332\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.1.4.2.6359\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.1.4.2.6359\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
     </Reference>
     <Reference Include="XLabs.Ioc">
-      <HintPath>..\packages\XLabs.IoC.2.0.5530\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+      <HintPath>..\packages\XLabs.IoC.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\packages\XLabs.Core.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
     </Reference>
     <Reference Include="XLabs.Platform">
-      <HintPath>..\packages\XLabs.Platform.2.0.5530\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Platform.dll</HintPath>
+      <HintPath>..\packages\XLabs.Platform.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Platform.dll</HintPath>
     </Reference>
     <Reference Include="XLabs.Serialization">
-      <HintPath>..\packages\XLabs.Serialization.2.0.5530\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.dll</HintPath>
+      <HintPath>..\packages\XLabs.Serialization.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="XLabs.Forms">
-      <HintPath>..\packages\XLabs.Forms.2.0.5530\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Forms.dll</HintPath>
+      <HintPath>..\packages\XLabs.Forms.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Xamarin-Forms-Labs-master\" />
     <Folder Include="Model\" />
-    <Folder Include="View and ViewModel\" />
     <Folder Include="Sensors\" />
+    <Folder Include="Model\Survey Instance\" />
+    <Folder Include="Model\Survey Scheme\" />
+    <Folder Include="Views\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="SerializedSurveys\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SerializedSurveys\MedicalSurvey.json" />
   </ItemGroup>
 </Project>

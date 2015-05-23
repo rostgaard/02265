@@ -2,6 +2,8 @@
 
 using Xamarin.Forms;
 using XLabs.Forms.Controls;
+using System.Reflection;
+using System.IO;
 
 namespace Surveys
 {
@@ -9,8 +11,10 @@ namespace Surveys
 	{
 		public App ()
 		{
-			// The root page of your application
-			MainPage = new SurveyViewPage ();
+			// Survey s = SurveyReader.ReadSurveyFromResource("Surveys.SerializedSurveys.MedicalSurvey.json");
+			Survey s = SurveyGenerator.generateSurvey1 ();
+			ViewGenerator vg = new ViewGenerator (s);
+			MainPage = new SurveyViewPage (vg);
 		}
 
 		protected override void OnStart ()
