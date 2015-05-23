@@ -1,0 +1,9 @@
+*.synctex.gz
+*~
+*.aux
+*.dvi
+*.out
+*.log
+*.toc
+Report/Main/*.pdf
+
