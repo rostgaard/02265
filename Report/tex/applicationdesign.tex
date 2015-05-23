@@ -5,7 +5,19 @@
 \section{SECTION NAME}
 \label{sec:}
 When running a survey on the phone, the user will expect the questions to be stored intermediately, allowing him/her to navigate back and forth between questions without discarding the answers already typed in.
-%TODO {add stuff about answer stack}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2.0cm]
+\node[initial,state,label=$q_1$] (q1) {};
+\node[state,label=above:$q_2$] (q2) [below left of=q1] {};
+\node[state,label=above:$q_3$] (q3) [below right of=q1] {};
+\node[state,label=above:$q_4$] (q4) [below left of=q2] {};
+\path[->]
+(q1) edge node {male} (q2)
+(q1) edge node {female} (q3)
+(q2) edge node {stuff} (q4);
+\end{tikzpicture} \hspace{10mm}
+\end{center}
 
 
 \section{Metamodel}
