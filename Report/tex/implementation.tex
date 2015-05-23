@@ -6,6 +6,59 @@
 \label{sec:dsl}
 %TODO {short intro}
 
+\begin{grammar}
+\label{grammar:ebnf}
+      <survey> ::= `SURVEY', <text>, `:', <parts> ;
+      
+      <parts> ::= <part>, $\lbrace$ <part> $\rbrace$ ; 
+       
+      <part> ::= `PART', <text>, `:', {[} <repetitions> {]}, <questions> ;
+      
+      <repetitions> ::= `REPEAT:', <frequency> ;
+      
+      <questions> ::= <question>, $\lbrace$ <question> $\rbrace$ ;
+      
+      <question> ::= `QUESTION', <number>, `:', <text>, <options>, <answers> ;
+      
+      <options> ::= {[} <mandatory> {]}, {[} <prerequisites> {]}, <answer type> ;
+      
+      <mandatory> ::= `MANDATORY:', <bool> ;
+      
+      <prerequisites> ::= `PREREQUISITES:', ( $\lbrace$ <prerequisite> $\rbrace$ | `None' ) ;
+      
+      <answer type> ::= `ANSWER TYPE:', <choice> | <free> ;
+      
+      <choice> ::= <multiplicity>, {[} `/', <type> {]} ;
+      
+      <free> ::= `Free', {[} `/', <sensor> {]} ;
+      
+      <prerequisite> ::= `Q', <number>, `->', ( <answer> | <expression> ) ;
+      
+      <answers> ::= `ANSWERS:', <answer>, `/', <answer>, $\lbrace$ `/', <answer> $\rbrace$ ;
+      
+      <answer> ::= <number>, <text> ;
+         
+      <multiplicity> ::= `Single' | ( `Multiple', {[} `/', <limit> {]} ) ;
+      
+      <frequency> ::= `Daily' | `Weekly' | `Bi-Weekly' | `Monthly' | `Yearly' | <other> ;
+      
+      <limit> ::= ( <number>, `..', <number> ) | `No limit' ;
+      
+      <sensor> ::= ( `Temperature' | `GPS' | <other> ), `sensor' ;
+      
+      <bool> ::= `Yes' | `No' ;
+      
+      <type> ::= `Integer' | `Float' | `Boolean' | `String' | `Date' | <other> ;
+      
+      <expression> ::= ?logic expression? ;
+      
+      <text> ::= ?unicode literal? ;
+      
+      <number> ::= {[} `-' {]}, ?numeric literal? ;
+      
+      <other> ::= ?future addition? ;
+\end{grammar}
+
 \begin{verbatim}
 DSL Example (as being entered when first creating a survey)
 
@@ -64,31 +117,6 @@ SURVEY Patient examination:
     MANDATORY: Yes
     PREREQUISITES: Q2 -> Other
     ANSWER TYPE: Free
-\end{verbatim}
-
-\begin{verbatim}
-Grammar
-QUESTIONNAIRE ::= "SURVEY", TEXT, ":", PRTS;
-PRTS ::= PRT, {PRT};
-PRT ::= "PART", TEXT, ":", [REPETITIONS], QSTS;
-QSTS ::= QST, {QST};
-REPETITIONS ::= "REPEAT:", FREQUENCY;
-QST ::= "QUESTION", NUM, ":”, TEXT, [MAND], [PREREQ], AT, ANS;    
-PREREQ ::= "PREREQUISITES:", {"Q", NUM, "->", ANSWER | EXPRESSION} | "None";
-AT ::= "ANSWER TYPE:", ("Single" | "Multiple", ["/", LIMIT]), ["/", TYPE] | "Free", ["/", SENSOR];
-ANS ::= "ANSWERS:", ANSWER;
-ANSWER ::= TEXT, {"/", ANSWER};
-MAND ::= "MANDATORY:", BOOL;
-FREQUENCY ::= "Daily" | "Weekly" | "Bi-Weekly" | "Monthly" | "Yearly" | DAYS;
-DAYS ::= DAY, {DAY};
-LIMIT ::= NUM, "..", NUM | "No limit";
-SENSOR ::= ("Temperature" | "GPS" | "…"), "sensor";
-BOOL ::= "Yes" | "No"
-DAY ::= "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun"
-TYPE ::= "Integer" | "Float" | "Boolean" | "String" | "Date" | "..." 
-EXPRESSION ::= (?logic expression?);
-TEXT ::= (?unicode literal?);
-NUM ::= ["-"], (?numeric literal?);
 \end{verbatim}
 
 \section{Smartphone App}
