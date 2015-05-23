@@ -1,0 +1,60 @@
+\documentclass[11pt,a4paper]{report}
+\newcommand{\confdir}{../conf/} % Set the folder which contains preamble.tex, titlepage.tex and the general img/ folder
+\newcommand{\imgdir}{../img/} % Set the folder which contains the specific images for the report
+\newcommand{\texdir}{../tex/} % Set the folder which contains the content (.tex files)
+\input{\confdir preamble}
+
+
+%%%%%%%%%%%
+%% SETUP %%
+%%%%%%%%%%%
+
+%% Set the course number and course name
+% Usage: \setcourse{<course no>}{<course name>}
+	\setcourse{02265}{Advanced Topics in Software Engineering F15}
+
+%% Set the title of the report
+% Usage: \settitle{<title>}
+	\settitle{Flexible data collection with smart phones}
+
+%% Set the subtitle of the report
+% Usage: \setsubtitle{<subtitle>}
+	\setsubtitle{Report -- Spring 2015}
+
+%% Set the date the report is handed in
+% Usage: \setdate{<hand-in date>}
+	\setdate{June 2nd, 2015}
+
+%% Add the authors of the report
+% Usage: \addauthor{<study number>}{<first name(s)>}{<last name>}
+	\addauthor{s124723}{Piotr}{Milczarek}
+	\addauthor{s121540}{Anna}{Wałach}
+	\addauthor{s103460}{Pawel}{Drozdowski}
+	\addauthor{s084283}{Kim Rostgaard}{Christensen}
+
+%%%% END OF SETUP
+\newcommand{\piotr}{\emph{Piotr Milczarek, s124723}}
+\newcommand{\anna}{\emph{Anna Wałach, s121540}}
+\newcommand{\pawel}{\emph{Pawel Drozdowski, s103460}}
+\newcommand{\kim}{\emph{Kim Rostgaard Christensen, s084283}}
+
+\begin{document}
+
+%% Insert titlepage
+\inserttitlepage
+
+%% Insert list of todos
+% \listoftodos
+
+%% Insert table-of-contents
+\inserttoc
+
+%% Input files for the report
+\import{\texdir}{introduction}
+\import{\texdir}{conclusion}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\nocite{*}
+
+\end{document}
