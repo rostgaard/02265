@@ -5,6 +5,8 @@
 *.out
 *.log
 *.toc
+*.bbl
+*.blg
 Report/Main/*.pdf
 
 **/Debug/
@@ -12,8 +14,29 @@ Report/Main/*.pdf
 
 **/packages/
 
-#Autosave files*~# Build/test output**/obj**/bin**/test-results# Per-user data*.DS_Store*.sln.cache*.suo*.userprefs*.usertasks*.user 
-# ReSharper*_Resharper.**.Resharper# dotCover*.dotCover
+#Autosave files
+*~
+
+# Build/test output
+**/obj
+**/bin
+**/test-results
+
+
+# Per-user data
+*.DS_Store
+*.sln.cache
+*.suo
+*.userprefs
+*.usertasks
+*.user 
+
+# ReSharper
+*_Resharper.*
+*.Resharper
+
+# dotCover
+*.dotCover
 
 # Models
 *.bak
