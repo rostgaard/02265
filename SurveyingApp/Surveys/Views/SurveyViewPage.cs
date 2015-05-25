@@ -63,7 +63,7 @@ namespace Surveys
 			QuestionView v = vg.NextQuestion ();
 			if (v == null) {
 				var answer = this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
-				if (answer == true)
+				if (answer.Result == true)
 				{
 					
 				}
