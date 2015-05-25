@@ -1,11 +1,13 @@
 \chapter{Implementation}
 \label{chap:implementation}
-%TODO {short intro}
+This chapter provides information about implementation of the system. Specifically, the created domain specific language is presented and some details of the smartphone app prototype are discussed.
 
 \section{Domain Specific Language}
 \label{sec:dsl}
-%TODO {short intro}
+In this section, the DSL for defining surveys is presented. 
+%TODO write more here
 
+Below, the eBNF grammar definition for the DSL can be seen.
 \begin{grammar}
 \label{grammar:ebnf}
       <survey> ::= `SURVEY', <text>, `:', <parts> ;
@@ -121,4 +123,5 @@ SURVEY Patient examination:
 
 \section{Smartphone App}
 \label{sec:app}
-%TODO {remember to mention cross platform/Xamarin}
+In this section, the more interesting details of the smartphone app prototype implementation are outlined.
+%TODO remember to mention cross platform/Xamarin
