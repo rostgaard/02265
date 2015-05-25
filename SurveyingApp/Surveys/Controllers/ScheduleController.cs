@@ -8,16 +8,17 @@ namespace Surveys
 		{
 		}
 
-		public static void reschedule(Survey survey) 
+		public static SurveyAnswer reschedule(SurveyAnswer survey) 
 		{
-			survey.Scheduler = generateNewDate (survey.Scheduler);
-			survey.isActive = false;
-			foreach (SurveyPart sp in survey.SurveyParts) {
+			survey.Survey.Scheduler = generateNewDate (survey.Survey.Scheduler);
+			survey.Survey.isActive = false;
+			foreach (SurveyPart sp in survey.Survey.SurveyParts) {
 				sp.Scheduler = generateNewDate (sp.Scheduler);
 				sp.isActive = false;
 			}
 			setActive (survey);
-		
+			survey.Answers = new System.Collections.Generic.List<Answer> ();
+			return survey;
 		}
 
 		private static Scheduler generateNewDate(Scheduler sched) 
@@ -43,12 +44,12 @@ namespace Surveys
 			return sched;
 		}
 
-		public static Survey setActive(Survey survey) 
+		public static SurveyAnswer setActive(SurveyAnswer survey) 
 		{
-			foreach (SurveyPart sp in survey.SurveyParts) {
+			foreach (SurveyPart sp in survey.Survey.SurveyParts) {
 				if (sp.Scheduler.Available.CompareTo (DateTime.Today) <= 0) {
 					sp.isActive = true;
-					survey.isActive = true;
+					survey.Survey.isActive = true;
 				}
 			}
 			return survey;
