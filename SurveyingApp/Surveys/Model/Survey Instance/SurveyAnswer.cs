@@ -9,7 +9,7 @@ namespace Surveys
 
 		public UserData UserData { get; set; }
 
-		public Survey Survey { get; set; }
+		public Guid SurveyId { get; set; }
 
 		public SurveyAnswer ()
 		{

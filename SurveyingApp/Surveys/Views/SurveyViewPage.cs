@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Linq.Expressions;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Surveys
 {
@@ -62,11 +63,14 @@ namespace Surveys
 		public void OnNextClicked (object sender, EventArgs args) {
 			QuestionView v = vg.NextQuestion ();
 			if (v == null) {
-				var answer = this.DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change");
-				if (answer == true)
-				{
-					
-				}
+				DisplayAlert ("Done!", "Thank you for filling the survey", "Submit", "Change").ContinueWith(t =>
+					{
+						if (t.Result == true)
+						{
+							vg.WriteSurvey ();
+						}
+					}, TaskScheduler.FromCurrentSynchronizationContext());  
+
 				// TODO actually handle the alert
 			} else {
 				InitializePropertyCallback (v);

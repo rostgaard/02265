@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using XLabs.Forms.Validation;
 using System.Reflection;
 using Xamarin.Forms;
+using PCLStorage;
 
 namespace Surveys
 {
@@ -48,7 +49,7 @@ namespace Surveys
 
 				LinkedList<QuestionView> preqViewList = new LinkedList<QuestionView> ();
 				foreach (Prerequisite p in currentQuestion.Value.Prerequisites) {
-					if (currentViews.Find (generatedViews [p.Question])!= null)
+					if (currentViews.Find (generatedViews [p.Question]) != null)
 						preqViewList.AddLast (generatedViews [p.Question]);
 				}
 				if (PrerequisiteController.calculatePrerequisite (currentQuestion.Value, preqViewList)) {
@@ -152,8 +153,7 @@ namespace Surveys
 		/// <returns><c>true</c>, if question was regressed, <c>false</c> otherwise.</returns>
 		private bool RegressQuestion ()
 		{
-			if (isFinished)
-			{
+			if (isFinished) {
 				isFinished = false;
 				return true;
 			}
@@ -168,8 +168,47 @@ namespace Surveys
 			return false;
 		}
 
+		public async void WriteSurvey ()
+		{
+			IFolder rootFolder = FileSystem.Current.LocalStorage;
+			IFolder folder = await rootFolder.CreateFolderAsync (Constants.filledDirectory,
+				                 CreationCollisionOption.OpenIfExists);
 
+			string fileName = surveyScheme.SurveyId.ToString ().Substring (0, 5) + " " + DateTime.Now.DayOfYear.ToString () + ".json";
 
+			IFile file = await folder.CreateFileAsync (fileName,
+				             CreationCollisionOption.ReplaceExisting);
+
+			SurveyAnswer SurveyfilledScheme = PutAnswersToSurveyInstance ();
+			string serialized = JSonTranslator.Serialize (SurveyfilledScheme);
+
+			await file.WriteAllTextAsync (serialized);
+		}
+
+		private SurveyAnswer PutAnswersToSurveyInstance ()
+		{
+
+			SurveyAnswer answered = new SurveyAnswer ();
+			answered.Answers = new List<Answer> ();
+
+			foreach (QuestionView qv in currentViews) {
+				Answer a = new Answer ();
+				a.QuestionRef = new QuestionReference ();
+				Question temporaryQuestion = qv.question.Question;
+
+				a.QuestionRef.Question = new Question {
+					QuestionId = temporaryQuestion.QuestionId
+				};
+
+				foreach (AnswerOption ao in qv.answers) {
+					a.AnsweredOption = new AnswerOption {
+						Content = ao.Content
+					};
+				}
+				answered.Answers.Add (a);
+			}
+			return answered;
+		}
 	}
 }
 
