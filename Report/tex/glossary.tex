@@ -1,18 +1,17 @@
 \chapter{Glossary}
 \label{chap:glossary}
+The key terms used in the project and their definitions are outlined in this chapter.
 
-This section provides an overview of the key terms used in the project.
 \begin{description}
-\item[Survey:] A survey is used to gather data regarding any subject by asking people about some facts and/or opinions and then analysing their answers. As such, a single instance of a survey is comprised of multiple questions and survey settings. A survey can also be built up modularly - by including several sub-surveys.
+\item[Survey:] A survey is used to gather data regarding any subject by asking people about some facts and/or opinions and then analysing their answers. A survey is built up modularly - by including several survey parts. The survey parts, in turn, contain references to questions. 
 \item[Question:] A question is used to ask people about a single, narrow piece of information. Each question comprises of the actual inquiry text, prerequisites and multiple answer possibilities. Additionally, a question can be set as either mandatory or optional.
-\item[Answer:] When presented with a question, a user is expected to provide a reply (if a question is optional, the user can, but does not have to do so). There are several ways the answer(s) can be provided:
+\item[Answer:] When presented with a question, a user is expected to provide a reply (if a question is not mandatory, the user can, but does not have to do so). There are several ways the answer(s) can be provided:
   \begin{description}
     \item[Single choice:] The user selects exactly one answer possibility from a list.
     \item[Multiple choice:] The user selects one or more (up to an optionally defined limit) answer possibilities from a list.
     \item[Free:] The user supplies the answer by typing tit freely into a text box.
   \end{description}
-\item[Prerequisite:] A prerequisite is used to determine under which circumstances (previous answers) a single question or an entire sub-survey is to be presented to a user. For example, a question about pregnancy would only be presented to a user, who previously answered "woman" to a question about gender.
-\item[Settings:] The settings store additional information about a survey, for example scheduling and survey prerequisites.
+\item[Prerequisite:] A prerequisite is used to determine under which circumstances (previous answers) a single question or an entire survey part is to be presented to a user. For example, a question about pregnancy would only be presented to a user, who previously answered "woman" to a question about gender.
 \item[Schedule:] The schedule is used to arrange repetitively (e.g. every week) asking a user to answer the same survey or part(s) thereof.
 \item[Datatype:] The datatypes are used to classify the answers (e.g. text, number, date etc.) in order to ease the post-processing and displaying of answer data.
 \end{description}

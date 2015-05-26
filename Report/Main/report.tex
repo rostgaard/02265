@@ -2,8 +2,10 @@
 \newcommand{\confdir}{../conf/} % Set the folder which contains preamble.tex, titlepage.tex and the general img/ folder
 \newcommand{\imgdir}{../img/} % Set the folder which contains the specific images for the report
 \newcommand{\texdir}{../tex/} % Set the folder which contains the content (.tex files)
-\input{\confdir preamble}
 
+\input{\confdir preamble}
+\setlength{\grammarindent}{1cm}
+\setlength{\grammarparsep}{0.05cm}
 
 %%%%%%%%%%%
 %% SETUP %%
@@ -58,7 +60,7 @@
 \appendix
 \import{\texdir}{handbook}
 \import{\texdir}{glossary}
-%\bibliographystyle{plain}
+\bibliographystyle{plain}
 %\bibliography{references}
 %\nocite{*}
 

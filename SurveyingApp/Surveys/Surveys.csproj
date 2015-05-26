@@ -65,6 +65,7 @@
     <Compile Include="Views\Question Views\QuestionView.cs" />
     <Compile Include="Controllers\PrerequisiteController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\StartupController.cs" />
     <Compile Include="Views\SavedInstancePage.cs" />
     <Compile Include="Views\HomePage.cs" />
     <Compile Include="Helpers\Constants.cs" />
