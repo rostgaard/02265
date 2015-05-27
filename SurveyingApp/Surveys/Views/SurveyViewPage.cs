@@ -67,7 +67,7 @@ namespace Surveys
 					{
 						if (t.Result == true)
 						{
-							vg.WriteSurvey ();
+							IOController.WriteSurveyResult (vg.SurveyScheme, vg.CurrentViews);
 						}
 					}, TaskScheduler.FromCurrentSynchronizationContext());  
 

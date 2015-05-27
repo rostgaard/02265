@@ -10,7 +10,7 @@ namespace Surveys
 {
 	public class SavedListPage : ContentPage
 	{
-		public List<string> FilledSurveys {
+		public IList<string> FilledSurveys {
 			get;
 			private set;
 		}
@@ -20,20 +20,16 @@ namespace Surveys
 			this.Title = "List of saved survey results";
 			// Create and initialize ListView.
 			ListView listView = new ListView ();
-			this.FilledSurveys = new List<string> ();
-			LoadFiles ();
+			this.FilledSurveys = IOController.ReadFilledFileNames ();
 		
 			listView.ItemsSource = FilledSurveys;
 			listView.ItemSelected += (sender, args) => {
 				if (args.SelectedItem != null) {
 					// Deselect the item.
 					listView.SelectedItem = null;
-					// Navigate to NotePage.
 					string selectedFileName = (string)args.SelectedItem;
-
-					string selectedFileContent = ReadFilledSurveyByName (selectedFileName);
-
-					this.Navigation.PushAsync (new SavedInstancePage (selectedFileContent));
+					string selectedFileContent = IOController.ReadFilledSurveyByName (selectedFileName);
+					this.Navigation.PushAsync (new SavedInstancePage (selectedFileContent, selectedFileName));
 				}
 			};
 
@@ -41,45 +37,5 @@ namespace Surveys
 				Content = listView
 			};
 		}
-
-		void LoadFiles ()
-		{
-
-			IFolder rootFolder = FileSystem.Current.LocalStorage;
-
-			var folderTask = rootFolder.GetFolderAsync (Constants.filledDirectory);
-			IFolder folder = folderTask.Result;
-
-			var filesTask = folder.GetFilesAsync ();
-			var files = filesTask.Result;
-
-			FilledSurveys =
-				(from file in files
-			  where file.Name.EndsWith (".json")
-			  orderby (file.Name)
-			  select file.Name).ToList ();
-		}
-
-		
-
-		string ReadFilledSurveyByName (string filename)
-		{
-			IFolder rootFolder = FileSystem.Current.LocalStorage;
-
-			var folderTask = rootFolder.GetFolderAsync (Constants.filledDirectory);
-			IFolder folder = folderTask.Result;
-
-			var fileTask = folder.GetFileAsync (filename);
-			IFile file = fileTask.Result;
-			var readTask = file.ReadAllTextAsync ();
-			string content;
-			content = readTask.Result;
-			return content;
-		}
 	}
-
-
 }
-
-
-

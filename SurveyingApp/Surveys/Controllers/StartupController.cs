@@ -3,13 +3,9 @@ using System.Collections.Generic;
 
 namespace Surveys
 {
-	public class StartupController
+	public static class StartupController
 	{
-		public StartupController ()
-		{
-		}
-
-		public static List<Survey> chechForNewSchemas(List<Survey> schemas, List<SurveyAnswer> instances) 
+		public static List<Survey> checkForNewSchemas(List<Survey> schemas, List<SurveyAnswer> instances) 
 		{
 			List<SurveyAnswer> duplicate = new List<SurveyAnswer>(instances);
 			List<Survey> news = new List<Survey>();

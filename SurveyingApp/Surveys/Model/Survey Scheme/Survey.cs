@@ -8,6 +8,8 @@ namespace Surveys
 	{
 		public Guid SurveyId { get; set; }
 
+		public String SurveyName { get; set; }
+
 		public Boolean isActive { get; set; }
 
 		public Scheduler Scheduler { get; set; }
