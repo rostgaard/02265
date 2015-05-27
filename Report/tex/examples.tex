@@ -2,47 +2,127 @@
 \label{chap:examples}
 In this chapter, examples of how the system might work are presented.
 
-The final application will consist of two parts: user mobile application and editor desktop application.
-The user application will display available surveys. The user can pick them and fill in, using the interface presented in the mockup image on the left. User is also able to read the previous survey answers and results. 
-\begin{figure}
+\section{System Components}
+\label{sec:systemcomponents}
+The final application will consist of two parts: 
+
+\begin{description}
+\item[Smartphone app] Used by the people who answer the surveys. In the application, available surveys are listed and can be filled out by the user. Additionally, the user can review surveys they already have answered.
+\item[Desktop application] Used by the creators and editors of the surveys. In the application, new surveys can be created either by entering a text adhering to the DSL for survey definition or by drag-and-drop method using graphical components, which in turn are automatically translated to a DSL adherent text.
+\end{description}
+
+The figure <REF> shows how a screen where the user is able to select surveys to view and/or answer might look like.
+%TODO We need 1 more mockup of the user application. At the moment, we only have a single question being answered screen - should add one listing available surveys/results
+
+The figure \ref {fig:survey-app-mockup} shows how a display of a single question might look like when the user is in the process of filling out a survey.
+\begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.25]{\imgdir survey-app-mockup}
+  \caption{User interface conceptual mock-up.}
   \label{fig:survey-app-mockup}
-  \caption{User interface conceptual mock-up}
 \end{figure}
 
-The editor application allows creating a new survey. It contains three panels: toolbox/properties, source code and preview. It allows to build a survey by dragging and dropping its parts from a palette and also to define it by writing a text which adheres to a DSL.
+The figure \ref{fig:survey-editor-mockup} shows how the survey editor might look like. It consists of a graphical toolbox panel, DSL adherent text panel and a view of the survey. The live view of the survey would be one of the key features, as it provides the users with instant feedback based on their actions and changes they make.
 
-\begin{figure}
+\begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.6]{\imgdir survey-editor-mockup}
+  \caption{Survey editor conceptual mock-up.}
   \label{fig:survey-editor-mockup}
-  \caption{Survey editor conceptual mock-up}
 \end{figure}
 
-A few example surveys are presented below.
+\section{Questionnaires}
+\label{sec:questionnaires}
+In this section, a few example surveys are presented. The examples are shown both in natural language and DSL adherent text.
+
 \subsection{Health Questionnaire}
 \label{subsec:healthquestionnaire}
-%TODO add questionaire from DSL example.
-The first survey is concerned with subjective health reporting on a weekly and daily basis. In this survey, the patient responds to a small questionnaire every day, and the survey is extended on a weekly basis to ask additional questions.\\\\
-If a question is marked as ``mandatory'', it has to be answered before the next one is displayed.
-In the first (daily) part, the following questions are asked:
-A mandatory question: ``How are you feeling today''. The patient should choose a single number from 1 to 10.
-Question only executed, if the 1.st question was answered with a value below 5. ``What is the reason of the discomfort (describe any factors which contributed to a low rating in the question number 1)'': The patient should answer in open text.
-Question only executed, if the 1.st question was answered with a value below 5. ``Did you experience any of the following symptoms: Nausea, diarrhea, headache, other (open text)”. User should be able to choose any number of suggested answers and add an additional symptom, if not listed.
-\begin{enumerate}
-  \item A mandatory question: ``How would you describe your heat comfort: Freezing, cold, acceptable, warm, hot''. The surveyee answers by selecting one of the options
-  \item A mandatory question. ``What is the ambient temperature'': The user enters the number by hand using the preferred temperature scale (Fahrenheit, Celsius) or uses the built-in sensor to enter it.
-\end{enumerate}
-\noindent
-The second part of the survey is to be filled monthly, on every:
+The first survey is concerned with subjective health reporting on a weekly and daily basis. In this survey, the patient responds to a small questionnaire every day, and the survey is extended on a monthly basis to ask additional questions.\\\\
+The first part of the survey gathers some personal information. Since this information is not ever going to change, it is reasonable to collect in only once and not every time the user answers the health survey. The questions in this part are all mandatory (a mandatory question must be answered before the user is allowed to proceed to next one).
 
 \begin{enumerate}
-
-\item A mandatory question: ``Did you experience any allergies''. A Yes/No question.
-\item Conditional question: if the 1.st question was answered with ``Yes'': ``Did have allergy for: (multiple) nuts, water, chocolate, milk, other (multiple open text)''. Multiple options can be chosen, and if the answer does not appear on the list, a user can enter a new one.
-\item Question only executed, if the 1.st question was answered with ``Yes'': ``How strong was the allergy from 0\% to 100\%, based on your personal experience of allergies''. User can select any number in a continuous way (e.g. with a slider).
+\item ``What is your gender?''. A single answer from possibilities "Male/Female/Other" is expected.
+\item ``What year were your born in?''. The user is expected to type in their year of birth into a textbox.
+\item ``What country do you come from?''. The user is expected to type in their country of origin into a textbox.
 \end{enumerate}
+
+In the daily part of the survey, the following questions are asked: 
+
+\begin{enumerate}
+\item ``How are you feeling today?''. A mandatory question. The patient is expected to provide a single number on a scale from 1 to 10.
+\item ``What is the reason of your discomfort?''. This question is asked, if the previous answer was below 5 (i.e. indicating that the patient is not feeling very well). The patient then must elaborate on the reason behind their discomfort. If the previous question indicated the patient was feeling well (5 and above), this one would simply not be displayed.
+\item ``How would you describe your heat comfort?''. An optional question. A single answer from a list of possibilities is expected.
+\item ``What is the ambient temperature?''. An optional question. The patient can either enter the temperature into a text box, or use the smartphone temperature sensor to automatically provide an answer.
+\end{enumerate}
+
+The last part of the survey concerns itself with allergies and is to be filled monthly. All questions are mandatory in this part.
+
+\begin{enumerate}
+\item ``Did you experience any allergies''. A Yes/No question.
+\item ``Which of the following did cause an allergic reaction for you?''. This question is asked, if the previous answer was "Yes" and not displayed otherwise. The patient must elaborate on which allergens he/she reacted to. The question is of multiple choice type and also provides an "other" option, if the allergen was not in the list.
+\item ``Please enter the other food(s) which caused an allergic reaction for you.''. This question is asked, if the "Other" answer was marked in the previous question and not displayed otherwise. The patient is expected to write the other allergens in a textbox.
+\end{enumerate}
+
+The DSL adherent representation of the survey outlined above looks as follows:
+\begin{verbatim}
+DSL Example (as being entered when first creating a survey)
+
+SURVEY Patient examination:
+
+ PART Personal information:
+  REPEAT: Once
+   QUESTION 1: What is your gender?
+    MANDATORY: Yes
+    ANSWER TYPE: Single 
+    ANSWERS: Male / Female / Other
+      
+   QUESTION 2: What year were you born in?
+    MANDATORY: Yes
+    ANSWER TYPE: Free
+
+   QUESTION 3: What country do you come from?
+    MANDATORY: Yes
+    ANSWER TYPE: Free
+      
+ PART Comfort:
+  REPEAT: Daily
+   QUESTION 1: How are you feeling today?
+   MANDATORY: Yes
+   ANSWER TYPE: Single / Integer
+   ANSWERS: 1..10
+   
+  QUESTION 2: What is the reason of your discomfort?
+   MANDATORY: Yes
+   PREREQUISITES: Q1 -> <5
+   ANSWER TYPE: Free
+ 
+  QUESTION 3: How would you describe your heat comfort?
+   MANDATORY: No
+   ANSWER TYPE: Single
+   ANSWERS: Freezing / Cold / Acceptable / Warm / Hot
+ 
+  QUESTION 4: What is the ambient temperature?
+   MANDATORY: No
+   ANSWER TYPE: Free / Temperature sensor
+      
+ PART Allergies:  
+  REPEAT: Monthly
+   QUESTION 1: Did you experience any allergic reactions recently?
+    MANDATORY: Yes
+    ANSWER TYPE: Single / Boolean
+    ANSWERS: Yes / No
+ 
+   QUESTION 2: Which of the following did cause an allergic reaction for you?
+    MANDATORY: Yes
+    PREREQUISITES: Q1 -> Yes
+    ANSWER TYPE: Multiple / No limit
+    ANSWERS: Nuts / Milk / Egg / Wheat / Soy / Fish / Other
+ 
+   QUESTION 3: Please enter the other food(s) which caused an allergic reaction for you.
+    MANDATORY: Yes
+    PREREQUISITES: Q2 -> Other
+    ANSWER TYPE: Free
+\end{verbatim}
 
 \subsection{Festival Questionnaire}
 \label{subsec:festivalquestionnaire}
@@ -54,7 +134,7 @@ The second questionnaire is meant to measure the satisfaction of participants in
 
 \subsection{Kindergarten Questionnaire}
 \label{subsec:kindergartenquestionnaire}
-Nowadays even toddlers have smartphones! Let's ask how do they feel about their life in the kindergarten and use the information to improve the conditions in which they live.
+Nowadays, even toddlers have smartphones! Let's ask how do they feel about their life in the kindergarten and use the information to improve the conditions in which they live.
 \begin{enumerate}
   \item Mandatory question. ``Are you boy or girl?''. Selection of one from the two options
   \item Mandatory question. ``How old are you?''. Pick up a number between 3 and 7, representing the age of the questionee.

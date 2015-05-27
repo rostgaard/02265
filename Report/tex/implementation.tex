@@ -61,66 +61,6 @@ Below, the eBNF grammar definition for the DSL can be seen.
       <other> ::= ?future addition? ;
 \end{grammar}
 
-\begin{verbatim}
-DSL Example (as being entered when first creating a survey)
-
-SURVEY Patient examination:
-
- PART Personal information:
-  REPEAT: Once
-   QUESTION 1: What is your gender?
-    MANDATORY: Yes
-    ANSWER TYPE: Single 
-    ANSWERS: Male / Female / Other
-      
-   QUESTION 2: What year were you born in?
-    MANDATORY: Yes
-    ANSWER TYPE: Free
-
-   QUESTION 3: What country do you come from?
-       MANDATORY: Yes
-    ANSWER TYPE: Free
-      
- PART Comfort:
-  REPEAT: Daily
-   QUESTION 1: How are you feeling today?
-   MANDATORY: Yes
-   ANSWER TYPE: Single / Integer
-   ANSWERS: 1..10
-   
-  QUESTION 2: What is the reason of your discomfort?
-   MANDATORY: Yes
-   PREREQUISITES: Q1 -> <5
-   ANSWER TYPE: Free
- 
-  QUESTION 3: How would you describe your heat comfort?
-   MANDATORY: No
-   ANSWER TYPE: Single
-   ANSWERS: Freezing / Cold / Acceptable / Warm / Hot
- 
-  QUESTION 4: What is the ambient temperature?
-   MANDATORY: No
-   ANSWER TYPE: Free / Temperature sensor
-      
- PART Allergies:  
-  REPEAT: Monthly
-   QUESTION 1: Did you experience any allergic reactions recently?
-    MANDATORY: Yes
-    ANSWER TYPE: Single / Boolean
-    ANSWERS: Yes / No
- 
-   QUESTION 2: Which of the following did cause an allergic reaction for you?
-    MANDATORY: Yes
-    PREREQUISITES: Q1 -> Yes
-    ANSWER TYPE: Multiple / No limit
-    ANSWERS: Nuts / Milk / Egg / Wheat / Soy / Fish / Other
- 
-   QUESTION 3: Please enter the other food(s) which caused an allergic reaction for you.
-    MANDATORY: Yes
-    PREREQUISITES: Q2 -> Other
-    ANSWER TYPE: Free
-\end{verbatim}
-
 \section{Smartphone App}
 \label{sec:app}
 In this section, the more interesting details of the smartphone app prototype implementation are outlined.
