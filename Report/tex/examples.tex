@@ -33,7 +33,9 @@ The figure \ref{fig:survey-editor-mockup} shows how the survey editor might look
 
 \section{Questionnaires}
 \label{sec:questionnaires}
-In this section, a few example surveys are presented. The examples are shown both in natural language and DSL adherent text.
+In this section, a couple example surveys are presented both in natural language and DSL adherent text.
+ 
+The two examples show an immense flexibility of the surveys: Questions can be asked or skipped based on previous answers, they can be mandatory or optional, and parts of the survey can be repeated at arbitrary time intervals. These features create rich possibilities of designing a logical flow through a survey. It is also possible to make use of built-in sensors in the smartphones.
 
 \subsection{Health Questionnaire}
 \label{subsec:healthquestionnaire}
@@ -65,8 +67,6 @@ The last part of the survey concerns itself with allergies and is to be filled m
 
 The DSL adherent representation of the survey outlined above looks as follows:
 \begin{verbatim}
-DSL Example (as being entered when first creating a survey)
-
 SURVEY Patient examination:
 
  PART Personal information:
@@ -126,21 +126,77 @@ SURVEY Patient examination:
 
 \subsection{Festival Questionnaire}
 \label{subsec:festivalquestionnaire}
-The second questionnaire is meant to measure the satisfaction of participants in the rock music festival. To gather enough data, a user is asked to answer 10 times, or by June 19th 2015 the latest.
+The second, short questionnaire is meant to measure the satisfaction of participants during and after a music festival. All the questions are mandatory, except for one using sensors and one asking for further comments.
 \begin{enumerate}
-\item Mandatory question: ``What is the name of the band playing''. User has a choice to select one from all the musicians performing on the concert.
-\item Mandatory question. ``Do you agree on any of the following statements: The music was too loud, the artist was too mainstream the beer was too warm, the showers were too chilly, the toilets were too dirty''. The user gives each answer a rating, selecting between ``Agree'', ``slightly agree'', ``not sure'', ``slightly disagree'', ``strongly disagree''.
+\item ``What is the name of the band playing?''. The user has a choice to select one from all the musicians performing at the festival. This question is asked hourly.
+\item ``Please rate the bands performance.'' The user is expected to provide a number on a scale from 1 to 10.
+\item ``Please indicate your agreement with the following statements.''
+\begin{enumerate}
+\item The music is too loud (asked hourly, along with first question). If too loud, the user is asked to make a sound intensity measurement with the smartphone sensor.
+\item The artist is too mainstream (asked hourly, along with first question)
+\item The beer is too warm (asked daily)
+\item The showers are too chilly (asked daily)
+\item The toilets are too dirty (asked daily)
+\end{enumerate} 
+Each of the statements above is displayed as a single question, with following answer possibilities, of which the user is expected to pick one: ``agree'', ``agree'', ``not sure'', ``disagree'', ``strongly disagree''.
+\item After the festival has ended, the user is asked to provide their overall liking of the festival and, optionally, extra comments.
 \end{enumerate}
 
-\subsection{Kindergarten Questionnaire}
-\label{subsec:kindergartenquestionnaire}
-Nowadays, even toddlers have smartphones! Let's ask how do they feel about their life in the kindergarten and use the information to improve the conditions in which they live.
-\begin{enumerate}
-  \item Mandatory question. ``Are you boy or girl?''. Selection of one from the two options
-  \item Mandatory question. ``How old are you?''. Pick up a number between 3 and 7, representing the age of the questionee.
-  \item Question only executed, if the 1.st question was answered with ``Boy'' and the 2nd one had age of 6,7 selected.. ``Did you play with cars?''. A yes/no question.
-  \item Question only executed, if the 1.st question was answered with ``Girl'' and the 2nd one had age of 5,6,7 selected.. ``Did you play with dolls?''. A yes/no question.''
-  \item Mandatory question. ``How did you like the soup: ``Very much, It was good, I liked it, I don't like the soup, It was horrible''. One answer is chosen
-  \item Mandatory question: ``Do you eat crayons?'', A Yes/No question
-  \item Mandatory question, only executed if the question 6. was answered with ``No'': ``What else would you like to eat''. Open text answer.
-\end{enumerate}
+The DSL adherent text would look as follows:
+\begin{verbatim}
+SURVEY Festival satisfaction:
+
+ PART Current artist:
+  REPEAT: Hourly
+   QUESTION 1: What is the name of the band playing?
+    MANDATORY: Yes
+    ANSWER TYPE: Free
+      
+   QUESTION 2: Please rate the bands performance.
+    MANDATORY: Yes
+    ANSWER TYPE: Single / Integer
+    Answers: 1..10
+
+   QUESTION 3: The music is too loud.
+    MANDATORY: Yes
+    ANSWER TYPE: Single
+    ANSWERS: Strongly agree / Agree / Not sure / Disagree / Strongly disagree
+    
+   QUESTION 4: Please measure the sound intensity with your smartphone sound sensor.
+    MANDATORY: No
+    PREREQUISITES: Q3 -> Strongly agree OR Q3 -> Agree
+    ANSWER TYPE: Sound sensor
+    
+   QUESTION 5: The artist is too mainstream.
+    MANDATORY: Yes
+    ANSWER TYPE: Single
+    ANSWERS: Strongly agree / Agree / Not sure / Disagree / Strongly disagree
+    
+ PART Facilities:
+  REPEAT: Daily
+   QUESTION 1: The beer is too warm.
+    MANDATORY: Yes
+    ANSWER TYPE: Single
+    ANSWERS: Strongly agree / Agree / Not sure / Disagree / Strongly disagree
+    
+   QUESTION 2: The showers are too chilly.
+    MANDATORY: Yes
+    ANSWER TYPE: Single
+    ANSWERS: Strongly agree / Agree / Not sure / Disagree / Strongly disagree
+    
+   QUESTION 3: The toilets are too dirty.
+    MANDATORY: Yes
+    ANSWER TYPE: Single
+    ANSWERS: Strongly agree / Agree / Not sure / Disagree / Strongly disagree
+    
+ PART Overall:
+  REPEAT: Once
+   QUESTION 1: How did you like the festival overall?
+    MANDATORY: Yes
+    ANSWER TYPE: Single
+    ANSWERS: 1..10
+    
+   QUESTION 2: Are there any comments, ideas or suggestions you would like to pass on to us?
+    MANDATORY: No
+    ANSWER TYPE: Free
+\end{verbatim}
