@@ -13,17 +13,17 @@ namespace Surveys
 		bool isFinished = false;
 		bool isBeginning = true;
 
-		private Survey surveyScheme = null;
+		public Survey SurveyScheme { private set; get;}
 
 		private LinkedListNode<SurveyPart> currentSurveyPart = null;
 		private LinkedListNode<QuestionReference> currentQuestion = null;
 
-		private LinkedList<QuestionView> currentViews = null;
+		public  LinkedList<QuestionView> CurrentViews { private set; get;}
 		private Dictionary<QuestionReference, QuestionView> generatedViews = null;
 
 		public ViewGenerator (Survey s)
 		{
-			surveyScheme = s;
+			SurveyScheme = s;
 		}
 
 		// when reading from a saved survey TODO
@@ -49,18 +49,18 @@ namespace Surveys
 
 				LinkedList<QuestionView> preqViewList = new LinkedList<QuestionView> ();
 				foreach (Prerequisite p in currentQuestion.Value.Prerequisites) {
-					if (currentViews.Find (generatedViews [p.Question]) != null)
+					if (CurrentViews.Find (generatedViews [p.Question]) != null)
 						preqViewList.AddLast (generatedViews [p.Question]);
 				}
 				if (PrerequisiteController.calculatePrerequisite (currentQuestion.Value, preqViewList)) {
-					if (currentViews.Find (newView) == null) {
-						currentViews.AddAfter (currentViews.Find (oldView), newView);
+					if (CurrentViews.Find (newView) == null) {
+						CurrentViews.AddAfter (CurrentViews.Find (oldView), newView);
 					}
 					return newView;
 							
 				} else {
-					if (currentViews.Find (newView) != null)
-						currentViews.Remove (currentViews.Find (generatedViews [currentQuestion.Value]));
+					if (CurrentViews.Find (newView) != null)
+						CurrentViews.Remove (CurrentViews.Find (generatedViews [currentQuestion.Value]));
 				}
 			}
 			return null;
@@ -69,7 +69,7 @@ namespace Surveys
 		public QuestionView PreviousQuestion ()
 		{
 			QuestionView currentView = generatedViews [currentQuestion.Value];
-			LinkedListNode<QuestionView> currentViewNode = currentViews.Find (currentView);
+			LinkedListNode<QuestionView> currentViewNode = CurrentViews.Find (currentView);
 			if (currentViewNode.Previous == null)
 				return null;
 			QuestionView previousView = currentViewNode.Previous.Value;
@@ -85,16 +85,16 @@ namespace Surveys
 		public QuestionView InitialQuestion ()
 		{
 			// empty initialization
-			currentViews = new LinkedList<QuestionView> ();
+			CurrentViews = new LinkedList<QuestionView> ();
 			generatedViews = new Dictionary<QuestionReference, QuestionView> ();
 
-			currentSurveyPart = surveyScheme.SurveyParts.First;
+			currentSurveyPart = SurveyScheme.SurveyParts.First;
 
 			currentQuestion = currentSurveyPart.Value.Questions.First;
 			QuestionView currentQuestionView = GetQuestionView (currentQuestion.Value);
 
 			generatedViews.Add (currentQuestion.Value, currentQuestionView);
-			currentViews.AddLast (currentQuestionView);
+			CurrentViews.AddLast (currentQuestionView);
 
 			return currentQuestionView;
 		}
@@ -168,47 +168,7 @@ namespace Surveys
 			return false;
 		}
 
-		public async void WriteSurvey ()
-		{
-			IFolder rootFolder = FileSystem.Current.LocalStorage;
-			IFolder folder = await rootFolder.CreateFolderAsync (Constants.filledDirectory,
-				                 CreationCollisionOption.OpenIfExists);
 
-			string fileName = surveyScheme.SurveyId.ToString ().Substring (0, 5) + " " + DateTime.Now.DayOfYear.ToString () + ".json";
-
-			IFile file = await folder.CreateFileAsync (fileName,
-				             CreationCollisionOption.ReplaceExisting);
-
-			SurveyAnswer SurveyfilledScheme = PutAnswersToSurveyInstance ();
-			string serialized = JSonTranslator.Serialize (SurveyfilledScheme);
-
-			await file.WriteAllTextAsync (serialized);
-		}
-
-		private SurveyAnswer PutAnswersToSurveyInstance ()
-		{
-
-			SurveyAnswer answered = new SurveyAnswer ();
-			answered.Answers = new List<Answer> ();
-
-			foreach (QuestionView qv in currentViews) {
-				Answer a = new Answer ();
-				a.QuestionRef = new QuestionReference ();
-				Question temporaryQuestion = qv.question.Question;
-
-				a.QuestionRef.Question = new Question {
-					QuestionId = temporaryQuestion.QuestionId
-				};
-
-				foreach (AnswerOption ao in qv.answers) {
-					a.AnsweredOption = new AnswerOption {
-						Content = ao.Content
-					};
-				}
-				answered.Answers.Add (a);
-			}
-			return answered;
-		}
 	}
 }
 
