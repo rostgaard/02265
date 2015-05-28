@@ -4,12 +4,9 @@ This chapter provides information about implementation of the system. Specifical
 
 \section{Domain Specific Language}
 \label{sec:dsl}
-In this section, the DSL for defining surveys is presented. 
-%TODO write more here
+Surveys are to be specified by writing text adherent to the DSLs grammar. The eBNF grammar definition for the DSL is shown below. It reflects the scheme structure shown in the metamodel, in figure \ref{fig:metamodel}. Examples of DSL adherent text for survey definition have been presented in section \ref{sec:questionnaires}.
 
-Below, the eBNF grammar definition for the DSL can be seen.
 \begin{grammar}
-\label{grammar:ebnf}
       <survey> ::= `SURVEY', <text>, `:', <parts> ;
       
       <parts> ::= <part>, $\lbrace$ <part> $\rbrace$ ; 
