@@ -9,11 +9,21 @@ A system prototype has been implemented. The prototype consists of two parts - a
 
 Despite of the simpleness of the prototype, it demonstrates feasibility of fulfilment of the aforementioned goal for the system. For example, the re-usability of the surveys is guaranteed by their design and the language for their specification. Xamarin framework has been used for the app implementation; this ensures cross-platformness of the app - the code can be compiled to work on all the major phone operating systems - Android, iOS and Windows.
 
-There are, of course, many features desirable for the system which were not implemented in the prototype. These are briefly outlined in the next section.
+There are, of course, many features desirable for the system which were not implemented in the prototype. These are briefly outlined in section \ref{sec:futurework}.
+
+\section{Project Evaluation}
+\label{sec:evaluation}
+As outlined in section \ref{sec:summary}, the project goals have been fulfilled. Designing a system to be as flexible and extensible as possible, has been an educational experience - a lot of thought has been put into the process of designing the system and creating the metamodel. Furthermore, it was refreshing to see, that it is possible to find still new uses for domain specific languages and build entire useful systems around them. Lastly, working with Xamarin has been a good experience - it was interesting to be able to develop apps for different mobile platforms by programming in C\#.
+
+Despite the project being seemingly successful, it is the opinion of the authors of this report, that instead of developing a system of academic quality from scratch, it may be more beneficial and fruitful to suggest cooperation to one of the already existing and well-established solution providers (see section \ref{sec:existingsolutions}). One might offer to extend their solution with one of the feature ideas promoted in this project. For example, one could offer to create a smartphone app, which would integrate and work together with their web-based surveying system or offer to make their survey defining tools even more flexible by basing them on a DSL definition and a graphical editor.
+By so doing, students could gain immensely valuable experience of cooperating with a company on a real project and creating/implementing for a real system and not a conceptual prototype.
 
 \section{Future Work}
 \label{sec:futurework}
-%TODO write about stuff (like survey graphical editor) from examples
-%TODO suggest cooperation with one of existing solutions
-% In the long run such an app should be able to obtain the survey definitions from a web server and transfer the results of the survey back to the web server. (copied from project definition)
-% Phone sensors stuff
+The work done throughout this project has laid solid grounds for future expansion of the system. With DSL metamodel and eBNF grammar along with the app prototype as a starting point, there are many features which can be added to the system. Some of these are briefly outlined below:
+\begin{description}
+\item[Survey storage and distribution] At the moment, surveys and survey answers are stored locally on phones. Naturally, for a fully fledged system, one would have to implement some sort of central repository (e.g. a web server with a database and web services). From there, the smartphone app could obtain the survey definitions and upload them back, once answered by the user.
+\item[DSL parsing] A parser for texts adhering to the eBNF grammar specified in section \ref{sec:dsl} should be implemented, or, more conveniently, automatically generated using a tool such as ANTLR or JavaCC.
+\item[Smartphone sensors] The prototype does not yet support use of smartphone built-in sensors. Future iterations of the app should include this feature.
+\item[Application for survey creation] A desktop application wherein surveys can be created and managed could be implemented. A mock-up of such an application can be seen in figure \ref{fig:survey-editor-mockup}.
+\end{description}
