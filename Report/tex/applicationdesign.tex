@@ -4,15 +4,26 @@ In this chapter, the considerations made when designing the system are outlined.
 
 \section{Metamodel}
 \label{sec:metamodel}
-This section presents the domain model for the application. Majority of objects presented in model are described in glossary. This model is supposed to support all the examples (sometimes with small extensions, e.g. to DataType class). It consists of two main parts - Survey Scheme, that will reflect the DSL structure and Survey Instance, that store the user answers from each time the survey has been filled in.
+This section presents the metamodel for the survey domain specific language.  
 
-\begin{figure}
-  \includegraphics[scale=0.45]{\imgdir "meta-model"}
+The model shown in figure \ref{fig:metamodel} supports all the examples presented in chapter \ref{chap:examples} (sometimes with small extensions, e.g. to DataType class).
+The model consists of two main parts - Survey Scheme, which reflects the DSL structure and Survey Instance(s).
+
+\begin{figure}[!ht]
+  \includegraphics[scale=0.48]{\imgdir "meta-model"}
   \caption{Metamodel for the survey DSL.}
   \label{fig:metamodel}
 \end{figure}
 
-%TODO write more about model
+\subsection{Survey Scheme}
+\label{subsec:surveyscheme}
+In the scheme, the structure of a survey is depicted. One of the highlights is usage of question references. Doing so makes it much easier to reuse questions across multiple survey schemes - for example, one could envision creating a question database, whereto the references would point.
+A survey is built up modularly of survey parts, which in turn contain references to questions. Optionally, both survey parts and questions can have prerequisites. Adding prerequisites to questions is merely a matter of convenience though, as conceptually, one could do with only adding prerequisites to survey parts. A drawback of that approach, however, would be that a survey part would have to be created every time one would want to add a prerequisite to a single question.
+There is nothing surprising about the structure of a question - it has some text, a number of possible answer options, a type (single choice, multiple choice, free text) and a data type (purely for the benefit of the researchers, as it might ease result processing).
+
+\subsection{Survey Instance}
+\label{subsec:surveyinstance}
+The key idea behind differentiating between survey scheme and instance is, that a survey scheme could be stored centrally (e.g. on a server) and then distributed to all potential respondents, whereupon individual survey instances would be created on each individual smartphone. The individual user answers would be stored in a survey instance along with the users personal data and could then be sent back to some central repository. Distinguishing between multiple instances of a survey on an individual users smartphone would also be possible, thus conveniently enabling the survey recurrence feature.
 
 \section{Design Considerations}
 \label{sec:designconsiderations}
@@ -20,7 +31,8 @@ This section presents the domain model for the application. Majority of objects 
 %TODO this section needs a lot more written in it
 When running a survey on the phone, the user will expect the questions to be stored intermediately, allowing him/her to navigate back and forth between questions without discarding the answers already typed in.
 
-\begin{center}
+\begin{figure}[!ht]
+\centering
 \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2.0cm]
 \node[initial,state,label=$q_1$] (q1) {};
 \node[state,label=above:$q_2$] (q2) [below left of=q1] {};
@@ -31,4 +43,6 @@ When running a survey on the phone, the user will expect the questions to be sto
 (q1) edge node {female} (q3)
 (q2) edge node {stuff} (q4);
 \end{tikzpicture} \hspace{10mm}
-\end{center}
+\caption{CHANGE ME.}
+\label{fig:answertree}
+\end{figure}
