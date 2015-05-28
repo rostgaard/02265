@@ -5,7 +5,7 @@ namespace Surveys
 {
 	public class Question
 	{
-		public Guid QuestionId { get; private set; }
+		public Guid QuestionId { get; set; }
 
 		public Boolean IsAnswered { get; set; }
 
@@ -33,16 +33,6 @@ namespace Surveys
 			QuestionText = questionText;
 		}
 
-	// i dont think this is neccesary in here
-		public void addDependantQuestion (Question q)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void addDependantQuestion (Guid g)
-		{
-			throw new NotImplementedException ();
-		}
 	}
 }
 

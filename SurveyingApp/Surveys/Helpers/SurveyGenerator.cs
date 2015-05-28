@@ -8,6 +8,8 @@ namespace Surveys
 		public static Survey generateSurvey1()
 		{
 			Survey survey = new Survey ();
+			survey.SurveyName = "Clinical";
+			survey.SurveyId = Guid.NewGuid ();
 			survey.addPart (generatePart1());
 			survey.addPart (generatePart2());
 			survey.addPart (generatePart3());

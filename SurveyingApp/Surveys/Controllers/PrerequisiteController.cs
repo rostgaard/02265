@@ -32,7 +32,6 @@ namespace Surveys
 						found = true;
 						break;
 					} 
-
 				}
 				if (!found)
 					return false;
@@ -42,4 +41,3 @@ namespace Surveys
 		}
 	}
 }
-

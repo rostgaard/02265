@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using XLabs.Forms.Validation;
 using System.Reflection;
 using Xamarin.Forms;
+using PCLStorage;
 
 namespace Surveys
 {
@@ -12,17 +13,17 @@ namespace Surveys
 		bool isFinished = false;
 		bool isBeginning = true;
 
-		private Survey surveyScheme = null;
+		public Survey SurveyScheme { private set; get;}
 
 		private LinkedListNode<SurveyPart> currentSurveyPart = null;
 		private LinkedListNode<QuestionReference> currentQuestion = null;
 
-		private LinkedList<QuestionView> currentViews = null;
+		public  LinkedList<QuestionView> CurrentViews { private set; get;}
 		private Dictionary<QuestionReference, QuestionView> generatedViews = null;
 
 		public ViewGenerator (Survey s)
 		{
-			surveyScheme = s;
+			SurveyScheme = s;
 		}
 
 		// when reading from a saved survey TODO
@@ -48,18 +49,18 @@ namespace Surveys
 
 				LinkedList<QuestionView> preqViewList = new LinkedList<QuestionView> ();
 				foreach (Prerequisite p in currentQuestion.Value.Prerequisites) {
-					if (currentViews.Find (generatedViews [p.Question])!= null)
+					if (CurrentViews.Find (generatedViews [p.Question]) != null)
 						preqViewList.AddLast (generatedViews [p.Question]);
 				}
 				if (PrerequisiteController.calculatePrerequisite (currentQuestion.Value, preqViewList)) {
-					if (currentViews.Find (newView) == null) {
-						currentViews.AddAfter (currentViews.Find (oldView), newView);
+					if (CurrentViews.Find (newView) == null) {
+						CurrentViews.AddAfter (CurrentViews.Find (oldView), newView);
 					}
 					return newView;
 							
 				} else {
-					if (currentViews.Find (newView) != null)
-						currentViews.Remove (currentViews.Find (generatedViews [currentQuestion.Value]));
+					if (CurrentViews.Find (newView) != null)
+						CurrentViews.Remove (CurrentViews.Find (generatedViews [currentQuestion.Value]));
 				}
 			}
 			return null;
@@ -68,7 +69,7 @@ namespace Surveys
 		public QuestionView PreviousQuestion ()
 		{
 			QuestionView currentView = generatedViews [currentQuestion.Value];
-			LinkedListNode<QuestionView> currentViewNode = currentViews.Find (currentView);
+			LinkedListNode<QuestionView> currentViewNode = CurrentViews.Find (currentView);
 			if (currentViewNode.Previous == null)
 				return null;
 			QuestionView previousView = currentViewNode.Previous.Value;
@@ -84,16 +85,16 @@ namespace Surveys
 		public QuestionView InitialQuestion ()
 		{
 			// empty initialization
-			currentViews = new LinkedList<QuestionView> ();
+			CurrentViews = new LinkedList<QuestionView> ();
 			generatedViews = new Dictionary<QuestionReference, QuestionView> ();
 
-			currentSurveyPart = surveyScheme.SurveyParts.First;
+			currentSurveyPart = SurveyScheme.SurveyParts.First;
 
 			currentQuestion = currentSurveyPart.Value.Questions.First;
 			QuestionView currentQuestionView = GetQuestionView (currentQuestion.Value);
 
 			generatedViews.Add (currentQuestion.Value, currentQuestionView);
-			currentViews.AddLast (currentQuestionView);
+			CurrentViews.AddLast (currentQuestionView);
 
 			return currentQuestionView;
 		}
@@ -152,8 +153,7 @@ namespace Surveys
 		/// <returns><c>true</c>, if question was regressed, <c>false</c> otherwise.</returns>
 		private bool RegressQuestion ()
 		{
-			if (isFinished)
-			{
+			if (isFinished) {
 				isFinished = false;
 				return true;
 			}
@@ -167,7 +167,6 @@ namespace Surveys
 			}
 			return false;
 		}
-
 
 
 	}

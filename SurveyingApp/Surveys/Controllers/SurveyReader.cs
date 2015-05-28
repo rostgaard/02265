@@ -20,7 +20,7 @@ namespace Surveys
 				}
 			}
 
-			Survey ns = (Survey) JSonTranslator.Deserialize (json);
+			Survey ns = (Survey) JSonTranslator.Deserialize<Survey> (json);
 			return ns;
 		}
 	}
