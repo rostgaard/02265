@@ -1,8 +1,7 @@
 \chapter{Handbook}
 \label{chap:handbook}
 This chapter provides instructions for using the system prototype through a series of screenshots that guides the user through an example survey.\\\\
-We assume that the app is already installed and started on the smartphone, and displays the initial screen shown in figure \ref{fig:screen-initial-page}. Pressing the button ``Filled surveys'' will send the user to the screen shown in figure \ref{fig:screen-list-surveys-none}, where he/she will be able to see a list of previously filled out surveys. This list is empty for now. Going back (back arrow near the top of the screen) will send the user to the initial screen where he/she can press ``Surveys to fill'' to see a list of pending surveys.
-%TODO screenshots and descriptions
+We assume that the app is already installed and started on the smartphone, and displays the initial screen shown in figure \ref{fig:screen-initial-page}. Pressing the button ``Filled surveys'' will send the user to the screen shown in figure \ref{fig:screen-list-surveys-none}, where he/she will be able to see a list of previously filled out surveys. This list is empty for now. Going back (back arrow near the top of the screen) will send the user to the initial screen where he/she can press ``Surveys to fill'' to see a list of pending surveys.\\\\
 \begin{figure}[!htbp]
  \centering
 
@@ -23,27 +22,9 @@ We assume that the app is already installed and started on the smartphone, and d
   \label{fig:screen-initial-pages}
 \end{figure}
 
+The next screen the user is presented with after pressing ``Surveys to fill'', is the list of pending surveys as seen in figure \ref{fig:screen-pending-surveys}. A pending survey may be selected by pressing it.\\\\
+
 \begin{figure}[!htbp]
- \centering
- \begin{subfigure}{.3\textwidth}
-  \centering
-  \includegraphics[width=.95\linewidth]{\imgdir screen-pending-surveys}
-  \caption{List of pending surveys}
-  \label{fig:sfig1}
-\end{subfigure}
-\begin{subfigure}{.3\textwidth}
-  \centering
-  \includegraphics[width=.95\linewidth]{\imgdir screen-pending-surveys-pressed}
-  \caption{Selecting the list}
-  \label{fig:sfig2}
-\end{subfigure}
-\caption{...}
- \caption{}
-\end{figure}
-The next screen the user is presented with after pressing ``Surveys to fill'', is the list of pending surveys as seen in figure \ref{fig:screen-pending-surveys}.
-
-
-\begin{figure}
  \centering
  \begin{subfigure}{.3\textwidth}
   \centering
@@ -54,39 +35,39 @@ The next screen the user is presented with after pressing ``Surveys to fill'', i
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=.95\linewidth]{\imgdir screen-pending-surveys-pressed}
-  \caption{Selecting a survey}
+  \caption{Selecting an item}
   \label{fig:screen-pending-surveys-pressed}
 \end{subfigure}
-\caption{...}
+\caption{Selecting a pending survey}
  \caption{}
 \end{figure}
+After a survey has been selected from the pending list, it will prompt the user the first question.
 
-
-\begin{figure}
+\begin{figure}[!htbp]
  \centering
  \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=.95\linewidth]{\imgdir screen-question-1}
   \caption{First question}
-  \label{fig:sfig1}
+  \label{fig:screen-question-1}
 \end{subfigure}
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=.95\linewidth]{\imgdir screen-question-1-answer}
   \caption{Input the answer}
-  \label{fig:sfig2}
+  \label{fig:screen-question-1-answer}
 \end{subfigure}
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=.95\linewidth]{\imgdir screen-question-1-answer-selected}
   \caption{Selecting the answer}
-  \label{fig:sfig2}
+  \label{fig:screen-question-1-answer-selected}
 \end{subfigure}
 \caption{...}
  \caption{}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htbp]
  \centering
  \begin{subfigure}{.3\textwidth}
   \centering
@@ -110,7 +91,7 @@ The next screen the user is presented with after pressing ``Surveys to fill'', i
  \caption{}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htbp]
  \centering
  \begin{subfigure}{.3\textwidth}
   \centering
@@ -127,7 +108,7 @@ The next screen the user is presented with after pressing ``Surveys to fill'', i
  \caption{...}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htbp]
  \centering
  \begin{subfigure}{.3\textwidth}
   \centering
@@ -144,7 +125,7 @@ The next screen the user is presented with after pressing ``Surveys to fill'', i
  \caption{...}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htbp]
  \centering
  \begin{subfigure}{.3\textwidth}
   \centering
@@ -168,7 +149,7 @@ The next screen the user is presented with after pressing ``Surveys to fill'', i
  \caption{}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htbp]
  \centering
  \begin{subfigure}{.3\textwidth}
   \centering
@@ -185,13 +166,6 @@ The next screen the user is presented with after pressing ``Surveys to fill'', i
 \caption{...}
  \caption{}
 \end{figure}
-This chapter provides instructions for using the system prototype.
-
-When the app is started, the user is greeted with a simple home screen.
-%TODO home screen screenshot
-
-Here, the user can choose between two options: viewing surveys to be filled and completed surveys. Upon pressing on one of the buttons, the user is taken to the appropriate list of surveys.
-%TODO survey list screenshots
 
 In the completed survey list, the user can press on any survey in the list and its result will be displayed (currently merely as JSON text; conceivably in a different way in the final system).
 %TODO completed survey screenshot
