@@ -9,8 +9,8 @@ This section presents the metamodel for the survey domain specific language.
 The model shown in figure \ref{fig:metamodel} supports all the examples presented in chapter \ref{chap:examples} (sometimes with small extensions, e.g. to DataType class).
 The model consists of two main parts - Survey Scheme, which defines the DSL structure and Survey Instance(s).
 
-\begin{figure}[!ht]
-  \includegraphics[scale=0.48]{\imgdir "meta-model"}
+\begin{figure}[!htbp]
+  \includegraphics[scale=0.55]{\imgdir meta-model}
   \caption{Metamodel for the survey DSL.}
   \label{fig:metamodel}
 \end{figure}
@@ -32,36 +32,51 @@ The key idea behind differentiating between survey scheme and instance is, that 
 When running a survey on the phone, the user will expect the questions to be stored intermediately, allowing him/her to navigate back and forth between questions without discarding the answers already typed in.
 
 \begin{figure}[!htbp]
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
-  thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
+ \centering
+ \begin{subfigure}{.45\textwidth}
+    \centering
+    \begin{tikzpicture}[->,>=stealth',shorten >=0.8pt,auto,node distance=2.2cm,
+  thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\bfseries}]
 
   \node[main node] (1) {$q_1$};
   \node[main node] (2) [below left of=1] {$q_2$};
   \node[main node] (3) [below right of=2] {$q_3$};
   \node[main node] (4) [below right of=1] {$q_4$};
   \node[main node] (5) [below left of=2] {$q_5$};
+  \node[main node] (6) [below of=3] {$q_6$};  
 
   \path[every node/.style={font=\sffamily\small}]
     (1) edge node [right] {male} (4)
         edge node [left] {female} (2)
     (2) edge node [right] {single} (3)
-        edge node [left] {married} (5);
-\end{tikzpicture}
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
-  thick,
-  main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries},
-  chosen node/.style={circle,fill=green!20,draw,font=\sffamily\Large\bfseries}]
+        edge node [left] {married} (5)
+    (3) edge node []  {} (6);
+    \end{tikzpicture}
+    \caption{Question graph}
+    \label{sfig:question-graph}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+  \begin{tikzpicture}[->,>=stealth',shorten >=0.8pt,auto,node distance=2.2cm,
+  thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\bfseries},
+  chosen node/.style={circle,fill=green!20,draw,font=\sffamily\bfseries}]
 
   \node[chosen node] (1) {$a_1$};
   \node[chosen node] (2) [below left of=1] {$a_2$};
   \node[chosen node] (3) [below right of=2] {$a_3$};
   \node[main node] (4) [below right of=1] {$a_4$};
   \node[main node] (5) [below left of=2] {$a_5$};
+  \node[chosen node] (6) [below of=3] {$a_6$};  
 
   \path[every node/.style={font=\sffamily\small}]
     (1) edge node [right] {male} (4)
         edge node [left] {female} (2)
     (2) edge node [right] {single} (3)
-        edge node [left] {married} (5);
-\end{tikzpicture}
+        edge node [left] {married} (5)
+    (3) edge node []  {} (6);
+   \end{tikzpicture}
+   \caption{Answer graph}
+    \label{sfig:answer-graph}
+  \end{subfigure}
+  \caption{Application graphs, and the relation between them.}
+  \label{fig:application graphs}
 \end{figure}
