@@ -30,7 +30,6 @@ The key idea behind differentiating between survey scheme and instance is, that 
 %TODO section intro
 %TODO this section needs a lot more written in it
 When running a survey on the phone, the user will expect the questions to be stored intermediately, allowing him/her to navigate back and forth between questions without discarding the answers already typed in.
-
 \begin{figure}[!htbp]
  \centering
  \begin{subfigure}{.45\textwidth}
@@ -40,43 +39,47 @@ When running a survey on the phone, the user will expect the questions to be sto
 
   \node[main node] (1) {$q_1$};
   \node[main node] (2) [below left of=1] {$q_2$};
-  \node[main node] (3) [below right of=2] {$q_3$};
-  \node[main node] (4) [below right of=1] {$q_4$};
-  \node[main node] (5) [below left of=2] {$q_5$};
-  \node[main node] (6) [below of=3] {$q_6$};  
-
+  \node[main node] (3) [below left of=2] {$q_3$};
+  \node[main node] (4) [below right of=2] {$q_4$};
+  \node[main node] (5) [below of=4] {$q_5$};  
+  \node[main node] (6) [below right of=1] {$q_6$};
+  
   \path[every node/.style={font=\sffamily\small}]
-    (1) edge node [right] {male} (4)
+    (1) edge node [right] {male} (6)
         edge node [left] {female} (2)
-    (2) edge node [right] {single} (3)
-        edge node [left] {married} (5)
-    (3) edge node []  {} (6);
+    (2) edge node [right] {single} (4)
+        edge node [left] {married} (3)
+    (4) edge node []  {} (5);
     \end{tikzpicture}
     \caption{Question graph}
     \label{sfig:question-graph}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
   \begin{tikzpicture}[->,>=stealth',shorten >=0.8pt,auto,node distance=2.2cm,
-  thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\bfseries},
+  thick,
+  visited node/.style={circle,fill=blue!20,draw,font=\sffamily\bfseries},
+  not visited node/.style={circle,fill=orange!20,draw,font=\sffamily\bfseries},
   chosen node/.style={circle,fill=green!20,draw,font=\sffamily\bfseries}]
+
 
   \node[chosen node] (1) {$a_1$};
   \node[chosen node] (2) [below left of=1] {$a_2$};
-  \node[chosen node] (3) [below right of=2] {$a_3$};
-  \node[main node] (4) [below right of=1] {$a_4$};
-  \node[main node] (5) [below left of=2] {$a_5$};
-  \node[chosen node] (6) [below of=3] {$a_6$};  
+  \node[visited node] (3) [below left of=2] {$a_3$};
+  \node[chosen node] (4) [below right of=2] {$a_4$};
+  \node[chosen node] (5) [below of=4] {$a_5$};  
+  \node[not visited node] (6) [below right of=1] {$a_6$};
 
   \path[every node/.style={font=\sffamily\small}]
-    (1) edge node [right] {male} (4)
+    (1) edge [dashed] node [right, dashed] {male} (6)
         edge node [left] {female} (2)
-    (2) edge node [right] {single} (3)
-        edge node [left] {married} (5)
-    (3) edge node []  {} (6);
+    (2) edge node [right] {single} (4)
+        edge node [left] {married} (3)
+    (4) edge node []  {} (5);
    \end{tikzpicture}
    \caption{Answer graph}
     \label{sfig:answer-graph}
   \end{subfigure}
-  \caption{Application graphs, and the relation between them.}
+  \caption{Graph of survey questions and answers, and the relation between them.}
   \label{fig:application graphs}
 \end{figure}
+Figure \ref{fig:application graphs}, illustrates the design view of a survey. We basically regard the survey as a graph containing the questions. If there is a condition on the next question, the graph branches. In figure \ref{sfig:question-graph} the initial question is regarding the sex of respondent, and there are only additional questions for females. In the application design we mirror our questions in an answer graph, storing answers along with the path taken through the graph. Once the survey is done, the answers are harvested from the answer graph by traversing backwards through the graph. This design allows the user to go back and change any answer without losing information previously entered. We only store answers that are actually answered (questions that are visited by the respondent). An example of this is illustrated in figure \ref{sfig:answer-graph}, where the respondent starts by choosing ``female'' and ``married'' and starts filling out question $q_5$. For some reason she has forgotten that she is not married and goes back to $q_2$ to correct this. She then chooses ``single'' and answers $q_4$ and $q_5$ and completes the survey. Figure \ref{sfig:answer-graph} depicts the path taken (green nodes), the answered but not taken path (blue), and unvisited paths1 (orange).
