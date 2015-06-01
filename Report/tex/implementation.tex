@@ -61,4 +61,36 @@ Surveys are to be specified by writing text adherent to the DSLs grammar. The eB
 \section{Smartphone App}
 \label{sec:app}
 In this section, the more interesting details of the smartphone app prototype implementation are outlined.
-%TODO remember to mention cross platform/Xamarin
+\subsection{App workflow}
+The workflow of application at the start is described in figure \ref{fig:startup-workflow}. At the startup of the application the backend checks, if any new schema appeared and if yes, generates new instance for each new schema, check which instances should be active and adds them to display (available) list. When done, serialize to file all new instances and launch the user interface using the display list. 
+
+\begin{figure}[!htbp]
+  \centering
+    \centering
+    \includegraphics[scale=0.5]{\imgdir workflow_atise}
+    \caption{Logic of the application in the start up (where start - start of the application and end - launching user interface.}
+    \label{fig:startup-workflow}
+\end{figure}
+\subsection{Cross-platform}
+The app has been implemented using Xamarin framework, a tool, that allows for easy development of cross-platform programs. Right now the app is available only for Android phones, which is mostly cause by high difficulty in installing 3rd party apps on Iphone. However, none of the functionalities has been implemented using platform-specific libraries, so it should be possible to easily port the app after obtaining appropriate developer licenses. 
+\subsection{Serialization} 
+Serialization is important part of the application. Desirably, all surveys are downloaded from the cloud, so having a light-weight and standardized middle-format is very helpful. Also, app needs to save the answered surveys and eventually also unfinished surveys. 
+
+We decided to use json as middle format and Json.NET as a serialization framework. It allows easy serialization and deserialization of .NET classes, with respect to heritage and interfaces. 
+
+\subsection{Current state}
+Right now app support following features:
+\begin{itemize}
+\item displaying list of available surveys
+\item filling in the surveys and saving it
+\item browsing previously answered surveys
+\item scheduling surveys
+\item displaying questions depending on previous answers
+\end{itemize}
+
+The feature we need yet to implement are:
+\begin{itemize}
+\item synchronizing with server
+\item saving half-filled surveys
+\item better interface for browsing answered surveys
+\end{itemize}
