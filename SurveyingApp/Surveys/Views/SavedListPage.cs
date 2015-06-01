@@ -20,7 +20,7 @@ namespace Surveys
 			this.Title = "List of saved survey results";
 			// Create and initialize ListView.
 			ListView listView = new ListView ();
-			this.FilledSurveys = IOController.ReadFilledFileNames ();
+			this.FilledSurveys = IOController.ReadFiles (Constants.filledFolder);
 		
 			listView.ItemsSource = FilledSurveys;
 			listView.ItemSelected += (sender, args) => {
@@ -28,7 +28,7 @@ namespace Surveys
 					// Deselect the item.
 					listView.SelectedItem = null;
 					string selectedFileName = (string)args.SelectedItem;
-					string selectedFileContent = IOController.ReadFilledSurveyByName (selectedFileName);
+					string selectedFileContent = IOController.ReadFile (selectedFileName,Constants.filledFolder);
 					this.Navigation.PushAsync (new SavedInstancePage (selectedFileContent, selectedFileName));
 				}
 			};
