@@ -1,6 +1,6 @@
 \chapter{Introduction}
 \label{chap:introduction}
-This chapter introduces the project - its scope, the problem being solved, along with the proposed and already existing solutions.
+This chapter covers the problem domain and the project scope. We outline our proposed solution and open a brief discussion of already existing solutions.
 
 \section{Problem statement}
 \label{sec:problemstatement}
@@ -11,13 +11,14 @@ Streamlining and/or automating these processes would clearly be beneficial for p
 \section{Proposed Solution}
 \label{sec:proposedsolution}
 The aim of this project is to design a system that is capable of handling different types of surveys on mobile phones. The system should be able to handle auto-repeating surveys (survey appears on user"s phone in regular time intervals), conditionally related questions (e.g. display a question about pregnancy only if the user indicated she is a woman in one of the previous questions).
-The system should utilise a domain-specific language (DSL) for describing surveys. The DSL should be open for extensions, like nested surveys. It should also be easy to write, read and understand even by non-technical actors.
+The system should utilise a domain-specific language (DSL) for describing surveys. This DSL should be open for extensions, like nested surveys. It should also be easy to write, read and understand even by non-technical actors.
+%TODO The sentence 'like nested surveys' seems out of place.
 
-The key characteristics of the proposed solution are:
+The key design constraints of our proposed solution are:
 
 \begin{enumerate}
-  \item The domain specific language for survey definition has to be flexible, open for extensions and utilise the possibilities of modern phones.
-  \item The surveys should be presented to users with an intuitive and user-friendly interface for smartphones.
+  \item A domain specific language for survey definition has to be flexible, open for extensions and utilise the possibilities of modern phones.
+  \item Surveys should be presented to users with an intuitive and user-friendly interface for smartphones.
 \end{enumerate}
 
 Based on a provided definition which adheres to the DSL, it should be possible to generate a survey with questions. It should be possible for the questions to depend on previous answers and to be prompted periodically (e.g. every week). The prompt should be integrated with the built-in notification system of concurrent smartphones.
