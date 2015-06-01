@@ -2,33 +2,99 @@
 \label{chap:design}
 In this chapter, the considerations made when designing the system are outlined. Additionally, the metamodel for the survey specification language is presented.
 
+\section{Design Considerations}
+\label{sec:designconsiderations}
+This section outlines some of the general design considerations for the system: how questions, surveys and answers are related, interconnected and structured.
+
+\subsection{Survey Navigation}
+\label{subsec:surveynavigation}
+When running a survey on the phone, the user will expect the questions to be stored intermediately, allowing him/her to navigate back and forth between questions without discarding the answers already typed in.
+\begin{figure}[!htbp]
+ \centering
+ \begin{subfigure}{.45\textwidth}
+    \centering
+    \begin{tikzpicture}[->,>=stealth',shorten >=0.8pt,auto,node distance=2.2cm,
+  thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\bfseries}]
+
+  \node[main node] (1) {$q_1$};
+  \node[main node] (2) [below left of=1] {$q_2$};
+  \node[main node] (3) [below left of=2] {$q_3$};
+  \node[main node] (4) [below right of=2] {$q_4$};
+  \node[main node] (5) [below of=4] {$q_5$};  
+  \node[main node] (6) [below right of=1] {$q_6$};
+  
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [right] {male} (6)
+        edge node [left] {female} (2)
+    (2) edge node [right] {single} (4)
+        edge node [left] {married} (3)
+    (4) edge node []  {} (5);
+    \end{tikzpicture}
+    \caption{Question graph}
+    \label{sfig:question-graph}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+  \begin{tikzpicture}[->,>=stealth',shorten >=0.8pt,auto,node distance=2.2cm,
+  thick,
+  visited node/.style={circle,fill=blue!20,draw,font=\sffamily\bfseries},
+  not visited node/.style={circle,fill=orange!20,draw,font=\sffamily\bfseries},
+  chosen node/.style={circle,fill=green!20,draw,font=\sffamily\bfseries}]
+
+
+  \node[chosen node] (1) {$a_1$};
+  \node[chosen node] (2) [below left of=1] {$a_2$};
+  \node[visited node] (3) [below left of=2] {$a_3$};
+  \node[chosen node] (4) [below right of=2] {$a_4$};
+  \node[chosen node] (5) [below of=4] {$a_5$};  
+  \node[not visited node] (6) [below right of=1] {$a_6$};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge [dashed] node [right, dashed] {male} (6)
+        edge node [left] {female} (2)
+    (2) edge node [right] {single} (4)
+        edge node [left] {married} (3)
+    (4) edge node []  {} (5);
+   \end{tikzpicture}
+   \caption{Answer graph}
+    \label{sfig:answer-graph}
+  \end{subfigure}
+  \caption{Graph of survey questions and answers, and the relation between them.}
+  \label{fig:application graphs}
+\end{figure}
+
+Figure \ref{fig:application graphs}, illustrates the design view of a survey. The survey is regarded as a graph containing the questions. If there is a condition on the next question, the graph branches. In figure \ref{sfig:question-graph}, the initial question is regarding the gender of respondent, and there are only additional questions for females. In the application design, the questions are mirrored in an answer graph, storing answers along with the path taken through the graph. Once the survey is done, the answers are harvested from the answer graph by traversing backwards through the graph. \\\\
+This design allows the user to go back and change any answer without losing information previously entered. The only answers stored are ones, that are actually answered (questions that are visited by the respondent). An example of this is illustrated in figure \ref{sfig:answer-graph}, where the respondent starts by choosing ``female'' and ``married'' and starts filling out question $q_5$. For some reason she has forgotten that she is not married and goes back to $q_2$ to correct this. She then chooses ``single'' and answers $q_4$ and $q_5$ and completes the survey. Figure \ref{sfig:answer-graph} depicts the path taken (green nodes), the answered, but not taken path (blue), and unvisited path (orange).\\\\
+As previously stated, collecting the answers once the survey is submitted, will be a matter of traversing the ``taken path'' (the green nodes) of the graph and saving the values of these nodes, along with references to the questions answered.
+
+\subsection{Survey Structure and Reuse}
+\label{subsec:modularityandreuse}
+A general design goal was to structure the surveys in such a way, that they are as flexible and reusable as possible. \\
+It makes sense to create questions as independent entities (i.e. not bound to a single survey) and merely refer to them. This way, individual questions could be (re)used across multiple surveys and incoming answers, as mentioned in section \ref{subsec:surveynavigation}, would make use of question references. Furthermore, a decision was made to structure surveys modularly. Doing so makes it much easier to create, rearrange and reuse whole surveys and/or their parts. 
+A domain specific language encompassing support for all these features would be defined. The section \ref{sec:metamodel} presents the languages metamodel, while section \ref{sec:dsl} gives an eBNF grammar for it.
+
+\subsection{Survey Scheduling}
+\label{subsec:scheduling}
+Another important goal was to make survey recurrence possible. It was therefore decided to associate a schedule with individual surveys and/or their parts. This addition enables appointment of surveys/parts to happen at regular time intervals - for example, every day or week.
+
 \section{Metamodel}
 \label{sec:metamodel}
-This section presents the domain model for the application. Majority of objects presented in model are described in glossary. This model is supposed to support all the examples (sometimes with small extensions, e.g. to DataType class). It consists of two main parts - Survey Scheme, that will reflect the DSL structure and Survey Instance, that store the user answers from each time the survey has been filled in.
+This section presents the metamodel for the survey domain specific language.  
 
-\begin{figure}
-  \includegraphics[scale=0.45]{\imgdir "meta-model"}
-  \caption{Metamodel for the survey DSL.}
+The model shown in figure \ref{fig:metamodel} supports all the examples presented in chapter \ref{chap:examples} (sometimes with small extensions, e.g. to DataType class).
+The model consists of two main parts - Survey Scheme, which defines the DSL structure and Survey Instance(s).
+
+\begin{figure}[!htbp]
+  \includegraphics[scale=0.55]{\imgdir meta-model}
+  \caption{Metamodel for the survey DSL}
   \label{fig:metamodel}
 \end{figure}
 
-%TODO write more about model
+\subsection{Survey Scheme}
+\label{subsec:surveyscheme}
+In the scheme, the structure of a survey is depicted. One of the highlights is usage of question references. Doing so makes it much easier to reuse questions across multiple survey schemes - for example, one could envision creating a question database, whereto the references would point.
+A survey is built up modularly of survey parts, which in turn contain references to questions. Optionally, both survey parts and questions can have prerequisites. Adding prerequisites to questions is merely a matter of convenience though, as conceptually, one could do with only adding prerequisites to survey parts. A drawback of that approach, however, would be that a survey part would have to be created every time one would want to add a prerequisite to a single question.
+There is nothing surprising about the structure of a question - it has some text, a number of possible answer options, a type (single choice, multiple choice, free text) and a data type (purely for the benefit of the researchers, as it might ease result processing).
 
-\section{Design Considerations}
-\label{sec:designconsiderations}
-%TODO section intro
-%TODO this section needs a lot more written in it
-When running a survey on the phone, the user will expect the questions to be stored intermediately, allowing him/her to navigate back and forth between questions without discarding the answers already typed in.
-
-\begin{center}
-\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2.0cm]
-\node[initial,state,label=$q_1$] (q1) {};
-\node[state,label=above:$q_2$] (q2) [below left of=q1] {};
-\node[state,label=above:$q_3$] (q3) [below right of=q1] {};
-\node[state,label=above:$q_4$] (q4) [below left of=q2] {};
-\path[->]
-(q1) edge node {male} (q2)
-(q1) edge node {female} (q3)
-(q2) edge node {stuff} (q4);
-\end{tikzpicture} \hspace{10mm}
-\end{center}
+\subsection{Survey Instance}
+\label{subsec:surveyinstance}
+The key idea behind differentiating between survey scheme and instance is, that a survey scheme could be stored centrally (e.g. on a server) and then distributed to all potential respondents, whereupon individual survey instances would be created on each individual smartphone. The individual user answers would be stored in a survey instance along with the users personal data and could then be sent back to some central repository. Distinguishing between multiple instances of a survey on an individual users smartphone would also be possible, thus conveniently enabling the survey recurrence feature.

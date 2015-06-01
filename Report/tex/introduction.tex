@@ -1,30 +1,30 @@
 \chapter{Introduction}
 \label{chap:introduction}
-This chapter introduces the project - its scope, the problem being solved, along with the proposed and already existing solutions.
+This chapter covers the problem domain and the project scope. The proposed solution is outlined and a brief discussion of already existing solutions is opened.
 
 \section{Problem statement}
 \label{sec:problemstatement}
 Surveys are commonly used in scientific studies as a useful tool for collecting data to substantiate or reject theories. The surveys have historically been done on paper, but along with the adoption of digital technologies, electronic surveys are becoming the standard.
-Electronic surveys are, however, usually implemented ad-hoc with limited or no notion of neither the data they convey, nor their relation to other surveys. This data-linking has to be done manually; this is tedious and time consuming. Another issue is that creating and re-deploying these surveys are usually time-consuming processes.
+Electronic surveys, however, are usually implemented in ad-hoc manner with limited or no notion of neither the data they convey, nor their relation to other surveys. This data-linking has to be made manually; this is tedious and time consuming. Another issue is that creating and re-deploying these surveys are usually time-consuming processes.
 Streamlining and/or automating these processes would clearly be beneficial for people relying on surveys for their data collection.
 
 \section{Proposed Solution}
 \label{sec:proposedsolution}
-The aim of this project is to design a system that is capable of handling different types of surveys on mobile phones. The system should be able to handle auto-repeating surveys (survey appears on user"s phone in regular time intervals), conditionally related questions (e.g. display a question about pregnancy only if the user indicated she is a woman in one of the previous questions).
-The system should utilise a domain-specific language (DSL) for describing surveys. The DSL should be open for extensions, like nested surveys. It should also be easy to write, read and understand even by non-technical actors.
+The aim of this project is to design a system that is capable of handling different types of surveys on mobile phones. The system should be able to handle auto-repeating surveys (survey appears on user's phone in regular time intervals), conditionally related questions (e.g. display based on a previous answer).
+The system should utilise a domain-specific language (DSL) for describing surveys. This DSL should be open for extensions. It should also be easy to write, read and understand even by non-technical actors.
 
-The key characteristics of the proposed solution are:
+The key design constraints of the proposed solution are:
 
 \begin{enumerate}
-  \item The domain specific language for survey definition has to be flexible, open for extensions and utilise the possibilities of modern phones.
-  \item The surveys should be presented to users with an intuitive and user-friendly interface for smartphones.
+  \item A domain specific language for survey definition has to be flexible, open for extensions and utilise the possibilities of modern phones.
+  \item Surveys should be presented to users with an intuitive and user-friendly interface for smartphones.
 \end{enumerate}
 
 Based on a provided definition which adheres to the DSL, it should be possible to generate a survey with questions. It should be possible for the questions to depend on previous answers and to be prompted periodically (e.g. every week). The prompt should be integrated with the built-in notification system of concurrent smartphones.
 
 \section{Scope}
 \label{sec:scope}
-The full working solution for data collection would include many components. On top of the DSL and data gathering app there is a need for a whole stack of components allowing survey creation, management and analysis - persistent storage, graphical survey creator and other tools related to the chosen workflow. In regards to this, a minimal working, proof-of-concept solution will include:
+The full working solution for data collection would include many components. On top of the DSL and data gathering app, there is a need for a whole stack of components allowing survey creation, management and analysis - persistent storage, graphical survey creator and other tools related to the chosen workflow. In regards to this, a minimal working, proof-of-concept solution will include:
 
 \begin{itemize}
 \item Domain-specific language specification for defining the surveys. The language should be able to describe basic types of questionnaire questions and support dynamic answering flow, depending on the conditions specific to a single question, survey, time etc. The way of describing survey instances (filled in surveys) needs to be defined as well.
@@ -34,14 +34,13 @@ The full working solution for data collection would include many components. On 
 		\item Capabilities for survey scheduling and recurrence.
 		\item Capability to store and display completed surveys.
 	\end{itemize}
-\item Management of surveys should be done via the DSL in a dedicated application. %TODO this has not been implemented. Out of scope?
 \end{itemize}
 
 In the long run, the system could be extended with many other features. These, although out of scope for this project, are briefly outlined in section \ref{sec:futurework}.
 
 \section{Existing Solutions}
 \label{sec:existingsolutions}
-Many free and commercial solutions exist; some of these are listed below.
+Many free and commercial solutions for data collection with surveys exist; some of these are listed below.
 \begin{itemize}
 \item GoogleForms
 \item QuestionPro
@@ -51,4 +50,4 @@ Many free and commercial solutions exist; some of these are listed below.
 \item Enalyzer
 \end{itemize}
   
-These are either free and very limited (e.g. GoogleForms) or provide a narrow set of features in the free version. The full, paid versions do, however, tend to provide the desired (and many, many more) features. Therefore, design and implementation of a brand new solution, which is the goal of this project, is justified.
+These are either free and very limited (e.g. GoogleForms) or provide a narrow set of features in the free version. The full, paid versions do, however, tend to provide the desired (and many, many more) features. Therefore, design and implementation of a brand new solution, which is the goal of this project, is, at least somewhat, justified.
