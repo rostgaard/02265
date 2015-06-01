@@ -13,12 +13,13 @@ namespace Surveys
 		bool isFinished = false;
 		bool isBeginning = true;
 
-		public Survey SurveyScheme { private set; get;}
+		public Survey SurveyScheme { private set; get; }
 
 		private LinkedListNode<SurveyPart> currentSurveyPart = null;
 		private LinkedListNode<QuestionReference> currentQuestion = null;
 
-		public  LinkedList<QuestionView> CurrentViews { private set; get;}
+		public  LinkedList<QuestionView> CurrentViews { private set; get; }
+
 		private Dictionary<QuestionReference, QuestionView> generatedViews = null;
 
 		public ViewGenerator (Survey s)
@@ -49,8 +50,11 @@ namespace Surveys
 
 				LinkedList<QuestionView> preqViewList = new LinkedList<QuestionView> ();
 				foreach (Prerequisite p in currentQuestion.Value.Prerequisites) {
-					if (CurrentViews.Find (generatedViews [p.Question]) != null)
-						preqViewList.AddLast (generatedViews [p.Question]);
+					QuestionView q;
+					if (generatedViews.TryGetValue (p.Question, out q)) {
+						if (CurrentViews.Find (generatedViews [q.question]) != null)
+							preqViewList.AddLast (generatedViews [p.Question]);
+					}
 				}
 				if (PrerequisiteController.calculatePrerequisite (currentQuestion.Value, preqViewList)) {
 					if (CurrentViews.Find (newView) == null) {

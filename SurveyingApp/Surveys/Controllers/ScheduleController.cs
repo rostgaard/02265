@@ -44,7 +44,7 @@ namespace Surveys
 			return sched;
 		}
 
-		public static SurveyAnswer setActive(SurveyAnswer survey) 
+		public static bool setActive(SurveyAnswer survey) 
 		{
 			foreach (SurveyPart sp in survey.Survey.SurveyParts) {
 				if (sp.Scheduler.Available.CompareTo (DateTime.Today) <= 0) {
@@ -52,7 +52,9 @@ namespace Surveys
 					survey.Survey.isActive = true;
 				}
 			}
-			return survey;
+			if (survey.Survey.isActive)
+				return true;
+			return false;
 		}
 	}
 }

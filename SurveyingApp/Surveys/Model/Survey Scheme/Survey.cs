@@ -25,7 +25,18 @@ namespace Surveys
 			}
 		}
 
-		public LinkedList<SurveyAnswer> SurveyAnswers { get; set; }
+		private LinkedList<SurveyAnswer> _SurveyAnswers;
+
+		public LinkedList<SurveyAnswer> SurveyAnswers {
+			get {
+				if (_SurveyAnswers == null)
+					_SurveyAnswers = new LinkedList<SurveyAnswer> ();
+				return _SurveyAnswers;
+			}
+			set {
+				_SurveyAnswers = value;
+			}
+		}
 
 		public Survey ()
 		{

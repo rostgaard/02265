@@ -13,6 +13,7 @@ namespace Surveys
 			survey.addPart (generatePart1());
 			survey.addPart (generatePart2());
 			survey.addPart (generatePart3());
+			survey.Scheduler = new Scheduler (Schedule.DAILY);
 			return survey;
 		}
 
@@ -22,12 +23,14 @@ namespace Surveys
 			list.AddLast (generateQuestion11());
 			list.AddLast (generateQuestionFreeM("What year were you born in?", DataType.DATE, true));
 			list.AddLast (generateQuestionFreeM("What country do you come from", DataType.STRING, true));
+			sp1.Scheduler = new Scheduler (Schedule.DAILY);
 			sp1.Questions = list;
 			return sp1;
 		}
 
 		private static SurveyPart generatePart2() {
 			SurveyPart sp1 = new SurveyPart ();
+			sp1.Scheduler = new Scheduler (Schedule.DAILY);
 			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
 			QuestionReference qr21 = generateQuestion21 (); 
 			list.AddLast (qr21);
@@ -43,6 +46,7 @@ namespace Surveys
 
 		private static SurveyPart generatePart3() {
 			SurveyPart sp1 = new SurveyPart ();
+			sp1.Scheduler = new Scheduler (Schedule.DAILY);
 			LinkedList<QuestionReference> list = new LinkedList<QuestionReference> ();
 			QuestionReference qr31 = generateQuestion31 ();
 			list.AddLast (qr31);
