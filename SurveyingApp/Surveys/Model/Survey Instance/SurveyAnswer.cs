@@ -21,6 +21,7 @@ namespace Surveys
 		{
 			Survey = surv;
 			UserData = data;
+			this.Survey.SurveyAnswers.AddLast (this);
 		}
 	}
 }
