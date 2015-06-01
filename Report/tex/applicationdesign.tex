@@ -8,8 +8,6 @@ This section outlines some of the more general design consideration of the syste
 
 \subsection{Survey Navigation}
 \label{subsec:surveynavigation}
-%TODO section intro
-%TODO this section needs a lot more written in it
 When running a survey on the phone, the user will expect the questions to be stored intermediately, allowing him/her to navigate back and forth between questions without discarding the answers already typed in.
 \begin{figure}[!htbp]
  \centering
@@ -64,8 +62,9 @@ When running a survey on the phone, the user will expect the questions to be sto
   \label{fig:application graphs}
 \end{figure}
 
-Figure \ref{fig:application graphs}, illustrates the design view of a survey. We basically regard the survey as a graph containing the questions. If there is a condition on the next question, the graph branches. In figure \ref{sfig:question-graph} the initial question is regarding the sex of respondent, and there are only additional questions for females. In the application design we mirror our questions in an answer graph, storing answers along with the path taken through the graph. Once the survey is done, the answers are harvested from the answer graph by traversing backwards through the graph. This design allows the user to go back and change any answer without losing information previously entered. We only store answers that are actually answered (questions that are visited by the respondent). An example of this is illustrated in figure \ref{sfig:answer-graph}, where the respondent starts by choosing ``female'' and ``married'' and starts filling out question $q_5$. For some reason she has forgotten that she is not married and goes back to $q_2$ to correct this. She then chooses ``single'' and answers $q_4$ and $q_5$ and completes the survey. Figure \ref{sfig:answer-graph} depicts the path taken (green nodes), the answered but not taken path (blue), and unvisited path (orange).
-
+Figure \ref{fig:application graphs}, illustrates the design view of a survey. We basically regard the survey as a graph containing the questions. If there is a condition on the next question, the graph branches. In figure \ref{sfig:question-graph} the initial question is regarding the sex of respondent, and there are only additional questions for females. In the application design we mirror our questions in an answer graph, storing answers along with the path taken through the graph. Once the survey is done, the answers are harvested from the answer graph by traversing backwards through the graph. \\\\
+This design allows the user to go back and change any answer without losing information previously entered. We only store answers that are actually answered (questions that are visited by the respondent). An example of this is illustrated in figure \ref{sfig:answer-graph}, where the respondent starts by choosing ``female'' and ``married'' and starts filling out question $q_5$. For some reason she has forgotten that she is not married and goes back to $q_2$ to correct this. She then chooses ``single'' and answers $q_4$ and $q_5$ and completes the survey. Figure \ref{sfig:answer-graph} depicts the path taken (green nodes), the answered but not taken path (blue), and unvisited path (orange).\\\\
+As previously stated, collecting the answers once the survey is submitted, will be a matter of traversing the ``taken path'' (the green nodes) of the graph and save the values of these nodes, along with a reference to the question answered.
 \subsection{Survey Modularity and Reuse}
 \label{subsec:modularityandreuse}
 %TODO intro
