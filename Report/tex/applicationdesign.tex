@@ -68,8 +68,13 @@ As previously stated, collecting the answers once the survey is submitted, will 
 
 \subsection{Survey Structure and Reuse}
 \label{subsec:modularityandreuse}
-%TODO intro
+An important design goal was to structure the surveys in such a way, that they are as flexible and reusable as possible. 
+A decision was made to structure surveys modularly. Doing so makes it much easier to create, rearrange and reuse whole surveys and/or their parts. It also makes sense to create questions as independent entities (i.e. not bound to a single survey). This way, individual questions could be (re)used across multiple surveys. To make this possible, as mentioned in section \ref{subsec:surveynavigation}, references to actual questions are used.
+A domain specific language encompassing support for all these features would be defined. The section \ref{sec:metamodel} presents the languages metamodel, while section \ref{sec:dsl} gives an eBNF grammar for it.
 
+\subsection{Survey Scheduling}
+\label{subsec:scheduling}
+Another important goal was to make survey recurrence possible. It was therefore decided to associate a schedule with individual surveys and/or their parts. This addition enables appointment of surveys/parts to happen at regular time intervals - for example, every day or week.
 
 \section{Metamodel}
 \label{sec:metamodel}
