@@ -1,6 +1,6 @@
 \chapter{Conceptual design}
 \label{chap:examples}
-In this chapter, the concepts of the system is outlined by the use of examples and user interface mock-ups that show how the system might work.
+In this chapter, the concepts of the system are outlined by the use of examples and user interface mock-ups that show how the system might work.
 
 \section{System Components}
 \label{sec:systemcomponents}
@@ -16,17 +16,16 @@ The figure \ref{fig:survey-app-menu-mockup} shows how a main menu screen of a sm
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.5]{\imgdir survey-app-menu-mockup}
-  \caption{User interface main menu mock-up.}
+  \caption{User interface main menu mock-up}
   \label{fig:survey-app-menu-mockup}
 \end{figure}
-
 
 The figure \ref{fig:survey-app-mockup} shows how a display of a single question might look like when the user is in the process of filling out a survey.
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.25]{\imgdir survey-app-mockup}
-  \caption{User interface question display mock-up.}
+  \caption{User interface question display mock-up}
   \label{fig:survey-app-mockup}
 \end{figure}
 
@@ -35,7 +34,7 @@ The figure \ref{fig:survey-editor-mockup} shows how the survey editor might look
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.6]{\imgdir survey-editor-mockup}
-  \caption{Survey editor conceptual mock-up.}
+  \caption{Survey editor conceptual mock-up}
   \label{fig:survey-editor-mockup}
 \end{figure}
 
@@ -46,7 +45,7 @@ In this section, a couple example surveys are presented both in natural language
 \subsection{Health Questionnaire}
 \label{subsec:healthquestionnaire}
 The first survey is concerned with subjective health reporting on a weekly and daily basis. In this survey, the patient responds to a small questionnaire every day, and the survey is extended on a monthly basis to ask additional questions.\\\\
-The first part of the survey gathers some personal information. Since this information is not ever going to change, it is reasonable to collect in only once and not every time the user answers the health survey. The questions in this part are all mandatory (a mandatory question must be answered before the user is allowed to proceed to next one).
+The first part of the survey gathers some personal information. Since this information is not ever going to change, it is reasonable to collect it only once and not every time the user answers the health survey. The questions in this part are all mandatory (a mandatory question must be answered before the user is allowed to proceed to next one).
 
 \begin{enumerate}
 \item ``What is your gender?''. A single answer from possibilities "Male/Female/Other" is expected.
@@ -207,4 +206,4 @@ SURVEY Festival satisfaction:
     ANSWER TYPE: Free
 \end{verbatim}
 
-The above survey examples illustrate the immense flexibility of the DSL based surveys: questions can be asked or skipped based on user answers to previous questions, they can be mandatory or optional, and parts of the survey can be repeated at arbitrary time intervals. These features create rich possibilities of designing a complex logical flow through a survey. It has also been demonstrated, that is possible to make use of built-in sensors in the smartphones, thereby extending the data collection toolset even further.
+The above survey examples illustrate the immense flexibility of the DSL based surveys: questions can be asked or skipped based on user answers to previous questions, they can be mandatory or optional, and parts of the survey can be repeated at arbitrary time intervals. These features create rich possibilities of designing a complex logical flow through a survey. It has also been demonstrated, that it is possible to make use of built-in sensors in the smartphones, thereby extending the data collection toolset even further.

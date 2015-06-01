@@ -1,20 +1,19 @@
 \chapter{Introduction}
 \label{chap:introduction}
-This chapter covers the problem domain and the project scope. We outline our proposed solution and open a brief discussion of already existing solutions.
+This chapter covers the problem domain and the project scope. The proposed solution is outlined and a brief discussion of already existing solutions is opened.
 
 \section{Problem statement}
 \label{sec:problemstatement}
 Surveys are commonly used in scientific studies as a useful tool for collecting data to substantiate or reject theories. The surveys have historically been done on paper, but along with the adoption of digital technologies, electronic surveys are becoming the standard.
-Electronic surveys are, however, usually implemented ad-hoc with limited or no notion of neither the data they convey, nor their relation to other surveys. This data-linking has to be done manually; this is tedious and time consuming. Another issue is that creating and re-deploying these surveys are usually time-consuming processes.
+Electronic surveys, however, are usually implemented in ad-hoc manner with limited or no notion of neither the data they convey, nor their relation to other surveys. This data-linking has to be made manually; this is tedious and time consuming. Another issue is that creating and re-deploying these surveys are usually time-consuming processes.
 Streamlining and/or automating these processes would clearly be beneficial for people relying on surveys for their data collection.
 
 \section{Proposed Solution}
 \label{sec:proposedsolution}
-The aim of this project is to design a system that is capable of handling different types of surveys on mobile phones. The system should be able to handle auto-repeating surveys (survey appears on user"s phone in regular time intervals), conditionally related questions (e.g. display a question about pregnancy only if the user indicated she is a woman in one of the previous questions).
-The system should utilise a domain-specific language (DSL) for describing surveys. This DSL should be open for extensions, like nested surveys. It should also be easy to write, read and understand even by non-technical actors.
-%TODO The sentence 'like nested surveys' seems out of place.
+The aim of this project is to design a system that is capable of handling different types of surveys on mobile phones. The system should be able to handle auto-repeating surveys (survey appears on user's phone in regular time intervals), conditionally related questions (e.g. display based on a previous answer).
+The system should utilise a domain-specific language (DSL) for describing surveys. This DSL should be open for extensions. It should also be easy to write, read and understand even by non-technical actors.
 
-The key design constraints of our proposed solution are:
+The key design constraints of the proposed solution are:
 
 \begin{enumerate}
   \item A domain specific language for survey definition has to be flexible, open for extensions and utilise the possibilities of modern phones.
@@ -25,7 +24,7 @@ Based on a provided definition which adheres to the DSL, it should be possible t
 
 \section{Scope}
 \label{sec:scope}
-The full working solution for data collection would include many components. On top of the DSL and data gathering app there is a need for a whole stack of components allowing survey creation, management and analysis - persistent storage, graphical survey creator and other tools related to the chosen workflow. In regards to this, a minimal working, proof-of-concept solution will include:
+The full working solution for data collection would include many components. On top of the DSL and data gathering app, there is a need for a whole stack of components allowing survey creation, management and analysis - persistent storage, graphical survey creator and other tools related to the chosen workflow. In regards to this, a minimal working, proof-of-concept solution will include:
 
 \begin{itemize}
 \item Domain-specific language specification for defining the surveys. The language should be able to describe basic types of questionnaire questions and support dynamic answering flow, depending on the conditions specific to a single question, survey, time etc. The way of describing survey instances (filled in surveys) needs to be defined as well.
@@ -41,7 +40,7 @@ In the long run, the system could be extended with many other features. These, a
 
 \section{Existing Solutions}
 \label{sec:existingsolutions}
-Many free and commercial solutions exist; some of these are listed below.
+Many free and commercial solutions for data collection with surveys exist; some of these are listed below.
 \begin{itemize}
 \item GoogleForms
 \item QuestionPro
