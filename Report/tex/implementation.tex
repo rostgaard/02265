@@ -4,6 +4,7 @@ This chapter provides information about implementation of the system. Specifical
 
 \section{Domain Specific Language}
 \label{sec:dsl}
+\pawel \\\\
 Surveys are to be specified by writing text adherent to the DSLs grammar. The eBNF grammar definition for the DSL is shown below. It reflects the scheme structure shown in the metamodel, in figure \ref{fig:metamodel}. Examples of DSL adherent text for survey definition have been presented in section \ref{sec:questionnaires}.
 
 \begin{grammar}
@@ -60,6 +61,7 @@ Surveys are to be specified by writing text adherent to the DSLs grammar. The eB
 
 \section{Smartphone App}
 \label{sec:app}
+\anna \\\\
 In this section, the more interesting details of the smartphone app prototype implementation are outlined.
 
 \subsection{App Workflow}
@@ -69,14 +71,14 @@ The workflow of application at the start is depicted in figure \ref{fig:startup-
 \begin{figure}[!htbp]
   \centering
     \centering
-    \includegraphics[scale=0.5]{\imgdir workflow_atise}
-    \caption{Logic of the application in the start up (where start - start of the application and end - launching user interface)}
+    \includegraphics[scale=1]{\imgdir workflow_atise}
+    \caption{Logic of the application in the start up (where start - start of the application and end - launching user interface.}
     \label{fig:startup-workflow}
 \end{figure}
 
 \subsection{Cross-Platform}
 \label{subsec:crossplatform}
-The app has been implemented using Xamarin framework - a tool, which allows for easy development of cross-platform programs. Currently, the app is available only for Android phones; this is mostly caused by high difficulty in installing 3rd party apps on iPhones. However, none of the functionalities have been implemented using platform-specific libraries, so it would be possible to easily port the app after obtaining appropriate developer licenses. 
+The app has been implemented using Xamarin framework - a tool, which allows for easy development of cross-platform programs. Currently, the app is available only for Android phones; this is mostly caused by high difficulty in installing 3rd party apps on iPhones. However, none of the functionalities have been implemented using platform-specific libraries, so it would be possible to easily port the app after obtaining appropriate developer licenses. Licenses give the possibility to upload to the Apple App Store, and Google Play market, so that the app can be installed directly from the phone -- like any other app.
 
 \subsection{Serialization}
 \label{subsec:serialization}
