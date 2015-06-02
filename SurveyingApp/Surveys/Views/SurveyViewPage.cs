@@ -19,11 +19,14 @@ namespace Surveys
 		Button goToPreviousButton;
 		Button goToNextButton;
 
+		private ToFillListPage _tflp = null;
+
 		ViewGenerator vg = null;
 
 		public SurveyViewPage(ViewGenerator vg, ToFillListPage tflp)
 		{
 			this.vg = vg;
+			this._tflp = tflp;
 
 			#region creating navigationContent with two buttons
 			goToPreviousButton = new Button {
@@ -68,12 +71,12 @@ namespace Surveys
 						if (t.Result == true)
 						{
 							IOController.WriteSurveyResult (vg.SurveyScheme, vg.CurrentViews);
+							_tflp.Reschedule ();
 							this.navigationContent.Navigation.PopAsync ();
 							this.navigationContent.Navigation.PopAsync ();
 						}
 					}, TaskScheduler.FromCurrentSynchronizationContext());  
 
-				// TODO actually handle the alert
 			} else {
 				InitializePropertyCallback (v);
 				surveyContent.Children.RemoveAt (0);
@@ -94,7 +97,7 @@ namespace Surveys
 			}
 			else{
 				this.goToPreviousButton.IsEnabled = false;
-				// TODO go to the main menu
+				// TODO go to the main menu? But HW button available
 			}
 		}
 

@@ -103,13 +103,13 @@ namespace Surveys
 			this.Content = new ScrollView {
 				Content = listView
 			};
-
-
 		}
 
-		public void reschedule()
+		public void Reschedule()
 		{
-			return;
+			ScheduleController.reschedule (chosenSurvey);
+			string rescheduled = JSonTranslator.Serialize (chosenSurvey);
+			IOController.SaveFile (rescheduled,chosenSurvey.Survey.SurveyName + "_" + chosenSurvey.Survey.SurveyId.ToString ().Substring (0,4), Constants.toFillFolder);
 		}
 	}
 }

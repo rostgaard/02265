@@ -30,13 +30,13 @@ namespace Surveys
 					sched.Available = DateTime.MinValue;
 					break;
 				case Schedule.DAILY:
-					sched.Available = sched.Available.AddDays (1);
+					sched.Available = DateTime.Today.AddDays (1);
 					break;
 				case Schedule.WEEKLY:
-					sched.Available = sched.Available.AddDays (7);
+					sched.Available = DateTime.Today.AddDays (7);
 					break;
 				case Schedule.MONTHLY:
-					sched.Available = sched.Available.AddMonths (1);
+					sched.Available = DateTime.Today.AddMonths (1);
 					break;
 
 				}
