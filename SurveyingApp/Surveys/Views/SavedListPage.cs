@@ -20,7 +20,7 @@ namespace Surveys
 			this.Title = "List of saved survey results";
 			// Create and initialize ListView.
 			ListView listView = new ListView ();
-			this.FilledSurveys = IOController.ReadFiles (Constants.filledFolder);
+			this.FilledSurveys = IOController.ReadFileNames (Constants.filledFolder);
 		
 			listView.ItemsSource = FilledSurveys;
 			listView.ItemSelected += (sender, args) => {

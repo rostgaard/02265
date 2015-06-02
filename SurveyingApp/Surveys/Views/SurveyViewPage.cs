@@ -21,7 +21,7 @@ namespace Surveys
 
 		ViewGenerator vg = null;
 
-		public SurveyViewPage(ViewGenerator vg)
+		public SurveyViewPage(ViewGenerator vg, ToFillListPage tflp)
 		{
 			this.vg = vg;
 
@@ -68,6 +68,8 @@ namespace Surveys
 						if (t.Result == true)
 						{
 							IOController.WriteSurveyResult (vg.SurveyScheme, vg.CurrentViews);
+							this.navigationContent.Navigation.PopAsync ();
+							this.navigationContent.Navigation.PopAsync ();
 						}
 					}, TaskScheduler.FromCurrentSynchronizationContext());  
 

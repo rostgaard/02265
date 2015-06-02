@@ -10,7 +10,8 @@ namespace Surveys
         {
 			return JsonConvert.SerializeObject (obj, Formatting.Indented, new JsonSerializerSettings {
 				TypeNameHandling = TypeNameHandling.Objects,
-				TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple
+				TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
+				ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 			});
         }
 			

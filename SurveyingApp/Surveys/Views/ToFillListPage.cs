@@ -12,6 +12,7 @@ namespace Surveys
 {
 	public class ToFillListPage : ContentPage
 	{
+		private SurveyAnswer chosenSurvey;
 		public IList<string> ToFillSurveyNames {
 			get;
 			private set;
@@ -37,7 +38,6 @@ namespace Surveys
 			// If new, generate unfilled instances
 			List <SurveyAnswer> surveyUnfilledInstances = new List<SurveyAnswer> ();
 			if (newSchemas.Count != 0) {
-
 				UserData user = new UserData ();
 				user.Username = "John";
 				user.ID = "test_ID";
@@ -93,8 +93,9 @@ namespace Surveys
 			listView.ItemSelected += (object sender, SelectedItemChangedEventArgs e) => {
 				if (e.SelectedItem != null) {
 					listView.SelectedItem = null;
-					ViewGenerator vg = new ViewGenerator (toAnswerNamed [(string)e.SelectedItem].Survey);
-					ContentPage surveyPage = new SurveyViewPage (vg);
+					chosenSurvey = toAnswerNamed [(string)e.SelectedItem];
+					ViewGenerator vg = new ViewGenerator (chosenSurvey.Survey);
+					ContentPage surveyPage = new SurveyViewPage (vg, this);
 					this.Navigation.PushAsync (surveyPage);
 				}
 			};
@@ -102,6 +103,13 @@ namespace Surveys
 			this.Content = new ScrollView {
 				Content = listView
 			};
+
+
+		}
+
+		public void reschedule()
+		{
+			return;
 		}
 	}
 }

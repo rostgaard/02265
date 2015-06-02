@@ -16,7 +16,8 @@ namespace Surveys
 	{
 		public App ()
 		{
-			ConnectionController.DownloadNewSurveys ();
+			ConnectionController cc = new ConnectionController ();
+			cc.DownloadNewSurveys ();
 			MainPage = new NavigationPage(new HomePage ());
 		}
 

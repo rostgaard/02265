@@ -9,7 +9,6 @@ namespace Surveys
 {
 	public class ViewGenerator
 	{
-
 		bool isFinished = false;
 		bool isBeginning = true;
 

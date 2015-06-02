@@ -21,17 +21,20 @@ namespace Surveys
 			IFile file = await folder.CreateFileAsync (fileName,
 				CreationCollisionOption.ReplaceExisting);
 
-			SurveyAnswer SurveyfilledScheme = PutAnswersToSurveyInstance (currentViews);
+			SurveyAnswer SurveyfilledScheme = PutAnswersToSurveyInstance (currentViews, surveyScheme);
 			string serialized = JSonTranslator.Serialize (SurveyfilledScheme);
 
 			await file.WriteAllTextAsync (serialized);
 		}
 
-		private static SurveyAnswer PutAnswersToSurveyInstance (ICollection<QuestionView> currentViews)
+		private static SurveyAnswer PutAnswersToSurveyInstance (ICollection<QuestionView> currentViews, Survey surveyScheme)
 		{
+			UserData user = new UserData ();
+			user.Username = "John";
+			user.ID = "test_ID";
 
-			SurveyAnswer answered = new SurveyAnswer ();
-			answered.Answers = new List<Answer> ();
+			SurveyAnswer sa = new SurveyAnswer (surveyScheme, user);
+			sa.Answers = new List<Answer> ();
 
 			foreach (QuestionView qv in currentViews) {
 				Answer a = new Answer ();
@@ -47,9 +50,9 @@ namespace Surveys
 						Content = ao.Content
 					};
 				}
-				answered.Answers.Add (a);
+				sa.Answers.Add (a);
 			}
-			return answered;
+			return sa;
 		}
 
 		public static IList<String> ReadFileNamesInDirectory (string directory)
@@ -90,7 +93,7 @@ namespace Surveys
 			return content;
 		}
 
-		public static List<String> ReadFiles (string directory)
+		public static List<String> ReadFileNames (string directory)
 		{
 			IFolder rootFolder = FileSystem.Current.LocalStorage;
 			var folderTask = rootFolder.CreateFolderAsync (directory, CreationCollisionOption.OpenIfExists);
@@ -108,6 +111,24 @@ namespace Surveys
 		}
 
 
+		public static List<String> ReadFiles (string directory)
+		{
+			IFolder rootFolder = FileSystem.Current.LocalStorage;
+			var folderTask = rootFolder.CreateFolderAsync (directory, CreationCollisionOption.OpenIfExists);
+			IFolder folder = folderTask.Result;
+
+			var filesTask = folder.GetFilesAsync ();
+			IList<IFile> files = filesTask.Result;
+
+			List<string> contents = new List<string> ();
+
+			foreach (IFile f in files)	{
+				var contentTask = f.ReadAllTextAsync ();
+				contents.Add (contentTask.Result); 
+			};
+			return contents;
+		}
+			
 		public static void SaveFile (string fileContent, string fileName, string directory)
 		{
 			IFolder rootFolder = FileSystem.Current.LocalStorage;
