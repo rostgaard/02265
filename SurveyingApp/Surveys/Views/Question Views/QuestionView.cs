@@ -1,4 +1,6 @@
-﻿using System;
+﻿/// <author>Piotr Milczarek</author>
+
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;

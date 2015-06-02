@@ -1,4 +1,6 @@
-﻿using System;
+﻿/// <author>Piotr Milczarek</author>
+
+using System;
 
 using Xamarin.Forms;
 using XLabs.Platform.Device;
@@ -13,7 +15,7 @@ using System.Diagnostics;
 namespace Surveys
 {
 	/// <summary>
-	/// Geolocator page. Unused.
+	/// Geolocator page. Unused in the current version of the prototype.
 	/// </summary>
 	public class GeolocatorPage : ContentPage
 	{

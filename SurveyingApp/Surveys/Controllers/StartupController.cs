@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// <author>Anna Walach</author>
+using System;
 using System.Collections.Generic;
 
 namespace Surveys

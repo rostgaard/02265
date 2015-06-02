@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// <author>Kim Rostgaard Christensen, Pawel Drozdowski </author>
+using System;
 using System.Collections.Generic;
 using XLabs.Forms.Validation;
 using System.Reflection;

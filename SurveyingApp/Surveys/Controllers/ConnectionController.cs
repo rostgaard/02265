@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// <author>Pawel Drozdowski </author>
+using System;
 using Xamarin.Forms;
 using System.Reflection;
 using System.IO;

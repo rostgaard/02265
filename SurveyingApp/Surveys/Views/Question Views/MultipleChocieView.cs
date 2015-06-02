@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿/// <author>Piotr Milczarek</author>
+
+using Xamarin.Forms;
 using System.Collections.Generic;
 using System.ServiceModel;
 using XLabs.Forms.Controls;

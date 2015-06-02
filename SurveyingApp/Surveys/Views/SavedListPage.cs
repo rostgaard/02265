@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// <author>Kim Rostgaard Christensen</author>
+using System;
 
 using Xamarin.Forms;
 using System.Collections.ObjectModel;

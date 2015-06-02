@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// <author>Pawel Drozdowski </author>
+using System;
 
 namespace Surveys
 {

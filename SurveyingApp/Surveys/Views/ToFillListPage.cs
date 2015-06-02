@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// <author>Anna Walach, Kim Rostgaard Christensen, Piotr Milczarek</author>
+using System;
 
 using Xamarin.Forms;
 using System.Collections.ObjectModel;

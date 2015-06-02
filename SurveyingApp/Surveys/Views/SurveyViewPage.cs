@@ -1,3 +1,4 @@
+/// <author>Piotr Milczarek, Kim Rostgaard Christensen</author>
 using System;
 using Xamarin.Forms;
 using System.Dynamic;

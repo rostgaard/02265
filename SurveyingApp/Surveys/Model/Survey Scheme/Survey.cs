@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// <author>Piotr Milczarek, Anna Walach, Kim Rostgaard Christensen, Pawel Drozdowski </author>
+using System;
 using System.Collections.Generic;
 using System.Collections;
 
