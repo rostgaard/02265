@@ -46,7 +46,7 @@ namespace Surveys
 			qr22.Prerequisites.Add(generatePrerequisite22(qr21));
 			list.AddLast (qr22);
 			list.AddLast (generateQuestion23());
-			list.AddLast (generateQuestionFreeM("What is the ambient temperature?", DataType.FLOAT, false));
+			list.AddLast (generateQuestionFreeM("What is the ambient temperature?", DataType.FLOAT, true));
 			sp1.Questions = list;
 			return sp1;
 		}
@@ -61,9 +61,11 @@ namespace Surveys
 			QuestionReference qr32 = generateQuestion32 ();
 			qr32.Prerequisites.Add(generatePrerequisite32 (qr31));
 			list.AddLast (qr32);
-			QuestionReference qr33 = generateQuestionFreeM ("Please enter the other food(s) which caused an allergic reaction for you", DataType.STRING, false);
+			QuestionReference qr33 = generateQuestionFreeM ("Please enter the other food(s) which caused an allergic reaction for you", DataType.STRING, true);
 			qr33.Prerequisites.Add(generatePrerequisite33 (qr32));
 			list.AddLast (qr33);
+			QuestionReference qr34 = generateQuestionFreeM ("Do you have any additional comments?", DataType.STRING, true);
+			list.AddLast (qr34);
 			sp1.Questions = list;
 			return sp1;
 		}
