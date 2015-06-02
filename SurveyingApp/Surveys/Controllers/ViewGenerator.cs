@@ -7,6 +7,9 @@ using PCLStorage;
 
 namespace Surveys
 {
+	/// <summary>
+	/// View generator.
+	/// </summary>
 	public class ViewGenerator
 	{
 		bool isFinished = false;
@@ -21,6 +24,10 @@ namespace Surveys
 
 		private Dictionary<QuestionReference, QuestionView> generatedViews = null;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.ViewGenerator"/> class.
+		/// </summary>
+		/// <param name="s">S.</param>
 		public ViewGenerator (Survey s)
 		{
 			SurveyScheme = s;
@@ -32,7 +39,10 @@ namespace Surveys
 		//			generatedViews = aq;
 		//		}
 
-
+		/// <summary>
+		/// Moves to the next question
+		/// </summary>
+		/// <returns>The next question.</returns>
 		public QuestionView NextQuestion ()
 		{
 			QuestionView oldView = generatedViews [currentQuestion.Value];
@@ -69,6 +79,10 @@ namespace Surveys
 			return null;
 		}
 
+		/// <summary>
+		/// Moves to the previous question.
+		/// </summary>
+		/// <returns>The previous question.</returns>
 		public QuestionView PreviousQuestion ()
 		{
 			QuestionView currentView = generatedViews [currentQuestion.Value];
@@ -85,6 +99,10 @@ namespace Surveys
 			return previousView;
 		}
 
+		/// <summary>
+		/// Gets initial question
+		/// </summary>
+		/// <returns>The initial question.</returns>
 		public QuestionView InitialQuestion ()
 		{
 			// empty initialization
@@ -102,6 +120,11 @@ namespace Surveys
 			return currentQuestionView;
 		}
 
+		/// <summary>
+		/// Gets the question view specific to the reference.
+		/// </summary>
+		/// <returns>The question view.</returns>
+		/// <param name="qref">Question reference.</param>
 		private QuestionView GetQuestionView (QuestionReference qref)
 		{
 			var qtype = qref.Question.QuestionType;

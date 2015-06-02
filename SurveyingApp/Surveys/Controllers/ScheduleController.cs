@@ -2,12 +2,22 @@
 
 namespace Surveys
 {
+	/// <summary>
+	/// Schedule controller.
+	/// </summary>
 	public class ScheduleController
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.ScheduleController"/> class.
+		/// </summary>
 		private ScheduleController ()
 		{
 		}
 
+		/// <summary>
+		/// Reschedule the specified survey.
+		/// </summary>
+		/// <param name="survey">Survey.</param>
 		public static SurveyAnswer reschedule(SurveyAnswer survey) 
 		{
 			survey.Survey.Scheduler = generateNewDate (survey.Survey.Scheduler);
@@ -21,6 +31,11 @@ namespace Surveys
 			return survey;
 		}
 
+		/// <summary>
+		/// Generates the new date.
+		/// </summary>
+		/// <returns>The new date.</returns>
+		/// <param name="sched">Sched.</param>
 		private static Scheduler generateNewDate(Scheduler sched) 
 		{
 			if (sched != null) {
@@ -44,6 +59,11 @@ namespace Surveys
 			return sched;
 		}
 
+		/// <summary>
+		/// Sets the active parameter in the survey.
+		/// </summary>
+		/// <returns><c>true</c>, if active was set in any of the parts, <c>false</c> otherwise.</returns>
+		/// <param name="survey">Survey.</param>
 		public static bool setActive(SurveyAnswer survey) 
 		{
 			foreach (SurveyPart sp in survey.Survey.SurveyParts) {

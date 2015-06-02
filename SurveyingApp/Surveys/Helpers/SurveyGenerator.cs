@@ -3,8 +3,15 @@ using System.Collections.Generic;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Survey generator for the mockup survey. Used only for debugging.
+	/// </summary>
 	public static class SurveyGenerator
 	{
+		/// <summary>
+		/// Generates the exemplary Survey
+		/// </summary>
+		/// <returns>The fresh survey instance.</returns>
 		public static Survey generateSurvey1()
 		{
 			Survey survey = new Survey ();

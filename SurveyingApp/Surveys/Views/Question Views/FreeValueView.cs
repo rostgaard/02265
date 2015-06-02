@@ -5,12 +5,21 @@ using System.Collections.Generic;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Free value view.
+	/// </summary>
 	public class FreeValueView : QuestionView
 	{
 		Label QuestionLabel { get; set;}
 
 		Editor AnswerEditor {get; set;}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.FreeValueView"/> class.
+		/// </summary>
+		/// <param name="qr">Qr.</param>
+		/// <param name="questionText">Question text.</param>
+		/// <param name="isMandatory">If set to <c>true</c> is mandatory.</param>
 		public FreeValueView (QuestionReference qr, string questionText, bool isMandatory) : this (qr, isMandatory)
 		{
 			QuestionLabel.Text = questionText;
@@ -18,6 +27,11 @@ namespace Surveys
 			this.IsAnswered = false;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.FreeValueView"/> class.
+		/// </summary>
+		/// <param name="qr">Qr.</param>
+		/// <param name="isMandatory">If set to <c>true</c> is mandatory.</param>
 		public FreeValueView (QuestionReference qr, bool isMandatory) : base (qr, isMandatory)
 		{
 			QuestionLabel = new Label{

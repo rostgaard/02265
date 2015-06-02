@@ -12,6 +12,9 @@ using System.Diagnostics;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Geolocator page. Unused.
+	/// </summary>
 	public class GeolocatorPage : ContentPage
 	{
 

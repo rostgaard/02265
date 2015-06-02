@@ -5,12 +5,22 @@ using System.ServiceModel;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Single choice view.
+	/// </summary>
 	public class SingleChoiceView : QuestionView
 	{
 		Label QuestionLabel { get; set; }
 
 		Picker AnswerPicker { get; set; }
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.SingleChoiceView"/> class.
+		/// </summary>
+		/// <param name="qr">Qr.</param>
+		/// <param name="questionText">Question text.</param>
+		/// <param name="options">Options.</param>
+		/// <param name="isMandatory">If set to <c>true</c> is mandatory.</param>
 		public SingleChoiceView (QuestionReference qr, string questionText, List<string> options, bool isMandatory) : this (qr, isMandatory)
 		{
 			QuestionLabel.Text = questionText;
@@ -19,6 +29,11 @@ namespace Surveys
 			}
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.SingleChoiceView"/> class.
+		/// </summary>
+		/// <param name="qr">Qr.</param>
+		/// <param name="isMandatory">If set to <c>true</c> is mandatory.</param>
 		public SingleChoiceView (QuestionReference qr, bool isMandatory) : base (qr, isMandatory)
 		{
 			QuestionLabel = new Label {

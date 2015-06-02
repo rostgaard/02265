@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Page containig Survey page (one question per page)
+	/// </summary>
 	public class SurveyViewPage : ContentPage
 	{
 		bool AnsweredCorrectly { get; set;}
@@ -23,6 +26,11 @@ namespace Surveys
 
 		ViewGenerator vg = null;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.SurveyViewPage"/> class.
+		/// </summary>
+		/// <param name="vg">View generator.</param>
+		/// <param name="tflp">Page which called this one (for callbacks)</param>
 		public SurveyViewPage(ViewGenerator vg, ToFillListPage tflp)
 		{
 			this.vg = vg;

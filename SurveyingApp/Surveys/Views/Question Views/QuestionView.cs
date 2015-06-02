@@ -6,6 +6,9 @@ using System.ComponentModel;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Question view.
+	/// </summary>
 	public abstract class QuestionView : StackLayout
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -25,11 +28,11 @@ namespace Surveys
 			}
 		}
 
-		public QuestionView()
-		{
-			
-		}
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.QuestionView"/> class.
+		/// </summary>
+		/// <param name="qr">Qr.</param>
+		/// <param name="isMandatory">If set to <c>true</c> is mandatory.</param>
 		public QuestionView (QuestionReference qr, bool isMandatory)
 		{
 			this.VerticalOptions = LayoutOptions.FillAndExpand;

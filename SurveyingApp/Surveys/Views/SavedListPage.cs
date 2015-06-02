@@ -8,6 +8,9 @@ using System.Linq;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Page containing the list of previously saved (filled) surveys.
+	/// </summary>
 	public class SavedListPage : ContentPage
 	{
 		public IList<string> FilledSurveys {
@@ -15,6 +18,9 @@ namespace Surveys
 			private set;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.SavedListPage"/> class.
+		/// </summary>
 		public SavedListPage ()
 		{
 			this.Title = "List of saved survey results";

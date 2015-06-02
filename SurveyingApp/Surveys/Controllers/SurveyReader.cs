@@ -4,8 +4,16 @@ using System.IO;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Survey reader.
+	/// </summary>
 	static class SurveyReader
 	{
+		/// <summary>
+		/// Reads the survey from resource.
+		/// </summary>
+		/// <returns>The survey from resource.</returns>
+		/// <param name="resourceName">Resource name.</param>
 		public static Survey ReadSurveyFromResource(string resourceName)
 		{
 			Assembly assembly = typeof(SurveyReader).GetTypeInfo ().Assembly;

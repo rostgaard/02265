@@ -4,8 +4,14 @@ using Xamarin.Forms;
 
 namespace Surveys
 {
+	/// <summary>
+	/// Home page.
+	/// </summary>
 	public class HomePage : ContentPage
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.HomePage"/> class.
+		/// </summary>
 		public HomePage ()
 		{
 			this.Title = "Surveyor";

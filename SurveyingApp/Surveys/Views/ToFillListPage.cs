@@ -10,6 +10,10 @@ using System.Runtime.Serialization;
 
 namespace Surveys
 {
+
+	/// <summary>
+	/// Page containing list of the surveys available to be filled.
+	/// </summary>
 	public class ToFillListPage : ContentPage
 	{
 		private SurveyAnswer chosenSurvey;
@@ -18,6 +22,9 @@ namespace Surveys
 			private set;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Surveys.ToFillListPage"/> class.
+		/// </summary>
 		public ToFillListPage ()
 		{
 			this.Title = "To be answered";
@@ -60,30 +67,7 @@ namespace Surveys
 						sa);
 				}
 			}
-
-			// 1. start of app //
-			// 2. check if any new schemas (schema that has no instance generated yet) - potencjalnie z neta
-			//	StartupController.checkForNewSchemas ()
-			// this one returns list of all new schemas
-			// 3. if new schema, generate new survey instance
-			//StartupController.generateInstances ()
-			// this one return list of all the new instances
-			// 4. foreach survey instance in unfilled instances folder do // dorzucam do tej w pamieci 
-			// zwraca zamiast ustalac flage	////		set Active flags (ScheduleController.setActive(surveyInstance))
-			//		if surveyInstance.survey.IsActive then add survey Instance to display active list
-
-			// 5. app is displaying active instances
-			// 6. customer chooses one of them
-			// 7. he fills it in and saves
-			// save actions:
-			// 8. serialize survey instance (with all the answer) to "done surveys" folder
-			// 9. call ScheduleController.reschedule(surveyInstance) <-- generated new dates (and may set active flags) przeprasuj setactive i ewentualnie dodac do pamieci
-			// 10. remove old surveyInstance_serialized from "unfilled instances" folder lista w pamieci
-			// 11. add new surveyInstance_rescheduled to "unfilled instances" folder
-
-
-
-
+				
 			// Create and initialize ListView.
 		
 			ListView listView = new ListView ();
@@ -105,6 +89,9 @@ namespace Surveys
 			};
 		}
 
+		/// <summary>
+		/// Reschedule the instance of the chosen SurveyAnswer.
+		/// </summary>
 		public void Reschedule()
 		{
 			ScheduleController.reschedule (chosenSurvey);

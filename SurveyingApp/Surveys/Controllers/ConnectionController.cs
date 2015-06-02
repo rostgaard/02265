@@ -5,9 +5,14 @@ using System.IO;
 
 namespace Surveys
 {
-	public 
-	class ConnectionController
+	/// <summary>
+	/// Connection controller.
+	/// </summary>
+	public class ConnectionController
 	{
+		/// <summary>
+		/// Mockup class simulating actual connection for the new surveys.
+		/// </summary>
 		public void DownloadNewSurveys ()
 		{
 			// this part is actually faking the connection to the Internet
